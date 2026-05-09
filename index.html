@@ -27,6 +27,25 @@ body{
   overflow-x:hidden;
 }
 
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background:
+  radial-gradient(circle at top right, rgba(255,0,102,0.10), transparent 35%),
+  radial-gradient(circle at bottom left, rgba(255,105,180,0.10), transparent 35%);
+  pointer-events:none;
+}
+
+::-webkit-scrollbar{
+  width:8px;
+}
+
+::-webkit-scrollbar-thumb{
+  background:#303030;
+  border-radius:20px;
+}
+
 .navbar{
   width:100%;
   height:65px;
@@ -35,9 +54,9 @@ body{
   align-items:center;
   justify-content:space-between;
   padding:0 20px;
-  position:fixed;
+  position:sticky;
   top:0;
-  z-index:999;
+  z-index:1000;
   border-bottom:1px solid #272727;
 }
 
@@ -55,6 +74,7 @@ body{
   justify-content:center;
   align-items:center;
   cursor:pointer;
+  transition:.3s;
 }
 
 .menu-btn:hover{
@@ -70,18 +90,20 @@ body{
 }
 
 .yt-icon{
-  width:35px;
-  height:25px;
-  border-radius:8px;
   background:#ff0000;
+  width:36px;
+  height:26px;
+  border-radius:8px;
   display:flex;
   justify-content:center;
   align-items:center;
+  font-size:15px;
 }
 
 .search-box{
   width:45%;
   display:flex;
+  align-items:center;
 }
 
 .search-input{
@@ -96,17 +118,19 @@ body{
 
 .search-btn{
   width:70px;
+  height:45px;
+  border:none;
   background:#222;
-  border:1px solid #303030;
-  border-radius:0 40px 40px 0;
   color:white;
+  border-radius:0 40px 40px 0;
+  border:1px solid #303030;
   cursor:pointer;
 }
 
 .nav-right{
   display:flex;
   align-items:center;
-  gap:15px;
+  gap:18px;
 }
 
 .nav-icon{
@@ -117,6 +141,7 @@ body{
   justify-content:center;
   align-items:center;
   cursor:pointer;
+  transition:.3s;
 }
 
 .nav-icon:hover{
@@ -132,18 +157,15 @@ body{
 
 .container{
   display:flex;
-  margin-top:65px;
 }
 
 .sidebar{
   width:240px;
   height:calc(100vh - 65px);
-  position:fixed;
+  position:sticky;
   top:65px;
-  left:0;
-  background:#0f0f0f;
   padding:15px;
-  border-right:1px solid #202020;
+  overflow-y:auto;
 }
 
 .sidebar-item{
@@ -153,21 +175,18 @@ body{
   padding:14px;
   border-radius:14px;
   cursor:pointer;
+  transition:.3s;
   margin-bottom:5px;
 }
 
-.sidebar-item:hover{
-  background:#272727;
-}
-
+.sidebar-item:hover,
 .active{
   background:#272727;
 }
 
 .main{
-  margin-left:240px;
-  width:100%;
-  padding:25px;
+  flex:1;
+  padding:20px;
 }
 
 .category{
@@ -184,11 +203,7 @@ body{
   background:#272727;
   color:white;
   cursor:pointer;
-}
-
-.category button:hover{
-  background:white;
-  color:black;
+  white-space:nowrap;
 }
 
 .video-grid{
@@ -212,13 +227,18 @@ body{
   border-radius:18px;
   overflow:hidden;
   position:relative;
+  background:#222;
 }
 
-.thumbnail img,
-.thumbnail video{
+.thumbnail img{
   width:100%;
   height:100%;
   object-fit:cover;
+  transition:.5s;
+}
+
+.video-card:hover img{
+  transform:scale(1.05);
 }
 
 .play-hover{
@@ -228,23 +248,23 @@ body{
   justify-content:center;
   align-items:center;
   opacity:0;
-  transition:.3s;
-  background:rgba(0,0,0,.3);
-}
-
-.play-hover i{
-  font-size:60px;
+  transition:.4s;
+  background:rgba(0,0,0,0.2);
 }
 
 .video-card:hover .play-hover{
   opacity:1;
 }
 
+.play-hover i{
+  font-size:55px;
+}
+
 .duration{
   position:absolute;
   right:10px;
   bottom:10px;
-  background:rgba(0,0,0,.8);
+  background:rgba(0,0,0,0.8);
   padding:4px 8px;
   border-radius:6px;
   font-size:12px;
@@ -276,7 +296,7 @@ body{
 .modal{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.92);
+  background:rgba(0,0,0,0.94);
   display:none;
   justify-content:center;
   align-items:center;
@@ -286,152 +306,154 @@ body{
 
 .modal-content{
   width:95%;
-  max-width:1000px;
+  max-width:1100px;
   background:#181818;
   border-radius:20px;
   overflow:hidden;
   position:relative;
+  animation:popup .5s ease;
+}
+
+@keyframes popup{
+  from{
+    transform:scale(.8);
+    opacity:0;
+  }
+  to{
+    transform:scale(1);
+    opacity:1;
+  }
 }
 
 .close{
   position:absolute;
-  right:20px;
   top:15px;
+  right:20px;
   font-size:35px;
   cursor:pointer;
-  z-index:10;
+  z-index:1000;
 }
 
 .player video{
   width:100%;
-  max-height:520px;
+  max-height:500px;
   background:black;
 }
 
 .video-detail{
-  padding:22px;
+  padding:25px;
+}
+
+.video-detail h2{
+  margin-bottom:12px;
 }
 
 .video-detail p{
-  color:#bbb;
+  color:#ccc;
   line-height:1.8;
 }
 
-/* CAKE */
-
 .cake-scene{
   width:100%;
-  min-height:620px;
-  background:linear-gradient(to bottom,#111,#1d1d1d);
+  min-height:650px;
   display:none;
   justify-content:center;
   align-items:center;
   flex-direction:column;
   position:relative;
   overflow:hidden;
+  background:
+  linear-gradient(to bottom,#131313,#0b0b0b);
 }
 
-.float{
+.floating{
   position:absolute;
-  bottom:-50px;
+  font-size:22px;
   animation:floatUp linear infinite;
-  opacity:.8;
-}
-
-.float i{
-  color:#ff7eb6;
-  font-size:20px;
+  opacity:.7;
 }
 
 @keyframes floatUp{
   from{
-    transform:translateY(0) rotate(0deg);
+    transform:translateY(100vh) scale(.5);
     opacity:0;
   }
   to{
-    transform:translateY(-900px) rotate(360deg);
+    transform:translateY(-120vh) scale(1.2);
     opacity:1;
   }
 }
 
 .cake-wrapper{
   position:relative;
-  width:220px;
-  height:220px;
-  margin-top:80px;
+  margin-top:90px;
+  transform:scale(.68);
 }
 
-.plate{
-  width:220px;
-  height:20px;
-  background:#d9d9d9;
-  border-radius:50px;
-  position:absolute;
-  bottom:0;
+.cake{
+  position:relative;
+  width:260px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
 }
 
-.layer1,
-.layer2,
-.layer3{
-  position:absolute;
-  left:50%;
-  transform:translateX(-50%);
-  border-radius:18px;
-  background:#ff8fc7;
-  box-shadow:0 5px 15px rgba(255,105,180,.4);
+.layer{
+  border-radius:20px;
+  background:#ff9fcf;
+  position:relative;
+  box-shadow:0 10px 20px rgba(255,105,180,.3);
 }
 
 .layer1{
-  width:180px;
-  height:55px;
-  bottom:20px;
+  width:240px;
+  height:60px;
 }
 
 .layer2{
-  width:145px;
-  height:45px;
-  bottom:70px;
+  width:190px;
+  height:55px;
+  margin-bottom:8px;
 }
 
 .layer3{
-  width:110px;
-  height:38px;
-  bottom:112px;
+  width:140px;
+  height:50px;
+  margin-bottom:8px;
 }
 
 .candles{
   position:absolute;
-  left:50%;
-  transform:translateX(-50%);
+  top:-90px;
   display:flex;
-  gap:12px;
-  bottom:150px;
+  gap:22px;
 }
 
 .candle{
-  width:12px;
-  height:42px;
-  background:repeating-linear-gradient(
+  width:14px;
+  height:70px;
+  border-radius:10px;
+  background:
+  repeating-linear-gradient(
     45deg,
     white,
-    white 5px,
-    hotpink 5px,
-    hotpink 10px
+    white 6px,
+    hotpink 6px,
+    hotpink 12px
   );
-  border-radius:10px;
   position:relative;
 }
 
 .flame{
-  width:16px;
-  height:22px;
-  background:radial-gradient(circle,#fff7a8,#ff9100);
+  width:22px;
+  height:32px;
+  background:radial-gradient(circle,#fff7a5,#ff9900);
   border-radius:50%;
   position:absolute;
-  top:-18px;
+  top:-28px;
   left:50%;
   transform:translateX(-50%);
-  animation:flicker .4s infinite alternate;
+  animation:flicker .3s infinite alternate;
   box-shadow:0 0 20px orange;
 }
 
@@ -440,41 +462,45 @@ body{
     transform:translateX(-50%) scale(1);
   }
   to{
-    transform:translateX(-50%) scale(1.15);
+    transform:translateX(-50%) scale(1.1);
   }
 }
 
 .birthday-title{
   margin-top:40px;
-  font-size:55px;
+  font-size:58px;
   color:#ffb6d9;
   font-family:'Great Vibes',cursive;
 }
 
 .live-text{
-  width:85%;
-  max-width:850px;
-  margin-top:25px;
+  margin-top:30px;
+  width:80%;
+  max-width:900px;
+  min-height:180px;
+  line-height:2.2;
   text-align:center;
   color:#f2f2f2;
-  line-height:2.2;
-  font-size:17px;
-  min-height:180px;
-  padding:0 10px;
+  font-size:18px;
 }
 
 .word{
+  opacity:0;
   display:inline-block;
   margin-right:8px;
-  opacity:0;
-  transform:translateY(12px);
-  animation:smoothWord .8s forwards;
+  animation:showWord .8s forwards;
 }
 
-@keyframes smoothWord{
+@keyframes showWord{
+  from{
+    opacity:0;
+    transform:translateY(10px);
+    filter:blur(5px);
+  }
   to{
     opacity:1;
     transform:translateY(0);
+    filter:blur(0);
   }
 }
 
@@ -484,16 +510,17 @@ body{
     display:none;
   }
 
-  .main{
-    margin-left:0;
-  }
-
   .search-box{
     width:60%;
   }
 
-  .video-grid{
-    grid-template-columns:1fr;
+  .birthday-title{
+    font-size:42px;
+  }
+
+  .live-text{
+    font-size:15px;
+    width:90%;
   }
 
 }
@@ -509,39 +536,35 @@ body{
 <nav class="navbar">
 
 <div class="nav-left">
+  <div class="menu-btn">
+    <i class="fa-solid fa-bars"></i>
+  </div>
 
-<div class="menu-btn">
-<i class="fa-solid fa-bars"></i>
-</div>
-
-<div class="logo">
-<div class="yt-icon">
-<i class="fa-solid fa-play"></i>
-</div>
-JuwbelTube
-</div>
-
+  <div class="logo">
+    <div class="yt-icon">
+      <i class="fa-solid fa-play"></i>
+    </div>
+    JuwbelTube
+  </div>
 </div>
 
 <div class="search-box">
-<input class="search-input" type="text" placeholder="Search">
-<button class="search-btn">
-<i class="fa-solid fa-magnifying-glass"></i>
-</button>
+  <input class="search-input" type="text" placeholder="Search">
+  <button class="search-btn">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
 </div>
 
 <div class="nav-right">
+  <div class="nav-icon">
+    <i class="fa-solid fa-video"></i>
+  </div>
 
-<div class="nav-icon">
-<i class="fa-solid fa-video"></i>
-</div>
+  <div class="nav-icon">
+    <i class="fa-regular fa-bell"></i>
+  </div>
 
-<div class="nav-icon">
-<i class="fa-regular fa-bell"></i>
-</div>
-
-<div class="profile"></div>
-
+  <div class="profile"></div>
 </div>
 
 </nav>
@@ -551,33 +574,33 @@ JuwbelTube
 <aside class="sidebar">
 
 <div class="sidebar-item active">
-<i class="fa-solid fa-house"></i>
-Home
+  <i class="fa-solid fa-house"></i>
+  Home
 </div>
 
 <div class="sidebar-item">
-<i class="fa-solid fa-film"></i>
-Shorts
+  <i class="fa-solid fa-film"></i>
+  Shorts
 </div>
 
 <div class="sidebar-item">
-<i class="fa-solid fa-clock"></i>
-History
+  <i class="fa-solid fa-heart"></i>
+  Favorites
 </div>
 
 <div class="sidebar-item">
-<i class="fa-solid fa-heart"></i>
-Liked
+  <i class="fa-solid fa-clock"></i>
+  History
 </div>
 
 <div class="sidebar-item">
-<i class="fa-solid fa-play"></i>
-Playlist
+  <i class="fa-solid fa-play"></i>
+  Playlist
 </div>
 
 <div class="sidebar-item">
-<i class="fa-solid fa-user-group"></i>
-Friends
+  <i class="fa-solid fa-user-group"></i>
+  Friends
 </div>
 
 </aside>
@@ -585,12 +608,12 @@ Friends
 <main class="main">
 
 <div class="category">
-<button>All</button>
-<button>Memories</button>
-<button>Special</button>
-<button>Music</button>
-<button>Funny</button>
-<button>Vlog</button>
+  <button>All</button>
+  <button>Music</button>
+  <button>Memories</button>
+  <button>Special</button>
+  <button>Moments</button>
+  <button>Vlog</button>
 </div>
 
 <section class="video-grid">
@@ -598,7 +621,6 @@ Friends
 <div class="video-card" onclick="openModal(1)">
 
 <div class="thumbnail">
-
 <img src="bg bird.png">
 
 <div class="play-hover">
@@ -606,7 +628,6 @@ Friends
 </div>
 
 <div class="duration">6:27</div>
-
 </div>
 
 <div class="video-info">
@@ -615,28 +636,23 @@ Friends
 
 <div class="video-text">
 <h3>Ucapan Untuk Nelaaa 💖</h3>
-<p>JuwbelTube ✔</p>
+<p>JuwbelTube ✓</p>
 <p>2,7 jt x ditonton • 1 hari lalu</p>
 </div>
 
 </div>
-
 </div>
 
 <div class="video-card" onclick="openModal(2)">
 
 <div class="thumbnail">
-
-<video muted autoplay loop>
-<source src="last nigth.mp4" type="video/mp4">
-</video>
+<video src="last nigth.mp4"></video>
 
 <div class="play-hover">
 <i class="fa-solid fa-circle-play"></i>
 </div>
 
-<div class="duration">12:03</div>
-
+<div class="duration">4:21</div>
 </div>
 
 <div class="video-info">
@@ -644,29 +660,24 @@ Friends
 <img class="channel-pic" src="profil yt.jpeg">
 
 <div class="video-text">
-<h3>Last Night Moments 🌙</h3>
-<p>JuwbelTube ✔</p>
-<p>987 rb x ditonton • 5 jam lalu</p>
+<h3>Last Night Memories 🌙</h3>
+<p>JuwbelTube ✓</p>
+<p>982 rb x ditonton • 2 hari lalu</p>
 </div>
 
 </div>
-
 </div>
 
 <div class="video-card" onclick="openModal(3)">
 
 <div class="thumbnail">
-
-<video muted autoplay loop>
-<source src="momen pondok.mp4" type="video/mp4">
-</video>
+<video src="momen pondok.mp4"></video>
 
 <div class="play-hover">
 <i class="fa-solid fa-circle-play"></i>
 </div>
 
-<div class="duration">9:11</div>
-
+<div class="duration">8:11</div>
 </div>
 
 <div class="video-info">
@@ -675,28 +686,23 @@ Friends
 
 <div class="video-text">
 <h3>Momen Pondok ✨</h3>
-<p>JuwbelTube ✔</p>
-<p>3,2 jt x ditonton • 2 hari lalu</p>
+<p>JuwbelTube ✓</p>
+<p>1,1 jt x ditonton • 4 hari lalu</p>
 </div>
 
 </div>
-
 </div>
 
 <div class="video-card" onclick="openModal(4)">
 
 <div class="thumbnail">
-
-<video muted autoplay loop>
-<source src="vidio recap nela.mp4" type="video/mp4">
-</video>
+<video src="vidio recap nela.mp4"></video>
 
 <div class="play-hover">
 <i class="fa-solid fa-circle-play"></i>
 </div>
 
-<div class="duration">15:21</div>
-
+<div class="duration">12:03</div>
 </div>
 
 <div class="video-info">
@@ -704,19 +710,17 @@ Friends
 <img class="channel-pic" src="profil yt.jpeg">
 
 <div class="video-text">
-<h3>Recap With Nelaaa 🎞️</h3>
-<p>JuwbelTube ✔</p>
-<p>1,5 jt x ditonton • 6 hari lalu</p>
+<h3>Recap With Nela 🎥</h3>
+<p>JuwbelTube ✓</p>
+<p>3 jt x ditonton • 6 jam lalu</p>
 </div>
 
 </div>
-
 </div>
 
 </section>
 
 </main>
-
 </div>
 
 <div class="modal" id="modal">
@@ -727,29 +731,15 @@ Friends
 
 <div class="cake-scene" id="cakeScene">
 
-<div class="float" style="left:10%; animation-duration:8s;">
-<i class="fa-solid fa-heart"></i>
-</div>
-
-<div class="float" style="left:30%; animation-duration:10s;">
-<i class="fa-solid fa-heart"></i>
-</div>
-
-<div class="float" style="left:60%; animation-duration:7s;">
-<i class="fa-solid fa-heart"></i>
-</div>
-
-<div class="float" style="left:80%; animation-duration:11s;">
-<i class="fa-solid fa-heart"></i>
-</div>
+<div class="floating" style="left:10%; animation-duration:11s;">💖</div>
+<div class="floating" style="left:25%; animation-duration:14s;">🌸</div>
+<div class="floating" style="left:40%; animation-duration:12s;">💗</div>
+<div class="floating" style="left:60%; animation-duration:15s;">✨</div>
+<div class="floating" style="left:80%; animation-duration:10s;">🌷</div>
 
 <div class="cake-wrapper">
 
-<div class="plate"></div>
-
-<div class="layer1"></div>
-<div class="layer2"></div>
-<div class="layer3"></div>
+<div class="cake">
 
 <div class="candles">
 
@@ -767,6 +757,12 @@ Friends
 
 </div>
 
+<div class="layer layer3"></div>
+<div class="layer layer2"></div>
+<div class="layer layer1"></div>
+
+</div>
+
 </div>
 
 <h1 class="birthday-title">Happy Birthday Nelaaa 💖</h1>
@@ -776,9 +772,7 @@ Friends
 </div>
 
 <div class="player">
-<video id="video" controls>
-<source src="">
-</video>
+<video id="video" controls></video>
 </div>
 
 <div class="video-detail">
@@ -787,129 +781,63 @@ Friends
 </div>
 
 </div>
-
 </div>
 
 <script>
 
 const bgMusic = document.getElementById('bgMusic');
 
-const liveWords = [
-"thank",
-"you",
-"for",
-"always",
-"being",
-"here.",
-"remember",
-"all",
-"those",
-"days",
-"when",
-"we",
-"were",
-"always",
-"together?",
-"those",
-"little",
-"moments",
-"still",
-"feel",
-"so",
-"warm",
-"until",
-"now.",
-"honestly,",
-"they",
-"made",
-"me",
-"miss",
-"us",
-"even",
-"more.",
-"you",
-"turned",
-"ordinary",
-"days",
-"into",
-"beautiful",
-"memories.",
-"thank",
-"you",
-"for",
-"being",
-"such",
-"a",
-"special",
-"part",
-"of",
-"my",
-"life.",
-"happy",
-"birthday",
-"nelaaa",
-"💖",
-"i",
-"hope",
-"your",
-"future",
-"is",
-"filled",
-"with",
-"happiness,",
-"peace,",
-"love,",
-"and",
-"everything",
-"good",
-"you",
-"deserve.",
-"please",
-"stay",
-"soft,",
-"kind,",
-"and",
-"beautiful",
-"just",
-"the",
-"way",
-"you",
-"are",
-"✨"
-];
+const liveMessage = `
+you know nelaaa...
+sometimes i still miss those random little moments we had together.
+the late night talks, the chaos, the laughs that made our stomach hurt,
+and all those memories that somehow became one of the warmest parts of my life.
 
-let indexWord = 0;
-let typingInterval;
+thank you for staying,
+for being such a precious soul,
+for accompanying so many days,
+and for making ordinary moments feel special.
 
-function startTyping(){
+honestly,
+i'm really lucky to know someone like you.
+even small moments with you somehow became memories i never wanna lose.
 
-const liveText = document.getElementById("liveText");
+happy birthday nelaaa 💖
 
-liveText.innerHTML = "";
+i hope this new age brings you softer days,
+better people,
+beautiful surprises,
+peaceful nights,
+and happiness that stays for a really really long time.
 
-clearInterval(typingInterval);
+please stay healthy,
+stay pretty,
+stay kind,
+and never forget how loved you are.
 
-typingInterval = setInterval(()=>{
+i'll always wish the best things for you.
+always.
+`;
 
-if(indexWord < liveWords.length){
+function typeWordsSmooth(){
+
+const container = document.getElementById('liveText');
+container.innerHTML = "";
+
+const words = liveMessage.split(" ");
+
+words.forEach((word,index)=>{
 
 const span = document.createElement("span");
 
-span.classList.add("word");
+span.className = "word";
+span.innerText = word + " ";
 
-span.innerHTML = liveWords[indexWord];
+span.style.animationDelay = `${index * 0.22}s`;
 
-liveText.appendChild(span);
+container.appendChild(span);
 
-indexWord++;
-
-}else{
-
-clearInterval(typingInterval);
-
-}
-
-},220);
+});
 
 }
 
@@ -917,25 +845,25 @@ const data = {
 
 1:{
 title:"Ucapan Untuk Nelaaa 💖",
-desc:"Special memories and birthday surprise.",
+desc:"special little memories made with love.",
 video:""
 },
 
 2:{
-title:"Last Night Moments 🌙",
-desc:"Random moments that became unforgettable memories.",
+title:"Last Night Memories 🌙",
+desc:"random moments that somehow became unforgettable.",
 video:"last nigth.mp4"
 },
 
 3:{
 title:"Momen Pondok ✨",
-desc:"Little memories that still feel warm until now.",
+desc:"small memories with big feelings.",
 video:"momen pondok.mp4"
 },
 
 4:{
-title:"Recap With Nelaaa 🎞️",
-desc:"A small recap of beautiful moments together.",
+title:"Recap With Nela 🎥",
+desc:"a collection of moments that still feel warm.",
 video:"vidio recap nela.mp4"
 }
 
@@ -961,9 +889,7 @@ video.style.display = 'none';
 
 bgMusic.play();
 
-indexWord = 0;
-
-startTyping();
+typeWordsSmooth();
 
 }else{
 
@@ -988,10 +914,9 @@ const cakeScene = document.getElementById('cakeScene');
 modal.style.display = 'none';
 
 video.pause();
+bgMusic.pause();
 
 cakeScene.style.display = 'none';
-
-bgMusic.pause();
 
 }
 
