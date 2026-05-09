@@ -286,6 +286,52 @@
       }
     }
 
+    .candle {
+      width: 16px;
+      height: 70px;
+      background: repeating-linear-gradient(
+        45deg,
+        #ffffff,
+        #ffffff 6px,
+        #ff7eb6 6px,
+        #ff7eb6 12px
+      );
+      border-radius: 8px;
+      position: relative;
+    }
+
+    .flame {
+      width: 22px;
+      height: 35px;
+      background: radial-gradient(circle, #fff6a9, #ff9900);
+      border-radius: 50% 50% 50% 50%;
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: flicker 0.3s infinite alternate;
+      box-shadow: 0 0 25px #ffcc33;
+    }
+
+    @keyframes flicker {
+      from {
+        transform: translateX(-50%) scale(1);
+        opacity: 0.9;
+      }
+      to {
+        transform: translateX(-50%) scale(1.1);
+        opacity: 1;
+      }
+    }
+      30% {
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-100px) scale(1.5);
+        opacity: 0;
+      }
+    }
+
     @media(max-width:768px){
       .search-box {
         width: 60%;
@@ -491,6 +537,46 @@
         <source src="" type="video/mp4">
       </video>
 
+      <div id="cakeScene" style="display:none; justify-content:center; align-items:center; flex-direction:column; padding-top:30px; background:#111; min-height:420px; position:relative; overflow:hidden;">
+
+        <div style="position:relative; margin-top:40px;">
+
+          <div style="display:flex; justify-content:center; gap:30px; position:absolute; width:100%; top:-80px; left:0;">
+
+            <div class="candle">
+              <div class="flame"></div>
+            </div>
+
+            <div class="candle">
+              <div class="flame"></div>
+            </div>
+
+            <div class="candle">
+              <div class="flame"></div>
+            </div>
+
+          </div>
+
+          <div style="width:320px; height:110px; background:#ff9ec7; border-radius:20px; position:relative; box-shadow:0 10px 30px rgba(255,105,180,0.3);">
+
+            <div style="position:absolute; width:100%; height:18px; background:#fff; top:25px;"></div>
+
+            <div style="position:absolute; width:100%; height:18px; background:#fff; top:65px;"></div>
+
+          </div>
+
+          <div style="width:360px; height:45px; background:#ff4fa3; border-radius:50px; margin:auto;"></div>
+
+        </div>
+
+        <h1 style="margin-top:50px; font-size:55px; color:#ffb6d9; font-family:'Great Vibes', cursive; text-align:center;">Happy Birthday 💖</h1>
+
+        <p style="margin-top:10px; color:#ddd; text-align:center; max-width:600px; line-height:1.8; padding:0 20px;">
+          Semoga semua hal indah datang ke hidup kamu ✨
+        </p>
+
+      </div>
+
       <div class="modal-text">
         <h2 id="title"></h2>
         <p id="desc"></p>
@@ -528,6 +614,7 @@
     }
 
     function openModal(id){
+      const cakeScene = document.getElementById('cakeScene');
       const modal = document.getElementById('modal');
       const title = document.getElementById('title');
       const desc = document.getElementById('desc');
@@ -538,7 +625,15 @@
       video.src = data[id].video;
 
       modal.style.display = 'flex';
-      video.play();
+
+      if(id === 1){
+        cakeScene.style.display = 'flex';
+        video.style.display = 'none';
+      } else {
+        cakeScene.style.display = 'none';
+        video.style.display = 'block';
+        video.play();
+      }
     }
 
     function closeModal(){
@@ -547,6 +642,7 @@
 
       modal.style.display = 'none';
       video.pause();
+      document.getElementById('cakeScene').style.display = 'none';
     }
 
     function createHeart(){
