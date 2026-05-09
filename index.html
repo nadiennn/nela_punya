@@ -27,15 +27,6 @@ body{
   overflow-x:hidden;
 }
 
-::-webkit-scrollbar{
-  width:7px;
-}
-
-::-webkit-scrollbar-thumb{
-  background:#303030;
-  border-radius:20px;
-}
-
 .navbar{
   width:100%;
   height:65px;
@@ -64,7 +55,6 @@ body{
   justify-content:center;
   align-items:center;
   cursor:pointer;
-  transition:0.3s;
 }
 
 .menu-btn:hover{
@@ -87,13 +77,11 @@ body{
   display:flex;
   justify-content:center;
   align-items:center;
-  font-size:14px;
 }
 
 .search-box{
   width:45%;
   display:flex;
-  align-items:center;
 }
 
 .search-input{
@@ -108,12 +96,10 @@ body{
 
 .search-btn{
   width:70px;
-  height:45px;
-  border:none;
   background:#222;
-  color:white;
-  border-radius:0 40px 40px 0;
   border:1px solid #303030;
+  border-radius:0 40px 40px 0;
+  color:white;
   cursor:pointer;
 }
 
@@ -131,7 +117,6 @@ body{
   justify-content:center;
   align-items:center;
   cursor:pointer;
-  transition:0.3s;
 }
 
 .nav-icon:hover{
@@ -158,7 +143,6 @@ body{
   left:0;
   background:#0f0f0f;
   padding:15px;
-  overflow-y:auto;
   border-right:1px solid #202020;
 }
 
@@ -169,7 +153,6 @@ body{
   padding:14px;
   border-radius:14px;
   cursor:pointer;
-  transition:0.3s;
   margin-bottom:5px;
 }
 
@@ -201,8 +184,6 @@ body{
   background:#272727;
   color:white;
   cursor:pointer;
-  white-space:nowrap;
-  transition:0.3s;
 }
 
 .category button:hover{
@@ -218,11 +199,11 @@ body{
 
 .video-card{
   cursor:pointer;
-  transition:0.3s;
+  transition:.3s;
 }
 
 .video-card:hover{
-  transform:translateY(-6px);
+  transform:translateY(-5px);
 }
 
 .thumbnail{
@@ -231,7 +212,6 @@ body{
   border-radius:18px;
   overflow:hidden;
   position:relative;
-  background:#222;
 }
 
 .thumbnail img,
@@ -248,8 +228,8 @@ body{
   justify-content:center;
   align-items:center;
   opacity:0;
-  transition:0.3s;
-  background:rgba(0,0,0,0.3);
+  transition:.3s;
+  background:rgba(0,0,0,.3);
 }
 
 .play-hover i{
@@ -264,7 +244,7 @@ body{
   position:absolute;
   right:10px;
   bottom:10px;
-  background:rgba(0,0,0,0.8);
+  background:rgba(0,0,0,.8);
   padding:4px 8px;
   border-radius:6px;
   font-size:12px;
@@ -296,7 +276,7 @@ body{
 .modal{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,0.92);
+  background:rgba(0,0,0,.92);
   display:none;
   justify-content:center;
   align-items:center;
@@ -311,18 +291,6 @@ body{
   border-radius:20px;
   overflow:hidden;
   position:relative;
-  animation:popup .4s ease;
-}
-
-@keyframes popup{
-  from{
-    transform:scale(.7);
-    opacity:0;
-  }
-  to{
-    transform:scale(1);
-    opacity:1;
-  }
 }
 
 .close{
@@ -342,10 +310,6 @@ body{
 
 .video-detail{
   padding:22px;
-}
-
-.video-detail h2{
-  margin-bottom:10px;
 }
 
 .video-detail p{
@@ -493,9 +457,25 @@ body{
   margin-top:25px;
   text-align:center;
   color:#f2f2f2;
-  line-height:2;
+  line-height:2.2;
   font-size:17px;
-  min-height:140px;
+  min-height:180px;
+  padding:0 10px;
+}
+
+.word{
+  display:inline-block;
+  margin-right:8px;
+  opacity:0;
+  transform:translateY(12px);
+  animation:smoothWord .8s forwards;
+}
+
+@keyframes smoothWord{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
 }
 
 @media(max-width:900px){
@@ -514,10 +494,6 @@ body{
 
   .video-grid{
     grid-template-columns:1fr;
-  }
-
-  .birthday-title{
-    font-size:45px;
   }
 
 }
@@ -615,12 +591,9 @@ Friends
 <button>Music</button>
 <button>Funny</button>
 <button>Vlog</button>
-<button>Moments</button>
 </div>
 
 <section class="video-grid">
-
-<!-- VIDEO 1 -->
 
 <div class="video-card" onclick="openModal(1)">
 
@@ -649,8 +622,6 @@ Friends
 </div>
 
 </div>
-
-<!-- VIDEO 2 -->
 
 <div class="video-card" onclick="openModal(2)">
 
@@ -682,8 +653,6 @@ Friends
 
 </div>
 
-<!-- VIDEO 3 -->
-
 <div class="video-card" onclick="openModal(3)">
 
 <div class="thumbnail">
@@ -713,8 +682,6 @@ Friends
 </div>
 
 </div>
-
-<!-- VIDEO 4 -->
 
 <div class="video-card" onclick="openModal(4)">
 
@@ -752,15 +719,11 @@ Friends
 
 </div>
 
-<!-- MODAL -->
-
 <div class="modal" id="modal">
 
 <div class="modal-content">
 
 <span class="close" onclick="closeModal()">×</span>
-
-<!-- CAKE -->
 
 <div class="cake-scene" id="cakeScene">
 
@@ -812,8 +775,6 @@ Friends
 
 </div>
 
-<!-- PLAYER -->
-
 <div class="player">
 <video id="video" controls>
 <source src="">
@@ -834,22 +795,91 @@ Friends
 const bgMusic = document.getElementById('bgMusic');
 
 const liveWords = [
-"thank you for always being here.",
-"thank you for all the laughs.",
-"remember when we stayed together through everything?",
-"those moments honestly made me miss us even more.",
-"you turned random days into beautiful memories.",
-"i'm really lucky to know someone like you.",
-"even small moments with you always felt special.",
-"happy birthday nelaaa 💖",
-"i hope your days ahead are full of happiness.",
-"i hope you always feel loved and appreciated.",
-"may your dreams slowly come true one by one.",
-"please stay kind, soft, and amazing like this.",
-"and thank you for being part of my life ✨"
+"thank",
+"you",
+"for",
+"always",
+"being",
+"here.",
+"remember",
+"all",
+"those",
+"days",
+"when",
+"we",
+"were",
+"always",
+"together?",
+"those",
+"little",
+"moments",
+"still",
+"feel",
+"so",
+"warm",
+"until",
+"now.",
+"honestly,",
+"they",
+"made",
+"me",
+"miss",
+"us",
+"even",
+"more.",
+"you",
+"turned",
+"ordinary",
+"days",
+"into",
+"beautiful",
+"memories.",
+"thank",
+"you",
+"for",
+"being",
+"such",
+"a",
+"special",
+"part",
+"of",
+"my",
+"life.",
+"happy",
+"birthday",
+"nelaaa",
+"💖",
+"i",
+"hope",
+"your",
+"future",
+"is",
+"filled",
+"with",
+"happiness,",
+"peace,",
+"love,",
+"and",
+"everything",
+"good",
+"you",
+"deserve.",
+"please",
+"stay",
+"soft,",
+"kind,",
+"and",
+"beautiful",
+"just",
+"the",
+"way",
+"you",
+"are",
+"✨"
 ];
 
-let wordIndex = 0;
+let indexWord = 0;
+let typingInterval;
 
 function startTyping(){
 
@@ -857,18 +887,29 @@ const liveText = document.getElementById("liveText");
 
 liveText.innerHTML = "";
 
-let interval = setInterval(()=>{
+clearInterval(typingInterval);
 
-if(wordIndex < liveWords.length){
+typingInterval = setInterval(()=>{
 
-liveText.innerHTML += liveWords[wordIndex] + " ";
-wordIndex++;
+if(indexWord < liveWords.length){
+
+const span = document.createElement("span");
+
+span.classList.add("word");
+
+span.innerHTML = liveWords[indexWord];
+
+liveText.appendChild(span);
+
+indexWord++;
 
 }else{
-clearInterval(interval);
+
+clearInterval(typingInterval);
+
 }
 
-},1200);
+},220);
 
 }
 
@@ -920,7 +961,8 @@ video.style.display = 'none';
 
 bgMusic.play();
 
-wordIndex = 0;
+indexWord = 0;
+
 startTyping();
 
 }else{
