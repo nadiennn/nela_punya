@@ -44,12 +44,6 @@ body{
   z-index:999;
 }
 
-.nav-left{
-  display:flex;
-  align-items:center;
-  gap:18px;
-}
-
 .logo{
   display:flex;
   align-items:center;
@@ -216,12 +210,14 @@ body{
   z-index:100;
 }
 
-/* VIDEO */
+/* PLAYER */
 
 .player video{
   width:100%;
   max-height:520px;
 }
+
+/* DETAIL */
 
 .video-detail{
   padding:25px;
@@ -233,7 +229,7 @@ body{
   line-height:1.8;
 }
 
-/* CAKE */
+/* CAKE SCENE */
 
 .cake-scene{
   width:100%;
@@ -248,7 +244,7 @@ body{
   padding:40px;
 }
 
-/* FLOATING EFFECT */
+/* FLOAT */
 
 .floating{
   position:absolute;
@@ -302,7 +298,8 @@ body{
   display:flex;
   flex-direction:column;
   align-items:center;
-  transform:scale(0.8);
+  transform:scale(0.55);
+  margin-top:-40px;
   z-index:10;
 }
 
@@ -386,47 +383,35 @@ body{
 
 /* LIVE TEXT */
 
-.live-text{
-  position:relative;
-  margin-top:30px;
-  max-width:800px;
-  min-height:240px;
-  text-align:center;
-  z-index:10;
+.typing-wrapper{
+  width:90%;
+  max-width:850px;
+  margin-top:35px;
+  background:rgba(255,255,255,0.05);
+  padding:25px;
+  border-radius:25px;
+  backdrop-filter:blur(8px);
+  min-height:220px;
+  z-index:20;
 }
 
-.live-text p{
-
-  position:absolute;
-  width:100%;
-  opacity:0;
-  line-height:2;
-  color:#f3f3f3;
+#liveText{
+  color:#f5f5f5;
   font-size:17px;
-
-  animation:showText 4s forwards;
+  line-height:2.2;
+  text-align:center;
 }
 
-@keyframes showText{
+#liveText::after{
+  content:"|";
+  animation:blink .5s infinite;
+  color:#ffb6d9;
+}
 
-  0%{
-    opacity:0;
-    transform:translateY(20px);
-  }
-
-  15%{
-    opacity:1;
-    transform:translateY(0);
-  }
-
-  85%{
-    opacity:1;
-  }
-
-  100%{
+@keyframes blink{
+  50%{
     opacity:0;
   }
-
 }
 
 @media(max-width:800px){
@@ -456,8 +441,6 @@ body{
 
 <nav class="navbar">
 
-<div class="nav-left">
-
 <div class="logo">
 
 <div class="yt-icon">
@@ -465,8 +448,6 @@ body{
 </div>
 
 JuwbelTube
-
-</div>
 
 </div>
 
@@ -644,7 +625,7 @@ JuwbelTube
 
 <span class="close" onclick="closeModal()">×</span>
 
-<!-- CAKE SCENE -->
+<!-- CAKE -->
 
 <div class="cake-scene" id="cakeScene">
 
@@ -653,8 +634,6 @@ JuwbelTube
 <div class="floating floating3">✨</div>
 <div class="floating floating4">🩷</div>
 <div class="floating floating5">💐</div>
-
-<!-- CAKE -->
 
 <div class="cake-build">
 
@@ -680,64 +659,19 @@ JuwbelTube
 
 </div>
 
-<!-- TITLE -->
-
 <h1 class="birthday-title">
 Happy Birthday Nelaaa 💖
 </h1>
 
-<!-- LIVE TEXT -->
+<div class="typing-wrapper">
 
-<div class="live-text">
-
-<p style="animation-delay:1s;">
-sometimes i still miss those old days so much...
-</p>
-
-<p style="animation-delay:5s;">
-the days when we were always together,
-laughing at random things
-and sharing little stories 🌷
-</p>
-
-<p style="animation-delay:10s;">
-somehow all those tiny moments became
-the warmest memories in my life ✨
-</p>
-
-<p style="animation-delay:15s;">
-and now every time i look back at them,
-it honestly makes me miss you even more 💖
-</p>
-
-<p style="animation-delay:20s;">
-thank you for always being there,
-through chaos, random nights,
-and every phase of life 🩷
-</p>
-
-<p style="animation-delay:25s;">
-happy birthday nelaaa 🌷
-</p>
-
-<p style="animation-delay:29s;">
-i hope your future becomes brighter,
-softer, happier,
-and filled with beautiful things ✨
-</p>
-
-<p style="animation-delay:34s;">
-thank you for existing,
-thank you for the memories,
-and thank you for being someone
-i’ll always cherish forever 💖
-</p>
+<p id="liveText"></p>
 
 </div>
 
 </div>
 
-<!-- VIDEO PLAYER -->
+<!-- VIDEO -->
 
 <div class="player">
 
@@ -811,6 +745,8 @@ video.style.display = 'none';
 
 music.play();
 
+startTyping();
+
 }else{
 
 cakeScene.style.display = 'none';
@@ -840,6 +776,73 @@ video.pause();
 cakeScene.style.display = 'none';
 
 music.pause();
+
+}
+
+/* LIVE TEXT */
+
+const text = `
+
+sometimes i still miss those old days so much...
+
+the days when we were always together,
+laughing at random things
+and acting like time would never change 🌷
+
+every little moment with you
+slowly became one of the best memories
+i’ve ever had in my life ✨
+
+thank you for staying,
+thank you for listening,
+and thank you for being part
+of my story all this time 💖
+
+honestly,
+having you as my best friend
+is one of the luckiest things ever 🩷
+
+happy birthday nelaaa 🌷
+
+i hope your days ahead
+become softer, brighter,
+and filled with love,
+peace,
+and happiness ✨
+
+i hope every dream you carry
+slowly finds its way to you 💐
+
+and no matter where life takes us later,
+i’ll always cherish
+all the memories we made together 💖
+
+`;
+
+let i = 0;
+let typingStarted = false;
+
+function startTyping(){
+
+if(typingStarted) return;
+
+typingStarted = true;
+
+function typeEffect(){
+
+if(i < text.length){
+
+document.getElementById("liveText").innerHTML += text.charAt(i);
+
+i++;
+
+setTimeout(typeEffect,45);
+
+}
+
+}
+
+typeEffect();
 
 }
 
