@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JuwbelTube</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,16 +25,6 @@ body{
   background:#0f0f0f;
   color:white;
   overflow-x:hidden;
-}
-
-body::before{
-  content:'';
-  position:fixed;
-  inset:0;
-  background:
-  radial-gradient(circle at top right, rgba(255,0,102,0.10), transparent 35%),
-  radial-gradient(circle at bottom left, rgba(255,105,180,0.10), transparent 35%);
-  pointer-events:none;
 }
 
 ::-webkit-scrollbar{
@@ -97,13 +87,11 @@ body::before{
   display:flex;
   justify-content:center;
   align-items:center;
-  font-size:15px;
 }
 
 .search-box{
   width:45%;
   display:flex;
-  align-items:center;
 }
 
 .search-input{
@@ -118,7 +106,6 @@ body::before{
 
 .search-btn{
   width:70px;
-  height:45px;
   border:none;
   background:#222;
   color:white;
@@ -141,7 +128,6 @@ body::before{
   justify-content:center;
   align-items:center;
   cursor:pointer;
-  transition:.3s;
 }
 
 .nav-icon:hover{
@@ -165,7 +151,6 @@ body::before{
   position:sticky;
   top:65px;
   padding:15px;
-  overflow-y:auto;
 }
 
 .sidebar-item{
@@ -175,7 +160,6 @@ body::before{
   padding:14px;
   border-radius:14px;
   cursor:pointer;
-  transition:.3s;
   margin-bottom:5px;
 }
 
@@ -203,7 +187,6 @@ body::before{
   background:#272727;
   color:white;
   cursor:pointer;
-  white-space:nowrap;
 }
 
 .video-grid{
@@ -230,15 +213,17 @@ body::before{
   background:#222;
 }
 
-.thumbnail img{
+.thumbnail img,
+.thumbnail video{
   width:100%;
   height:100%;
   object-fit:cover;
-  transition:.5s;
+  object-position:center;
 }
 
-.video-card:hover img{
-  transform:scale(1.05);
+.nela-thumb{
+  object-fit:cover;
+  object-position:center;
 }
 
 .play-hover{
@@ -249,7 +234,7 @@ body::before{
   align-items:center;
   opacity:0;
   transition:.4s;
-  background:rgba(0,0,0,0.2);
+  background:rgba(0,0,0,.2);
 }
 
 .video-card:hover .play-hover{
@@ -264,7 +249,7 @@ body::before{
   position:absolute;
   right:10px;
   bottom:10px;
-  background:rgba(0,0,0,0.8);
+  background:rgba(0,0,0,.8);
   padding:4px 8px;
   border-radius:6px;
   font-size:12px;
@@ -296,7 +281,7 @@ body::before{
 .modal{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,0.94);
+  background:rgba(0,0,0,.94);
   display:none;
   justify-content:center;
   align-items:center;
@@ -311,18 +296,6 @@ body::before{
   border-radius:20px;
   overflow:hidden;
   position:relative;
-  animation:popup .5s ease;
-}
-
-@keyframes popup{
-  from{
-    transform:scale(.8);
-    opacity:0;
-  }
-  to{
-    transform:scale(1);
-    opacity:1;
-  }
 }
 
 .close{
@@ -355,53 +328,52 @@ body::before{
 
 .cake-scene{
   width:100%;
-  min-height:650px;
+  min-height:700px;
   display:none;
   justify-content:center;
   align-items:center;
   flex-direction:column;
   position:relative;
   overflow:hidden;
-  background:
-  linear-gradient(to bottom,#131313,#0b0b0b);
+  background:linear-gradient(to bottom,#151515,#090909);
 }
 
 .floating{
   position:absolute;
   font-size:22px;
   animation:floatUp linear infinite;
-  opacity:.7;
+  opacity:.8;
 }
 
 @keyframes floatUp{
   from{
-    transform:translateY(100vh) scale(.5);
+    transform:translateY(100vh);
     opacity:0;
   }
+
   to{
-    transform:translateY(-120vh) scale(1.2);
+    transform:translateY(-120vh);
     opacity:1;
   }
 }
 
 .cake-wrapper{
   position:relative;
-  margin-top:90px;
-  transform:scale(.68);
+  margin-top:110px;
+  transform:scale(.65);
 }
 
 .cake{
-  position:relative;
-  width:260px;
+  width:250px;
   display:flex;
   flex-direction:column;
   align-items:center;
+  position:relative;
 }
 
 .layer{
   border-radius:20px;
   background:#ff9fcf;
-  position:relative;
   box-shadow:0 10px 20px rgba(255,105,180,.3);
 }
 
@@ -461,47 +433,64 @@ body::before{
   from{
     transform:translateX(-50%) scale(1);
   }
+
   to{
     transform:translateX(-50%) scale(1.1);
   }
 }
 
 .birthday-title{
-  margin-top:40px;
+  margin-top:20px;
   font-size:58px;
   color:#ffb6d9;
   font-family:'Great Vibes',cursive;
 }
 
 .live-text{
-  margin-top:30px;
-  width:80%;
-  max-width:900px;
-  min-height:180px;
-  line-height:2.2;
+  margin-top:28px;
+  width:85%;
+  max-width:920px;
+  min-height:220px;
   text-align:center;
-  color:#f2f2f2;
+  line-height:2.3;
+  color:#f5f5f5;
   font-size:18px;
+  font-weight:300;
+  letter-spacing:.3px;
+}
+
+.text-line{
+  width:100%;
+  margin-bottom:14px;
 }
 
 .word{
   opacity:0;
   display:inline-block;
   margin-right:8px;
-  animation:showWord .8s forwards;
+  transform:translateY(12px);
+  filter:blur(8px);
+  animation:smoothAppear 1.4s forwards;
 }
 
-@keyframes showWord{
-  from{
+@keyframes smoothAppear{
+
+  0%{
     opacity:0;
-    transform:translateY(10px);
-    filter:blur(5px);
+    transform:translateY(18px);
+    filter:blur(10px);
   }
-  to{
+
+  60%{
+    opacity:.7;
+  }
+
+  100%{
     opacity:1;
     transform:translateY(0);
     filter:blur(0);
   }
+
 }
 
 @media(max-width:900px){
@@ -519,14 +508,15 @@ body::before{
   }
 
   .live-text{
-    font-size:15px;
     width:90%;
+    font-size:15px;
   }
 
 }
 
 </style>
 </head>
+
 <body>
 
 <audio id="bgMusic" loop>
@@ -536,35 +526,45 @@ body::before{
 <nav class="navbar">
 
 <div class="nav-left">
-  <div class="menu-btn">
-    <i class="fa-solid fa-bars"></i>
-  </div>
 
-  <div class="logo">
-    <div class="yt-icon">
-      <i class="fa-solid fa-play"></i>
-    </div>
-    JuwbelTube
-  </div>
+<div class="menu-btn">
+<i class="fa-solid fa-bars"></i>
+</div>
+
+<div class="logo">
+
+<div class="yt-icon">
+<i class="fa-solid fa-play"></i>
+</div>
+
+JuwbelTube
+
+</div>
+
 </div>
 
 <div class="search-box">
-  <input class="search-input" type="text" placeholder="Search">
-  <button class="search-btn">
-    <i class="fa-solid fa-magnifying-glass"></i>
-  </button>
+
+<input class="search-input" type="text" placeholder="Search">
+
+<button class="search-btn">
+<i class="fa-solid fa-magnifying-glass"></i>
+</button>
+
 </div>
 
 <div class="nav-right">
-  <div class="nav-icon">
-    <i class="fa-solid fa-video"></i>
-  </div>
 
-  <div class="nav-icon">
-    <i class="fa-regular fa-bell"></i>
-  </div>
+<div class="nav-icon">
+<i class="fa-solid fa-video"></i>
+</div>
 
-  <div class="profile"></div>
+<div class="nav-icon">
+<i class="fa-regular fa-bell"></i>
+</div>
+
+<div class="profile"></div>
+
 </div>
 
 </nav>
@@ -574,33 +574,28 @@ body::before{
 <aside class="sidebar">
 
 <div class="sidebar-item active">
-  <i class="fa-solid fa-house"></i>
-  Home
+<i class="fa-solid fa-house"></i>
+Home
 </div>
 
 <div class="sidebar-item">
-  <i class="fa-solid fa-film"></i>
-  Shorts
+<i class="fa-solid fa-film"></i>
+Shorts
 </div>
 
 <div class="sidebar-item">
-  <i class="fa-solid fa-heart"></i>
-  Favorites
+<i class="fa-solid fa-heart"></i>
+Favorites
 </div>
 
 <div class="sidebar-item">
-  <i class="fa-solid fa-clock"></i>
-  History
+<i class="fa-solid fa-clock"></i>
+History
 </div>
 
 <div class="sidebar-item">
-  <i class="fa-solid fa-play"></i>
-  Playlist
-</div>
-
-<div class="sidebar-item">
-  <i class="fa-solid fa-user-group"></i>
-  Friends
+<i class="fa-solid fa-user-group"></i>
+Friends
 </div>
 
 </aside>
@@ -608,12 +603,13 @@ body::before{
 <main class="main">
 
 <div class="category">
-  <button>All</button>
-  <button>Music</button>
-  <button>Memories</button>
-  <button>Special</button>
-  <button>Moments</button>
-  <button>Vlog</button>
+
+<button>All</button>
+<button>Music</button>
+<button>Memories</button>
+<button>Special</button>
+<button>Playlist</button>
+
 </div>
 
 <section class="video-grid">
@@ -621,13 +617,15 @@ body::before{
 <div class="video-card" onclick="openModal(1)">
 
 <div class="thumbnail">
-<img src="bg bird.png">
+
+<img class="nela-thumb" src="bg bird.png">
 
 <div class="play-hover">
 <i class="fa-solid fa-circle-play"></i>
 </div>
 
 <div class="duration">6:27</div>
+
 </div>
 
 <div class="video-info">
@@ -641,11 +639,13 @@ body::before{
 </div>
 
 </div>
+
 </div>
 
 <div class="video-card" onclick="openModal(2)">
 
 <div class="thumbnail">
+
 <video src="last nigth.mp4"></video>
 
 <div class="play-hover">
@@ -653,6 +653,7 @@ body::before{
 </div>
 
 <div class="duration">4:21</div>
+
 </div>
 
 <div class="video-info">
@@ -666,11 +667,13 @@ body::before{
 </div>
 
 </div>
+
 </div>
 
 <div class="video-card" onclick="openModal(3)">
 
 <div class="thumbnail">
+
 <video src="momen pondok.mp4"></video>
 
 <div class="play-hover">
@@ -678,6 +681,7 @@ body::before{
 </div>
 
 <div class="duration">8:11</div>
+
 </div>
 
 <div class="video-info">
@@ -691,11 +695,13 @@ body::before{
 </div>
 
 </div>
+
 </div>
 
 <div class="video-card" onclick="openModal(4)">
 
 <div class="thumbnail">
+
 <video src="vidio recap nela.mp4"></video>
 
 <div class="play-hover">
@@ -703,6 +709,7 @@ body::before{
 </div>
 
 <div class="duration">12:03</div>
+
 </div>
 
 <div class="video-info">
@@ -716,11 +723,13 @@ body::before{
 </div>
 
 </div>
+
 </div>
 
 </section>
 
 </main>
+
 </div>
 
 <div class="modal" id="modal">
@@ -731,11 +740,11 @@ body::before{
 
 <div class="cake-scene" id="cakeScene">
 
-<div class="floating" style="left:10%; animation-duration:11s;">💖</div>
-<div class="floating" style="left:25%; animation-duration:14s;">🌸</div>
-<div class="floating" style="left:40%; animation-duration:12s;">💗</div>
-<div class="floating" style="left:60%; animation-duration:15s;">✨</div>
-<div class="floating" style="left:80%; animation-duration:10s;">🌷</div>
+<div class="floating" style="left:10%; animation-duration:12s;">💖</div>
+<div class="floating" style="left:30%; animation-duration:10s;">🌸</div>
+<div class="floating" style="left:50%; animation-duration:14s;">✨</div>
+<div class="floating" style="left:70%; animation-duration:11s;">💗</div>
+<div class="floating" style="left:85%; animation-duration:13s;">🌷</div>
 
 <div class="cake-wrapper">
 
@@ -776,66 +785,87 @@ body::before{
 </div>
 
 <div class="video-detail">
+
 <h2 id="title"></h2>
 <p id="desc"></p>
+
 </div>
 
 </div>
+
 </div>
 
 <script>
 
 const bgMusic = document.getElementById('bgMusic');
 
-const liveMessage = `
-you know nelaaa...
-sometimes i still miss those random little moments we had together.
-the late night talks, the chaos, the laughs that made our stomach hurt,
-and all those memories that somehow became one of the warmest parts of my life.
+const liveLines = [
 
-thank you for staying,
-for being such a precious soul,
-for accompanying so many days,
-and for making ordinary moments feel special.
+"you know nelaaa...",
 
-honestly,
-i'm really lucky to know someone like you.
-even small moments with you somehow became memories i never wanna lose.
+"sometimes i still miss those days when we were still in high school, when everything felt simpler and warmer than now.",
 
-happy birthday nelaaa 💖
+"back then we could talk about anything for hours, laugh over the most random things, stay together almost every day, and somehow never run out of stories to tell.",
 
-i hope this new age brings you softer days,
-better people,
-beautiful surprises,
-peaceful nights,
-and happiness that stays for a really really long time.
+"those little moments may have looked ordinary at that time, but now they became some of the most beautiful memories i still carry quietly until today.",
 
-please stay healthy,
-stay pretty,
-stay kind,
-and never forget how loved you are.
+"honestly, i’m really grateful life allowed me to meet someone like you.",
 
-i'll always wish the best things for you.
-always.
-`;
+"thank you for being part of my teenage years, thank you for accompanying so many chaotic days, thank you for listening to my random thoughts, and thank you for making those moments feel alive and meaningful.",
+
+"i know maybe we don’t always stay as close as before, life changes, people grow, and time keeps moving so fast... but somehow the memories still stay soft inside my heart.",
+
+"sometimes when i remember those days, i can’t help but smile a little because i realize how lucky i was to have a friend like you beside me.",
+
+"happy birthday nelaaa 💖",
+
+"i really hope this new age brings you so many beautiful things.",
+
+"i hope your days will always be filled with peace, happiness, soft moments, genuine people, and endless reasons to smile.",
+
+"please stay healthy, stay strong, stay kind, and never forget how precious and loved you truly are.",
+
+"thank you once again for all the memories we created together.",
+
+"and no matter where life takes us later, i think a part of me will always remember those school days with you as one of the happiest moments i’ve ever had ✨"
+
+];
 
 function typeWordsSmooth(){
 
-const container = document.getElementById('liveText');
+const container = document.getElementById("liveText");
+
 container.innerHTML = "";
 
-const words = liveMessage.split(" ");
+let totalDelay = 0;
 
-words.forEach((word,index)=>{
+liveLines.forEach((line)=>{
+
+const lineDiv = document.createElement("div");
+
+lineDiv.className = "text-line";
+
+const words = line.split(" ");
+
+words.forEach((word)=>{
 
 const span = document.createElement("span");
 
 span.className = "word";
+
 span.innerText = word + " ";
 
-span.style.animationDelay = `${index * 0.22}s`;
+span.style.animationDelay = `${totalDelay}s`;
 
-container.appendChild(span);
+lineDiv.appendChild(span);
+
+totalDelay += 0.20;
+
+});
+
+container.appendChild(lineDiv);
+
+totalDelay += 0.7;
 
 });
 
@@ -914,6 +944,7 @@ const cakeScene = document.getElementById('cakeScene');
 modal.style.display = 'none';
 
 video.pause();
+
 bgMusic.pause();
 
 cakeScene.style.display = 'none';
