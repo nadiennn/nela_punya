@@ -28,18 +28,15 @@ body{
 }
 
 /* SCROLL */
-
 ::-webkit-scrollbar{
   width:8px;
 }
-
 ::-webkit-scrollbar-thumb{
   background:#303030;
   border-radius:20px;
 }
 
 /* NAVBAR */
-
 .navbar{
   width:100%;
   height:65px;
@@ -145,7 +142,6 @@ body{
 }
 
 /* LAYOUT */
-
 .container{
   display:flex;
 }
@@ -183,7 +179,6 @@ body{
 }
 
 /* CATEGORY */
-
 .category{
   display:flex;
   gap:12px;
@@ -206,7 +201,6 @@ body{
 }
 
 /* VIDEO */
-
 .video-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(330px,1fr));
@@ -297,7 +291,6 @@ body{
 }
 
 /* MODAL */
-
 .modal{
   position:fixed;
   inset:0;
@@ -340,7 +333,6 @@ body{
 }
 
 /* PLAYER */
-
 .player video{
   width:100%;
   max-height:500px;
@@ -362,23 +354,24 @@ body{
 }
 
 /* CAKE */
-
 .cake-scene{
   width:100%;
   min-height:650px;
-  background:#111;
+  background:
+  radial-gradient(circle at top,#2b0f1f,#111);
   display:none;
   flex-direction:column;
   align-items:center;
   justify-content:flex-start;
   position:relative;
   overflow:hidden;
-  padding-top:70px;
+  padding-top:40px;
 }
 
+/* KUE DIKECILIN */
 .cake-wrapper{
-  transform:scale(.68);
-  margin-top:20px;
+  transform:scale(.48);
+  margin-top:-30px;
   position:relative;
 }
 
@@ -463,28 +456,35 @@ body{
 }
 
 .birthday-title{
-  margin-top:15px;
-  font-size:55px;
+  margin-top:-10px;
+  font-size:52px;
   font-family:'Great Vibes',cursive;
   color:#ffb6d9;
   text-align:center;
 }
 
+/* LIVE TEXT DIBUAT RAPI */
 .live-text{
   margin-top:20px;
-  width:80%;
-  max-width:700px;
+  width:85%;
+  max-width:720px;
   text-align:center;
-  line-height:2;
+  line-height:1.9;
   color:#f5f5f5;
-  font-size:17px;
-  min-height:160px;
+  font-size:16px;
+  min-height:auto;
+  padding:25px 30px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:22px;
+  backdrop-filter:blur(8px);
+  box-shadow:0 0 30px rgba(255,105,180,.08);
 }
 
 .word{
   opacity:0;
   display:inline-block;
-  margin-right:8px;
+  margin-right:4px;
   animation:fadeWord .6s forwards;
 }
 
@@ -500,7 +500,6 @@ body{
 }
 
 /* LOVE EFFECT */
-
 .love{
   position:absolute;
   bottom:-50px;
@@ -521,7 +520,6 @@ body{
 }
 
 /* MOBILE */
-
 @media(max-width:900px){
 
   .sidebar{
@@ -537,13 +535,25 @@ body{
   }
 
   .birthday-title{
-    font-size:42px;
+    font-size:40px;
+  }
+
+  .live-text{
+    width:92%;
+    padding:20px;
+    font-size:15px;
+  }
+
+  .cake-wrapper{
+    transform:scale(.42);
+    margin-top:-50px;
   }
 
 }
 
 </style>
 </head>
+
 <body>
 
 <audio id="bgMusic" loop>
@@ -551,11 +561,9 @@ body{
 </audio>
 
 <!-- NAVBAR -->
-
 <nav class="navbar">
 
 <div class="nav-left">
-
 <div class="menu-btn">
 <i class="fa-solid fa-bars"></i>
 </div>
@@ -566,7 +574,6 @@ body{
 </div>
 JuwbelTube
 </div>
-
 </div>
 
 <div class="search-box">
@@ -577,7 +584,6 @@ JuwbelTube
 </div>
 
 <div class="nav-right">
-
 <div class="nav-icon">
 <i class="fa-solid fa-video"></i>
 </div>
@@ -587,53 +593,43 @@ JuwbelTube
 </div>
 
 <div class="profile"></div>
-
 </div>
 
 </nav>
 
 <!-- CONTENT -->
-
 <div class="container">
 
 <!-- SIDEBAR -->
-
 <aside class="sidebar">
 
 <div class="sidebar-item active">
-<i class="fa-solid fa-house"></i>
-Home
+<i class="fa-solid fa-house"></i> Home
 </div>
 
 <div class="sidebar-item">
-<i class="fa-solid fa-film"></i>
-Shorts
+<i class="fa-solid fa-film"></i> Shorts
 </div>
 
 <div class="sidebar-item">
-<i class="fa-solid fa-heart"></i>
-Favorites
+<i class="fa-solid fa-heart"></i> Favorites
 </div>
 
 <div class="sidebar-item">
-<i class="fa-solid fa-clock"></i>
-History
+<i class="fa-solid fa-clock"></i> History
 </div>
 
 <div class="sidebar-item">
-<i class="fa-solid fa-play"></i>
-Playlist
+<i class="fa-solid fa-play"></i> Playlist
 </div>
 
 <div class="sidebar-item">
-<i class="fa-solid fa-user-group"></i>
-Friends
+<i class="fa-solid fa-user-group"></i> Friends
 </div>
 
 </aside>
 
 <!-- MAIN -->
-
 <main class="main">
 
 <div class="category">
@@ -648,11 +644,9 @@ Friends
 <section class="video-grid">
 
 <!-- NELA -->
-
 <div class="video-card" onclick="openModal(1)">
 
 <div class="thumbnail">
-
 <img src="bg bird.png">
 
 <div class="play-hover">
@@ -660,7 +654,6 @@ Friends
 </div>
 
 <div class="duration">7:17</div>
-
 </div>
 
 <div class="video-info">
@@ -674,93 +667,6 @@ Friends
 </div>
 
 </div>
-
-</div>
-
-<!-- VIDEO 2 -->
-
-<div class="video-card" onclick="openModal(2)">
-
-<div class="thumbnail">
-<video src="last nigth.mp4"></video>
-
-<div class="play-hover">
-<i class="fa-solid fa-circle-play"></i>
-</div>
-
-<div class="duration">4:11</div>
-</div>
-
-<div class="video-info">
-
-<img class="channel-pic" src="profil yt.jpeg">
-
-<div class="video-text">
-<h3>Last Night Memories 🌙</h3>
-<p>JuwbelTube ✓</p>
-<p>892 rb x ditonton • 4 jam lalu</p>
-</div>
-
-</div>
-
-</div>
-
-<!-- VIDEO 3 -->
-
-<div class="video-card" onclick="openModal(3)">
-
-<div class="thumbnail">
-<video src="momen pondok.mp4"></video>
-
-<div class="play-hover">
-<i class="fa-solid fa-circle-play"></i>
-</div>
-
-<div class="duration">9:20</div>
-
-</div>
-
-<div class="video-info">
-
-<img class="channel-pic" src="profil yt.jpeg">
-
-<div class="video-text">
-<h3>Momen Pondok ✨</h3>
-<p>JuwbelTube ✓</p>
-<p>1,2 jt x ditonton • 2 hari lalu</p>
-</div>
-
-</div>
-
-</div>
-
-<!-- VIDEO 4 -->
-
-<div class="video-card" onclick="openModal(4)">
-
-<div class="thumbnail">
-<video src="vidio recap nela.mp4"></video>
-
-<div class="play-hover">
-<i class="fa-solid fa-circle-play"></i>
-</div>
-
-<div class="duration">5:02</div>
-
-</div>
-
-<div class="video-info">
-
-<img class="channel-pic" src="profil yt.jpeg">
-
-<div class="video-text">
-<h3>Recap With Nela 🎥</h3>
-<p>JuwbelTube ✓</p>
-<p>783 rb x ditonton • 3 hari lalu</p>
-</div>
-
-</div>
-
 </div>
 
 </section>
@@ -769,7 +675,6 @@ Friends
 </div>
 
 <!-- MODAL -->
-
 <div class="modal" id="modal">
 
 <div class="modal-content">
@@ -777,7 +682,6 @@ Friends
 <span class="close" onclick="closeModal()">×</span>
 
 <!-- CAKE -->
-
 <div class="cake-scene" id="cakeScene">
 
 <div class="cake-wrapper">
@@ -813,7 +717,6 @@ Friends
 </div>
 
 </div>
-
 </div>
 
 <h1 class="birthday-title">
@@ -825,7 +728,6 @@ Happy Birthday Nelaaa 💖
 </div>
 
 <!-- VIDEO -->
-
 <div class="player">
 <video id="video" controls></video>
 </div>
@@ -836,7 +738,6 @@ Happy Birthday Nelaaa 💖
 </div>
 
 </div>
-
 </div>
 
 <script>
@@ -845,13 +746,27 @@ const bgMusic = document.getElementById('bgMusic');
 
 const message = `
 still can't believe we made it this far together.
-from those random high school days, the late talks, the dumb jokes, the little chaos, until all the memories we never realized would become something this precious.
-honestly, meeting you and being your friend is one of the luckiest things ever.
-thank you for always being part of those moments and for making ordinary days feel warm and unforgettable.
+from those random high school days,
+the late talks,
+the dumb jokes,
+the little chaos,
+until all the memories we never realized would become something this precious.
+
+honestly,
+meeting you and being your friend is one of the luckiest things ever.
+
+thank you for always being part of those moments
+and for making ordinary days feel warm and unforgettable.
+
 happy birthday nelaaa 💖
-i hope life treats you softly, your dreams slowly come true, and happiness always finds its way back to you no matter what happens.
-stay kind, stay pretty, stay you.
-and please don't forget that you'll always have people who care about you deeply ✨
+
+i hope life treats you softly,
+your dreams slowly come true,
+and happiness always finds its way back to you no matter what happens.
+
+stay kind,
+stay pretty,
+stay you ✨
 `;
 
 function typeMessage(){
@@ -868,7 +783,7 @@ const span = document.createElement('span');
 
 span.className = 'word';
 
-span.style.animationDelay = `${index * 0.18}s`;
+span.style.animationDelay = `${index * 0.12}s`;
 
 span.innerText = word + ' ';
 
@@ -908,24 +823,6 @@ const data = {
 title:"Ucapan Untuk Nelaaa 💖",
 desc:"special video for nelaaa",
 video:""
-},
-
-2:{
-title:"Last Night Memories 🌙",
-desc:"random memories that somehow became unforgettable.",
-video:"last nigth.mp4"
-},
-
-3:{
-title:"Momen Pondok ✨",
-desc:"small moments, big memories.",
-video:"momen pondok.mp4"
-},
-
-4:{
-title:"Recap With Nela 🎥",
-desc:"a little recap of beautiful chaos.",
-video:"vidio recap nela.mp4"
 }
 
 }
@@ -943,28 +840,12 @@ modal.style.display = 'flex';
 title.innerText = data[id].title;
 desc.innerText = data[id].desc;
 
-if(id === 1){
-
 cakeScene.style.display = 'flex';
 video.style.display = 'none';
 
 bgMusic.play();
 
 typeMessage();
-
-}else{
-
-cakeScene.style.display = 'none';
-
-video.style.display = 'block';
-
-video.src = data[id].video;
-
-video.play();
-
-bgMusic.pause();
-
-}
 
 }
 
