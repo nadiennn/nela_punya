@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎂 Nelaa</title>
+    <title>Nelaa 20 - Album 📖</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap');
         
         * {
             margin: 0;
@@ -14,420 +14,408 @@
         }
         
         body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            font-family: 'Poppins', sans-serif;
             height: 100vh;
-            background: radial-gradient(ellipse at center, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255,182,193,0.3) 0%, transparent 50%);
+            animation: bgFloat 15s ease-in-out infinite;
+            z-index: -1;
+        }
+        
+        @keyframes bgFloat {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(2deg); }
+        }
+        
+        .album-container {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            perspective: 1500px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: 'Inter', sans-serif;
-            overflow: hidden;
-            cursor: none;
         }
         
-        .cursor {
-            position: fixed;
-            width: 20px;
-            height: 20px;
-            background: linear-gradient(45deg, #ff6b9d, #c44569);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            mix-blend-mode: difference;
-            transition: transform 0.1s ease;
-            box-shadow: 0 0 20px rgba(255,107,157,0.5);
-        }
-        
-        .lock-screen {
-            text-align: center;
-            color: #fff;
-            opacity: 0;
-            animation: fadeInPulse 2s infinite;
-            transform: scale(0.8);
-            transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-        
-        .lock-screen.active {
-            opacity: 1;
-            transform: scale(1);
-        }
-        
-        @keyframes fadeInPulse {
-            0%, 100% { opacity: 0.4; transform: scale(0.8); }
-            50% { opacity: 0.8; transform: scale(1.1); }
-        }
-        
-        .code-input {
-            background: rgba(255,255,255,0.05);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 16px;
-            padding: 40px 60px;
-            margin: 20px 0;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
-        }
-        
-        .code-title {
-            font-size: clamp(1.5rem, 5vw, 3rem);
-            font-weight: 700;
-            margin-bottom: 20px;
-            background: linear-gradient(45deg, #ff6b9d, #c44569, #ff9ff3);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradientShift 3s ease infinite;
-        }
-        
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-        
-        .code-field {
-            background: rgba(0,0,0,0.3);
-            border: none;
-            border-radius: 12px;
-            padding: 20px 30px;
-            font-size: 2.5rem;
-            font-weight: 600;
-            color: #fff;
-            text-align: center;
-            letter-spacing: 8px;
-            width: 280px;
-            font-family: 'Courier New', monospace;
-            text-transform: uppercase;
-            caret-color: #ff6b9d;
-        }
-        
-        .code-field::placeholder {
-            color: rgba(255,255,255,0.4);
-            letter-spacing: 8px;
-        }
-        
-        .glitch {
+        .album-book {
+            width: 600px;
+            height: 800px;
             position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         
-        .glitch::before,
-        .glitch::after {
-            content: attr(data-text);
+        .page {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(145deg, 
+                    rgba(255,255,255,0.95) 0%, 
+                    rgba(255,255,255,0.85) 100%);
+            border-radius: 20px;
+            box-shadow: 
+                0 30px 60px rgba(0,0,0,0.3),
+                inset 0 1px 0 rgba(255,255,255,0.8);
+            padding: 60px 50px;
+            box-sizing: border-box;
+            backface-visibility: hidden;
+            transform-origin: left center;
+            transform: rotateY(-180deg);
+            opacity: 0;
+            overflow: hidden;
+        }
+        
+        .page.active {
+            transform: rotateY(0deg);
+            opacity: 1;
+        }
+        
+        .page.flipped {
+            transform: rotateY(180deg);
+        }
+        
+        .page::before {
+            content: '';
             position: absolute;
             top: 0;
-            left: 0;
-            width: 100%;
+            right: 0;
+            width: 30px;
             height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0,0,0,0.1));
+            border-radius: 0 20px 20px 0;
         }
         
-        .glitch::before {
-            animation: glitch-anim 2s infinite linear alternate-reverse;
-            color: #ff6b9d;
-            left: 2px;
-            text-shadow: -2px 0 #c44569;
+        .page-title {
+            font-family: 'Caveat', cursive;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            color: #d63384;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            animation: bounceIn 1s ease-out;
         }
         
-        .glitch::after {
-            animation: glitch-anim2 2s infinite linear alternate-reverse;
-            color: #ff9ff3;
-            right: 2px;
-            text-shadow: -2px 0 #ff6b9d;
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
         }
         
-        @keyframes glitch-anim {
-            0% { clip: rect(42px, 9999px, 44px, 0); transform: skew(0.6deg); }
-            5% { clip: rect(17px, 9999px, 52px, 0); transform: skew(0.4deg); }
-            10%, 100% { clip: rect(40px, 9999px, 37px, 0); transform: skew(0.2deg); }
-        }
-        
-        @keyframes glitch-anim2 {
-            0% { clip: rect(65px, 9999px, 47px, 0); transform: skew(0.8deg); }
-            5% { clip: rect(23px, 9999px, 77px, 0); transform: skew(0.2deg); }
-            10%, 100% { clip: rect(57px, 9999px, 40px, 0); transform: skew(0.6deg); }
-        }
-        
-        .gallery {
-            position: fixed;
-            top: 0;
-            left: 0;
+        .page-image {
             width: 100%;
-            height: 100%;
-            background: #000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            padding: 50px;
-            align-content: center;
-        }
-        
-        .gallery.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .photo-frame {
-            position: relative;
-            border-radius: 24px;
-            overflow: hidden;
-            cursor: pointer;
-            transform: scale(0.8) rotateY(20deg);
-            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            box-shadow: 0 35px 80px rgba(0,0,0,0.7);
-        }
-        
-        .photo-frame:hover {
-            transform: scale(1.05) rotateY(0deg);
-        }
-        
-        .photo-frame img {
-            width: 100%;
-            height: 400px;
+            height: 350px;
             object-fit: cover;
-            transition: transform 0.8s ease;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            transition: transform 0.5s ease;
         }
         
-        .photo-frame:hover img {
+        .page-image:hover {
+            transform: scale(1.02);
+        }
+        
+        .page-text {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            color: #333;
+            text-align: center;
+            font-weight: 400;
+            position: relative;
+        }
+        
+        .sulawesi-text {
+            font-style: italic;
+            color: #d63384;
+            font-weight: 600;
+            font-size: 1.3rem;
+        }
+        
+        .next-btn {
+            position: absolute;
+            bottom: 40px;
+            right: 40px;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff6b9d, #c44569);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            box-shadow: 0 15px 30px rgba(214,51,132,0.4);
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+        
+        .next-btn:hover {
+            transform: scale(1.1) translateY(-3px);
+            box-shadow: 0 20px 40px rgba(214,51,132,0.6);
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 15px 30px rgba(214,51,132,0.4); }
+            50% { box-shadow: 0 15px 30px rgba(214,51,132,0.7); }
+            100% { box-shadow: 0 15px 30px rgba(214,51,132,0.4); }
+        }
+        
+        .prev-btn {
+            position: absolute;
+            bottom: 40px;
+            left: 40px;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            border: 3px solid rgba(255,255,255,0.5);
+            color: #d63384;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+        
+        .prev-btn:hover {
+            background: rgba(255,255,255,0.5);
             transform: scale(1.1);
         }
         
-        .photo-label {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            right: 20px;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
-            color: #fff;
-            padding: 20px;
-            border-radius: 16px;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.4s ease;
-            font-weight: 500;
-        }
-        
-        .photo-frame:hover .photo-label {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .surprise-text {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: clamp(2rem, 8vw, 5rem);
-            font-weight: 700;
-            background: linear-gradient(45deg, #ff6b9d, #c44569, #ff9ff3);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .cover {
+            background: linear-gradient(145deg, #d63384, #c44569);
+            color: white;
             text-align: center;
-            opacity: 0;
-            z-index: 10000;
-            pointer-events: none;
-            animation: gradientShift 2s ease infinite;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
         
-        @media (max-width: 768px) {
-            .gallery {
-                grid-template-columns: 1fr;
-                padding: 30px 20px;
-                gap: 20px;
-            }
-            
-            .photo-frame {
-                transform: scale(0.9) rotateY(10deg);
-            }
+        .cover h1 {
+            font-family: 'Caveat', cursive;
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
         }
         
-        .particles {
+        .cover p {
+            font-size: 1.4rem;
+            opacity: 0.9;
+        }
+        
+        .floating-hearts {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 1;
+            z-index: 10;
         }
         
-        .particle {
+        .heart {
             position: absolute;
-            width: 4px;
-            height: 4px;
-            background: #ff6b9d;
-            border-radius: 50%;
-            animation: particleFloat 8s linear infinite;
+            font-size: 20px;
+            animation: heartFloat 6s linear infinite;
+            color: #ff6b9d;
         }
         
-        @keyframes particleFloat {
+        @keyframes heartFloat {
             0% {
-                transform: translateY(100vh) scale(0);
+                transform: translateY(100vh) rotate(0deg);
                 opacity: 1;
             }
             100% {
-                transform: translateY(-100px) scale(1);
+                transform: translateY(-100px) rotate(360deg);
                 opacity: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .album-book {
+                width: 90vw;
+                height: 85vh;
+                margin: 0 20px;
+            }
+            
+            .page {
+                padding: 40px 30px;
+            }
+            
+            .next-btn, .prev-btn {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="cursor" id="cursor"></div>
-    <div class="particles" id="particles"></div>
+    <div class="floating-hearts" id="hearts"></div>
     
-    <div class="lock-screen active" id="lockScreen">
-        <div class="code-input">
-            <div class="code-title glitch" data-text="UNLOCK NELAA">UNLOCK NELAA</div>
-            <input type="text" class="code-field" id="codeInput" maxlength="4" placeholder="____">
-        </div>
-    </div>
-    
-    <div class="gallery" id="gallery">
-        <div class="photo-frame" data-full="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=1200">
-            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=800&h=600&fit=crop" alt="Nelaa 20">
-            <div class="photo-label">Nelaa yang Cantik</div>
+    <div class="album-container">
+        <div class="album-book" id="albumBook">
+            <!-- Cover -->
+            <div class="page cover active" data-page="0">
+                <h1>Nelaa</h1>
+                <p>20 Taun</p>
+                <p style="font-size: 1.1rem; margin-top: 10px;">Album Istimewa</p>
+            </div>
+            
+            <!-- Page 1 -->
+            <div class="page" data-page="1">
+                <div class="page-title">📸 Halaman 1</div>
+                <img class="page-image" src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=800&h=600&fit=crop" alt="Nelaa">
+                <div class="page-text sulawesi-text">
+                    "Nelaa 20 taun, cantikna tau tekkang!<br>
+                    Matana bintang, senyumna surga."
+                </div>
+            </div>
+            
+            <!-- Page 2 -->
+            <div class="page" data-page="2">
+                <div class="page-title">💕 Halaman 2</div>
+                <img class="page-image" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop" alt="Nelaa">
+                <div class="page-text sulawesi-text">
+                    "Hari lahirna, doa banyak-banyak.<br>
+                    Sehat, bahagia, sukses tau terus."
+                </div>
+            </div>
+            
+            <!-- Page 3 -->
+            <div class="page" data-page="3">
+                <div class="page-title">✨ Halaman 3</div>
+                <img class="page-image" src="https://images.unsplash.com/photo-1524504388940-7b8a6c5e8b53?w=800&h=600&fit=crop" alt="Nelaa">
+                <div class="page-text sulawesi-text">
+                    "Nelaa ku, tau tau rencana Allah.<br>
+                    Masa depan cerah, impianna datang."
+                </div>
+            </div>
+            
+            <!-- Page 4 -->
+            <div class="page" data-page="4">
+                <div class="page-title">🌟 Halaman 4</div>
+                <img class="page-image" src="https://images.unsplash.com/photo-1558618047-3c8c76bbb17e?w=800&h=600&fit=crop" alt="Nelaa">
+                <div class="page-text sulawesi-text">
+                    "Terima kasih sudah jadi Nelaa.<br>
+                    Yang paling spesial di hati kita semua!"
+                </div>
+            </div>
+            
+            <!-- Page 5 - Penutup -->
+            <div class="page" data-page="5">
+                <div class="page-title">💖 Terima Kasih</div>
+                <img class="page-image" src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&h=600&fit=crop" alt="Nelaa">
+                <div class="page-text sulawesi-text" style="font-size: 1.4rem; font-weight: 700;">
+                    "Banyak doa untuk Nelaa 20 taun!<br><br>
+                    🎂 Selamat Ulang Tahun 🎂<br>
+                    Datangna berkah, sehatna tau panjang umur!"
+                </div>
+            </div>
         </div>
         
-        <div class="photo-frame" data-full="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200">
-            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop" alt="Nelaa 20">
-            <div class="photo-label">20 Tahun ✨</div>
-        </div>
-        
-        <div class="photo-frame" data-full="https://images.unsplash.com/photo-1524504388940-7b8a6c5e8b53?w=1200">
-            <img src="https://images.unsplash.com/photo-1524504388940-7b8a6c5e8b53?w=800&h=600&fit=crop" alt="Nelaa 20">
-            <div class="photo-label">Selamat Ulang Tahun!</div>
-        </div>
-        
-        <div class="photo-frame" data-full="https://images.unsplash.com/photo-1558618047-3c8c76bbb17e?w=1200">
-            <img src="https://images.unsplash.com/photo-1558618047-3c8c76bbb17e?w=800&h=600&fit=crop" alt="Nelaa 20">
-            <div class="photo-label">Paling Spesial</div>
-        </div>
-        
-        <div class="photo-frame" data-full="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1200">
-            <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&h=600&fit=crop" alt="Nelaa 20">
-            <div class="photo-label">Forever 20 💕</div>
-        </div>
-    </div>
-    
-    <div class="surprise-text" id="surpriseText">
-        <div style="font-size: 0.4em; opacity: 0.8; margin-bottom: 20px;">HAPPY</div>
-        <div>20th</div>
-        <div style="font-size: 0.4em; opacity: 0.8; margin-top: 20px;">NELAA! ✨</div>
+        <button class="next-btn" id="nextBtn">→</button>
+        <button class="prev-btn" id="prevBtn">←</button>
     </div>
 
     <script>
-        // Custom cursor
-        const cursor = document.getElementById('cursor');
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX - 10 + 'px';
-            cursor.style.top = e.clientY - 10 + 'px';
-        });
+        const pages = document.querySelectorAll('.page');
+        const albumBook = document.getElementById('albumBook');
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        let currentPage = 0;
+        const totalPages = pages.length;
 
-        // Code unlock system - KODE: NEL4 / 20TH / LOVE
-        const codeInput = document.getElementById('codeInput');
-        const lockScreen = document.getElementById('lockScreen');
-        const gallery = document.getElementById('gallery');
-        const surpriseText = document.getElementById('surpriseText');
-        
-        codeInput.addEventListener('input', (e) => {
-            if (e.target.value.length === 4) {
-                if (e.target.value === 'NEL4' || e.target.value === '20TH' || e.target.value === 'LOVE') {
-                    unlock();
-                } else {
-                    e.target.style.animation = 'shake 0.5s ease-in-out';
-                    setTimeout(() => e.target.style.animation = '', 500);
-                    e.target.value = '';
+        // Next page
+        nextBtn.addEventListener('click', () => {
+            if (currentPage < totalPages - 1) {
+                pages[currentPage].classList.remove('active');
+                pages[currentPage].classList.add('flipped');
+                currentPage++;
+                pages[currentPage].classList.add('active');
+                prevBtn.style.opacity = '1';
+                
+                if (currentPage === totalPages - 1) {
+                    showHearts();
                 }
             }
         });
 
-        function unlock() {
-            lockScreen.classList.remove('active');
-            setTimeout(() => {
-                lockScreen.style.opacity = '0';
-                lockScreen.style.transform = 'scale(0.5)';
-                gallery.classList.add('active');
-                createParticles();
-                showSurprise();
-            }, 800);
-        }
-
-        // Photo modal
-        document.querySelectorAll('.photo-frame').forEach(frame => {
-            frame.addEventListener('click', () => {
-                const fullImg = frame.dataset.full;
-                const img = document.createElement('img');
-                img.src = fullImg;
-                img.style.cssText = `
-                    position: fixed;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%) scale(0);
-                    width: 90vw;
-                    max-width: 800px;
-                    height: auto;
-                    border-radius: 20px;
-                    box-shadow: 0 50px 100px rgba(0,0,0,0.8);
-                    z-index: 10001;
-                    cursor: zoom-out;
-                    transition: transform 0.5s ease;
-                `;
-                document.body.appendChild(img);
+        // Previous page
+        prevBtn.addEventListener('click', () => {
+            if (currentPage > 0) {
+                pages[currentPage].classList.remove('active');
+                currentPage--;
+                pages[currentPage].classList.remove('flipped');
+                pages[currentPage].classList.add('active');
                 
-                setTimeout(() => img.style.transform = 'translate(-50%, -50%) scale(1)', 10);
-                
-                img.onclick = () => {
-                    img.style.transform = 'translate(-50%, -50%) scale(0)';
-                    setTimeout(() => img.remove(), 500);
-                };
-            });
+                if (currentPage === 0) {
+                    prevBtn.style.opacity = '0';
+                }
+            }
         });
 
-        // Particles explosion
-        function createParticles() {
-            const particles = document.getElementById('particles');
-            for (let i = 0; i < 150; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 8 + 's';
-                particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
-                particles.appendChild(particle);
-            }
-        }
-
-        // Surprise text animation
-        function showSurprise() {
-            setTimeout(() => {
-                surpriseText.style.opacity = '1';
-                surpriseText.style.transform = 'translate(-50%, -50%) scale(1)';
-            }, 1200);
-            
-            setTimeout(() => {
-                surpriseText.style.opacity = '0';
-                surpriseText.style.transform = 'translate(-50%, -50%) scale(1.2)';
-            }, 4000);
-        }
-
-        // Auto focus & keyboard
-        codeInput.focus();
+        // Keyboard navigation
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' && codeInput.value.length === 4) {
-                unlock();
-            }
+            if (e.key === 'ArrowRight' || e.key === ' ') nextPage();
+            if (e.key === 'ArrowLeft') prevPage();
         });
 
-        // Shake animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes shake {
-                0%, 100% { transform: translateX(0); }
-                25% { transform: translateX(-10px); }
-                75% { transform: translateX(10px); }
+        function nextPage() {
+            if (currentPage < totalPages - 1) {
+                nextBtn.click();
             }
-        `;
-        document.head.appendChild(style);
+        }
+        
+        function prevPage() {
+            if (currentPage > 0) {
+                prevBtn.click();
+            }
+        }
+
+        // Floating hearts
+        function showHearts() {
+            const heartsContainer = document.getElementById('hearts');
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '💖';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                heartsContainer.appendChild(heart);
+                
+                setTimeout(() => heart.remove(), 7000);
+            }, 300);
+        }
+
+        // Touch/swipe support
+        let startX = 0;
+        albumBook.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+        });
+        
+        albumBook.addEventListener('touchend', (e) => {
+            const endX = e.changedTouches[0].clientX;
+            if (startX - endX > 50) nextPage();
+            if (endX - startX > 50) prevPage();
+        });
+
+        // Auto next page demo (optional)
+        // setTimeout(() => nextPage(), 3000);
     </script>
 </body>
 </html>
