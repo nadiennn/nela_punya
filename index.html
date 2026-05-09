@@ -326,6 +326,32 @@
     <p class="typing">Ada sesuatu spesial buat kamu hari ini...</p>
   </section>
 
+  <div style="display:flex; width:100%; align-items:flex-start;">
+
+  <aside style="width:230px; min-height:100vh; background:white; padding:20px 15px; position:sticky; top:70px; border-right:1px solid #ffd6e8;">
+
+    <div style="display:flex; flex-direction:column; gap:12px;">
+
+      <button style="padding:14px; border:none; border-radius:14px; background:#ffdeec; color:#ff4f95; font-weight:600; cursor:pointer; text-align:left;">🏠 Home</button>
+
+      <button style="padding:14px; border:none; border-radius:14px; background:white; color:#555; cursor:pointer; text-align:left;">🎬 Shorts</button>
+
+      <button style="padding:14px; border:none; border-radius:14px; background:white; color:#555; cursor:pointer; text-align:left;">💖 Favorites</button>
+
+      <button style="padding:14px; border:none; border-radius:14px; background:white; color:#555; cursor:pointer; text-align:left;">🎂 Birthday</button>
+
+      <button style="padding:14px; border:none; border-radius:14px; background:white; color:#555; cursor:pointer; text-align:left;">📸 Memories</button>
+
+      <button style="padding:14px; border:none; border-radius:14px; background:white; color:#555; cursor:pointer; text-align:left;">🎁 Surprise</button>
+
+      <button style="padding:14px; border:none; border-radius:14px; background:white; color:#555; cursor:pointer; text-align:left;">🎵 Playlist</button>
+
+    </div>
+
+  </aside>
+
+  <main style="flex:1; padding:20px;">
+
   <section class="video-grid">
 
     <div class="card" onclick="openModal(1)">
@@ -374,7 +400,87 @@
 
   </section>
 
-  <div class="modal" id="modal">
+  <section style="width:95%; max-width:1400px; margin:auto; padding-bottom:80px;">
+
+    <h2 style="margin-bottom:25px; color:#ff5fa2; font-size:30px;">More Special Videos 💕</h2>
+
+    <div class="video-grid">
+
+      <div class="card" onclick="openModal(1)">
+        <div class="thumbnail">
+          <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?q=80&w=1200&auto=format&fit=crop">
+          <div class="play-btn">▶</div>
+        </div>
+        <div class="card-content">
+          <h3>Our Best Moments ✨</h3>
+          <p>Kenangan kecil yang ternyata berarti banget.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(2)">
+        <div class="thumbnail">
+          <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=1200&auto=format&fit=crop">
+          <div class="play-btn">▶</div>
+        </div>
+        <div class="card-content">
+          <h3>Little Happiness 💖</h3>
+          <p>Karena senyum kamu selalu bikin suasana beda.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(3)">
+        <div class="thumbnail">
+          <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1200&auto=format&fit=crop">
+          <div class="play-btn">▶</div>
+        </div>
+        <div class="card-content">
+          <h3>Random Cute Video 🌸</h3>
+          <p>Video random tapi bikin senyum sendiri.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(4)">
+        <div class="thumbnail">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200&auto=format&fit=crop">
+          <div class="play-btn">▶</div>
+        </div>
+        <div class="card-content">
+          <h3>One More Surprise 🎁</h3>
+          <p>Masih ada kejutan terakhir buat kamu.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(1)">
+        <div class="thumbnail">
+          <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop">
+          <div class="play-btn">▶</div>
+        </div>
+        <div class="card-content">
+          <h3>Happy Moments 🎂</h3>
+          <p>Semua tawa kecil yang pernah terjadi.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(2)">
+        <div class="thumbnail">
+          <img src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?q=80&w=1200&auto=format&fit=crop">
+          <div class="play-btn">▶</div>
+        </div>
+        <div class="card-content">
+          <h3>Beautiful Day 🌷</h3>
+          <p>Karena hari ini spesial banget.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  </main>
+
+</div>
+
+<div class="modal" id="modal">
     <div class="modal-content">
       <span class="close" onclick="closeModal()">×</span>
 
