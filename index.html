@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nelaa 20</title>
+    <title>A Journey of Memories - Nelaa 20</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&family=Dancing+Script:wght@400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;600;700&family=Bebas+Neue&display=swap');
         
         * {
             margin: 0;
@@ -14,52 +14,86 @@
         }
         
         body {
+            background: #0a0a0a;
+            color: white;
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, 
-                #667eea 0%, 
-                #764ba2 30%, 
-                #f093fb 70%, 
-                #f5576c 100%);
-            height: 100vh;
-            overflow: hidden;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            overflow-x: hidden;
+            cursor: none;
         }
         
-        body::before {
-            content: '';
+        /* Custom cursor */
+        .cursor {
             position: fixed;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, #ff6b9d, transparent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.1s ease;
+            box-shadow: 0 0 20px rgba(255,107,157,0.5);
+        }
+        
+        .cursor-follower {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(255,107,157,0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transition: all 0.3s ease;
+        }
+        
+        /* Intro screen */
+        .intro-screen {
+            height: 100vh;
+            background: radial-gradient(ellipse at center, #1a0033 0%, #0a0a0a 70%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stars {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(255,255,255,0.3) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(255,182,193,0.4) 0%, transparent 50%);
-            animation: bgFloat 12s ease-in-out infinite;
-            z-index: -1;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #eee, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 90px 40px, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 200px 100px;
+            animation: twinkle 20s linear infinite;
         }
         
-        @keyframes bgFloat {
-            0%, 100% { transform: scale(1) translateY(0); }
-            50% { transform: scale(1.05) translateY(-15px); }
+        @keyframes twinkle {
+            from { background-position: 0 0; }
+            to { background-position: -200px -100px; }
         }
         
-        .landing-container {
-            text-align: center;
-            max-width: 900px;
-            padding: 40px;
-            position: relative;
-            z-index: 2;
-        }
-        
-        /* Hero section - staggered animation */
-        .hero-content {
+        .intro-text {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
             opacity: 0;
             transform: translateY(50px);
-            animation: fadeInUp 1.5s ease forwards;
+            animation: fadeInUp 2s ease 1s forwards;
+            max-width: 600px;
+            line-height: 1.4;
+            text-shadow: 0 5px 20px rgba(0,0,0,0.8);
+        }
+        
+        .intro-button {
+            margin-top: 50px;
+            opacity: 0;
+            animation: fadeInUp 1s ease 2.5s forwards;
         }
         
         @keyframes fadeInUp {
@@ -69,271 +103,291 @@
             }
         }
         
-        .birthday-badge {
-            display: inline-block;
-            background: linear-gradient(45deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
-            backdrop-filter: blur(20px);
-            padding: 15px 35px;
-            border-radius: 50px;
-            border: 1px solid rgba(255,255,255,0.3);
-            margin-bottom: 30px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-            animation-delay: 0.3s;
-            animation-fill-mode: both;
-        }
-        
-        .birthday-text {
-            font-family: 'Dancing Script', cursive;
-            font-size: clamp(2rem, 6vw, 4.5rem);
-            background: linear-gradient(135deg, #fff, #f8f9ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            text-shadow: 0 5px 20px rgba(255,255,255,0.3);
-        }
-        
-        .birthday-age {
-            font-family: 'Poppins', sans-serif;
-            font-size: clamp(4rem, 12vw, 8rem);
-            font-weight: 800;
-            background: linear-gradient(135deg, #ff6b9d, #ffd93d, #4facfe);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1;
-            animation: pulseGlow 2s ease-in-out infinite;
-            text-shadow: 0 10px 30px rgba(255,107,157,0.5);
-        }
-        
-        @keyframes pulseGlow {
-            0%, 100% { 
-                filter: drop-shadow(0 0 20px rgba(255,107,157,0.6));
-                transform: scale(1);
-            }
-            50% { 
-                filter: drop-shadow(0 0 40px rgba(255,107,157,0.9));
-                transform: scale(1.03);
-            }
-        }
-        
-        .name-reveal {
-            font-family: 'Dancing Script', cursive;
-            font-size: clamp(3.5rem, 8vw, 6rem);
-            color: #fff;
-            font-weight: 700;
-            margin: 20px 0;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: nameSlide 1s ease 1.2s forwards;
-            text-shadow: 0 8px 25px rgba(0,0,0,0.3);
-        }
-        
-        @keyframes nameSlide {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* CTA Button */
-        .cta-section {
-            margin-top: 50px;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 1s ease 1.8s forwards;
-        }
-        
-        .cta-button {
-            display: inline-block;
+        .intro-btn {
             background: linear-gradient(135deg, #ff6b9d, #c44569);
             color: white;
-            padding: 20px 50px;
+            border: none;
+            padding: 18px 45px;
             border-radius: 50px;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 600;
-            text-decoration: none;
+            cursor: pointer;
             box-shadow: 0 20px 40px rgba(255,107,157,0.4);
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .intro-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 60px rgba(255,107,157,0.6);
+        }
+        
+        /* Main YouTube-style page */
+        .main-page {
+            display: none;
+            min-height: 100vh;
+            padding: 80px 30px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .youtube-header {
+            background: rgba(255,0,0,0.95);
+            backdrop-filter: blur(20px);
+            padding: 20px 40px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 60px rgba(255,0,0,0.3);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .yt-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            background: linear-gradient(45deg, #fff, #ffcc00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .header-text {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+        
+        .video-card {
+            background: #181818;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+        }
+        
+        .video-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 35px 80px rgba(255,107,157,0.3);
+        }
+        
+        .video-thumb {
+            width: 100%;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
             position: relative;
             overflow: hidden;
         }
         
-        .cta-button:hover {
-            transform: translateY(-8px) scale(1.05);
-            box-shadow: 0 30px 60px rgba(255,107,157,0.6);
-        }
-        
-        .cta-button::before {
+        .video-thumb::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.6s;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(255,0,0,0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255,0,0,0.6);
         }
         
-        .cta-button:hover::before {
-            left: 100%;
+        .video-card:hover .video-thumb::before {
+            transform: translate(-50%, -50%) scale(1.2);
+            background: rgba(255,0,0,1);
         }
         
-        /* Floating elements */
-        .floating-elements {
+        .video-info {
+            padding: 20px;
+        }
+        
+        .video-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            line-height: 1.4;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+        
+        .video-meta {
+            font-size: 0.85rem;
+            color: #aaa;
+            display: flex;
+            gap: 15px;
+        }
+        
+        /* Modal system */
+        .modal {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none;
-            z-index: 1;
+            background: rgba(0,0,0,0.98);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
         }
         
-        .float-item {
+        .modal-content {
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            background: #111;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 50px 120px rgba(0,0,0,0.9);
+            position: relative;
+            animation: modalSlide 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        @keyframes modalSlide {
+            from {
+                opacity: 0;
+                transform: scale(0.7) translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        
+        .modal-close {
             position: absolute;
+            top: 20px;
+            right: 25px;
+            background: none;
+            border: none;
+            color: #aaa;
             font-size: 2rem;
-            opacity: 0.6;
-            animation: floatUp 8s linear infinite;
+            cursor: pointer;
+            z-index: 10;
+            transition: color 0.3s ease;
         }
         
-        @keyframes floatUp {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% { opacity: 0.6; }
-            90% { opacity: 0.6; }
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-                opacity: 0;
-            }
+        .modal-close:hover {
+            color: #ff6b9d;
         }
         
-        /* Subtext */
-        .subtext {
-            margin-top: 25px;
-            font-size: 1.2rem;
-            color: rgba(255,255,255,0.9);
-            font-weight: 300;
-            opacity: 0;
-            animation: fadeInUp 1s ease 2.2s forwards;
+        .modal-header {
+            background: linear-gradient(135deg, #1a0033, #2d1b69);
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .modal-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            color: #fff;
+            margin-bottom: 15px;
+            text-shadow: 0 5px 20px rgba(0,0,0,0.8);
         }
         
         /* Responsive */
         @media (max-width: 768px) {
-            .landing-container {
-                padding: 20px;
+            .video-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
             }
             
-            .birthday-badge {
-                padding: 12px 25px;
+            .youtube-header {
+                padding: 15px 25px;
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="floating-elements" id="floats"></div>
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursorFollower"></div>
     
-    <div class="landing-container">
-        <div class="hero-content">
-            <div class="birthday-badge">
-                <div class="birthday-text">Happy Birthday</div>
-                <div class="birthday-age">20</div>
-            </div>
-            
-            <div class="name-reveal">Nelaa</div>
-            
-            <div class="cta-section">
-                <a href="#" class="cta-button" onclick="revealSurprise()">
-                    🎉 Open Birthday Gift
-                </a>
-                <div class="subtext">
-                    A special day for the most amazing girl ✨
-                </div>
-            </div>
+    <!-- Intro Screen -->
+    <div class="intro-screen" id="introScreen">
+        <div class="stars"></div>
+        <div class="intro-text">
+            Hai Nelaa... ada sesuatu yang mau aku tunjukin buat kamu.<br>
+            <span style="font-size: 1.2em; opacity: 0.8;">Sesuatu yang spesial...</span>
+        </div>
+        <div class="intro-button">
+            <button class="intro-btn" onclick="enterMainPage()">Mulai Perjalanan →</button>
         </div>
     </div>
-
-    <script>
-        // Floating emojis
-        const emojis = ['🎂', '💖', '✨', '🎈', '🌟', '🎁', '💕'];
-        const floatsContainer = document.getElementById('floats');
+    
+    <!-- Main YouTube Page -->
+    <div class="main-page" id="mainPage">
+        <div class="youtube-header">
+            <div class="yt-logo">✨ Nelaa Memories</div>
+            <div class="header-text">A special journey just for you</div>
+        </div>
         
-        setInterval(() => {
-            const float = document.createElement('div');
-            float.className = 'float-item';
-            float.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
-            float.style.left = Math.random() * 100 + 'vw';
-            float.style.animationDuration = (Math.random() * 4 + 6) + 's';
-            floatsContainer.appendChild(float);
-            
-            setTimeout(() => float.remove(), 8000);
-        }, 1000);
-
-        // Reveal surprise (modal or redirect)
-        function revealSurprise() {
-            // Animated explosion
-            document.body.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                document.body.innerHTML = `
-                <div style="
-                    position: fixed;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    text-align: center;
-                    background: rgba(0,0,0,0.9);
-                    padding: 60px;
-                    border-radius: 30px;
-                    max-width: 90%;
-                    box-shadow: 0 50px 100px rgba(0,0,0,0.8);
-                    backdrop-filter: blur(20px);
-                    border: 1px solid rgba(255,255,255,0.2);
-                ">
-                    <div style="font-size: 6rem; margin-bottom: 30px; animation: bounce 1s infinite;">🎉</div>
-                    <h1 style="
-                        font-family: 'Dancing Script', cursive;
-                        font-size: 5rem;
-                        background: linear-gradient(45deg, #ff6b9d, #ffd93d);
-                        -webkit-background-clip: text;
-                        -webkit-text-fill-color: transparent;
-                        margin-bottom: 20px;
-                    ">SELAMAT ULANG TAHUN!</h1>
-                    <div style="
-                        font-size: 1.6rem;
-                        line-height: 1.6;
-                        max-width: 600px;
-                        margin: 0 auto 40px;
-                        opacity: 0.95;
-                    ">
-                        Nelaa, 20 tahun penuh keajaiban dan senyuman yang mencerahkan dunia. 
-                        Semoga tahun ini membawa kebahagiaan tak terbatas, cinta yang tulus, 
-                        dan semua mimpi menjadi kenyataan. Kamu luar biasa! 💖✨
+        <div class="video-grid">
+            <!-- Video 1 -->
+            <div class="video-card" onclick="openModal(1)">
+                <div class="video-thumb" style="background-image: linear-gradient(45deg, #ff6b9d, #c44569);"></div>
+                <div class="video-info">
+                    <div class="video-title">Jangan Dibuka Kalau Kamu Lagi Sedih</div>
+                    <div class="video-meta">
+                        <span>1.2M views</span>
+                        <span>• 2 hari yang lalu</span>
                     </div>
-                    <div style="font-size: 1.1rem; opacity: 0.8;">
-                        Terima kasih sudah jadi Nelaa yang spesial 💕
-                    </div>
-                    <button onclick="location.reload()" style="
-                        background: linear-gradient(135deg, #ff6b9d, #c44569);
-                        color: white;
-                        border: none;
-                        padding: 15px 40px;
-                        border-radius: 30px;
-                        font-size: 1.1rem;
-                        font-weight: 600;
-                        cursor: pointer;
-                        margin-top: 30px;
-                        box-shadow: 0 15px 30px rgba(255,107,157,0.4);
-                        transition: all 0.3s ease;
-                    " onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">
-                        🎁 Lihat Hadiah Lain
-                    </button>
                 </div>
-                `;
-            }, 300);
-        }
-    </script>
-</body>
-</html>
+            </div>
+            
+            <!-- Video 2 -->
+            <div class="video-card" onclick="openModal(2)">
+                <div class="video-thumb" style="background-image: linear-gradient(45deg, #a8e6cf, #88d8a3);"></div>
+                <div class="video-info">
+                    <div class="video-title">Cuma Orang Spesial yang Bisa Lihat Ini</div>
+                    <div class="video-meta">
+                        <span>890K views</span>
+                        <span>• 1 hari yang lalu</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Video 3 -->
+            <div class="video-card" onclick="openModal(3)">
+                <div class="video-thumb" style="background-image: linear-gradient(45deg, #ffd93d, #ff8c42);"></div>
+                <div class="video-info">
+                    <div class="video-title">Aku Punya Rahasia...</div>
+                    <div class="video-meta">
+                        <span>2.1M views</span>
+                        <span>• 3 hari yang lalu</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Video 4 -->
+            <div class="video-card" onclick="openModal(4)">
+                <div class="video-thumb" style="background-image: linear-gradient(45deg, #ff9ff3, #f368e0);"></div>
+                <div class="video-info">
+                    <div class="video-title">The Sweetest Person Ever</div>
+                    <div class="video-meta">
+                        <span>1.5M views</span>
+                        <span>• 5 hari yang lalu</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Video 5 -->
+            <div class="video-card" onclick="openModal(5)">
+                <div class="video-thumb" style="background-image: linear-gradient(45deg, #a55eea, #4facfe);"></div>
+                <div class="video-info
