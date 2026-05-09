@@ -286,6 +286,157 @@
       }
     }
 
+    .cake-animation-wrapper {
+      position: relative;
+      width: 420px;
+      height: 320px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      margin-top:20px;
+    }
+
+    .mix-bowl {
+      position:absolute;
+      bottom:20px;
+      width:140px;
+      height:70px;
+      background:#444;
+      border-radius:0 0 70px 70px;
+      animation: bowlHide 1s forwards 2s;
+    }
+
+    .pour {
+      position:absolute;
+      width:18px;
+      height:0;
+      background:#ffb6d9;
+      top:90px;
+      left:201px;
+      animation: pourCake 1.5s forwards 0.8s;
+      border-radius:20px;
+    }
+
+    .cake-build {
+      position:absolute;
+      bottom:20px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
+
+    .cake-layer {
+      width:0;
+      border-radius:20px;
+      background:#ff8fc7;
+      opacity:0;
+      animation-fill-mode:forwards;
+      box-shadow:0 10px 20px rgba(255,105,180,0.3);
+    }
+
+    .bottom-layer {
+      height:70px;
+      animation: buildBottom 1s forwards 2s;
+    }
+
+    .middle-layer {
+      height:60px;
+      animation: buildMiddle 1s forwards 3s;
+    }
+
+    .top-layer {
+      height:50px;
+      animation: buildTop 1s forwards 4s;
+    }
+
+    .cream {
+      width:0;
+      height:14px;
+      background:white;
+      border-radius:20px;
+      opacity:0;
+      animation-fill-mode:forwards;
+    }
+
+    .cream1 {
+      animation: creamBuild 0.7s forwards 2.8s;
+    }
+
+    .cream2 {
+      animation: creamBuild2 0.7s forwards 3.8s;
+    }
+
+    .candles {
+      display:flex;
+      gap:25px;
+      opacity:0;
+      margin-bottom:8px;
+      animation: candleShow 1s forwards 5s;
+    }
+
+    .birthday-title {
+      margin-top:40px;
+      font-size:60px;
+      color:#ffb6d9;
+      font-family:'Great Vibes', cursive;
+      opacity:0;
+      animation: fadeBirthday 1.5s forwards 5.8s;
+    }
+
+    .birthday-desc {
+      color:#ddd;
+      margin-top:10px;
+      font-size:16px;
+      opacity:0;
+      animation: fadeBirthday 1.5s forwards 6.2s;
+    }
+
+    @keyframes pourCake {
+      from {height:0;}
+      to {height:140px;}
+    }
+
+    @keyframes buildBottom {
+      from {width:0; opacity:0;}
+      to {width:260px; opacity:1;}
+    }
+
+    @keyframes buildMiddle {
+      from {width:0; opacity:0;}
+      to {width:220px; opacity:1;}
+    }
+
+    @keyframes buildTop {
+      from {width:0; opacity:0;}
+      to {width:180px; opacity:1;}
+    }
+
+    @keyframes creamBuild {
+      from {width:0; opacity:0;}
+      to {width:240px; opacity:1;}
+    }
+
+    @keyframes creamBuild2 {
+      from {width:0; opacity:0;}
+      to {width:200px; opacity:1;}
+    }
+
+    @keyframes candleShow {
+      from {opacity:0; transform:translateY(20px);}
+      to {opacity:1; transform:translateY(0);}
+    }
+
+    @keyframes fadeBirthday {
+      from {opacity:0; transform:translateY(20px);}
+      to {opacity:1; transform:translateY(0);}
+    }
+
+    @keyframes bowlHide {
+      to {
+        opacity:0;
+      }
+    }
+
     .candle {
       width: 16px;
       height: 70px;
@@ -537,41 +688,35 @@
         <source src="" type="video/mp4">
       </video>
 
-      <div id="cakeScene" style="display:none; justify-content:center; align-items:center; flex-direction:column; padding-top:30px; background:#111; min-height:420px; position:relative; overflow:hidden;">
+      <div id="cakeScene" style="display:none; justify-content:center; align-items:center; flex-direction:column; padding-top:30px; background:#111; min-height:500px; position:relative; overflow:hidden;">
 
-        <div style="position:relative; margin-top:40px;">
+        <div class="cake-animation-wrapper">
 
-          <div style="display:flex; justify-content:center; gap:30px; position:absolute; width:100%; top:-80px; left:0;">
+          <div class="mix-bowl"></div>
 
-            <div class="candle">
-              <div class="flame"></div>
-            </div>
+          <div class="pour"></div>
 
-            <div class="candle">
-              <div class="flame"></div>
-            </div>
+          <div class="cake-build">
 
-            <div class="candle">
-              <div class="flame"></div>
+            <div class="cake-layer bottom-layer"></div>
+            <div class="cream cream1"></div>
+            <div class="cake-layer middle-layer"></div>
+            <div class="cream cream2"></div>
+            <div class="cake-layer top-layer"></div>
+
+            <div class="candles">
+              <div class="candle"><div class="flame"></div></div>
+              <div class="candle"><div class="flame"></div></div>
+              <div class="candle"><div class="flame"></div></div>
             </div>
 
           </div>
-
-          <div style="width:320px; height:110px; background:#ff9ec7; border-radius:20px; position:relative; box-shadow:0 10px 30px rgba(255,105,180,0.3);">
-
-            <div style="position:absolute; width:100%; height:18px; background:#fff; top:25px;"></div>
-
-            <div style="position:absolute; width:100%; height:18px; background:#fff; top:65px;"></div>
-
-          </div>
-
-          <div style="width:360px; height:45px; background:#ff4fa3; border-radius:50px; margin:auto;"></div>
 
         </div>
 
-        <h1 style="margin-top:50px; font-size:55px; color:#ffb6d9; font-family:'Great Vibes', cursive; text-align:center;">Happy Birthday 💖</h1>
+        <h1 class="birthday-title">Happy Birthday 💖</h1>
 
-        <p style="margin-top:10px; color:#ddd; text-align:center; max-width:600px; line-height:1.8; padding:0 20px;">
+        <p class="birthday-desc">
           Semoga semua hal indah datang ke hidup kamu ✨
         </p>
 
