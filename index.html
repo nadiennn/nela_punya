@@ -85,6 +85,27 @@ body{
   border-radius:0 40px 40px 0;
 }
 
+.nav-right{
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+
+.nav-icon{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.nav-icon:hover{
+  background:#272727;
+}
+
 .profile{
   width:40px;
   height:40px;
@@ -96,6 +117,29 @@ body{
 
 .main{
   padding:25px;
+}
+
+.category{
+  display:flex;
+  gap:12px;
+  overflow-x:auto;
+  margin-bottom:25px;
+}
+
+.category button{
+  border:none;
+  padding:10px 18px;
+  border-radius:10px;
+  background:#272727;
+  color:white;
+  cursor:pointer;
+  white-space:nowrap;
+  transition:0.3s;
+}
+
+.category button:hover{
+  background:white;
+  color:black;
 }
 
 .video-grid{
@@ -210,14 +254,12 @@ body{
   z-index:100;
 }
 
-/* PLAYER */
+/* VIDEO */
 
 .player video{
   width:100%;
   max-height:520px;
 }
-
-/* DETAIL */
 
 .video-detail{
   padding:25px;
@@ -244,7 +286,7 @@ body{
   padding:40px;
 }
 
-/* FLOAT */
+/* FLOATING */
 
 .floating{
   position:absolute;
@@ -299,14 +341,16 @@ body{
   flex-direction:column;
   align-items:center;
   transform:scale(0.55);
-  margin-top:-40px;
+  margin-top:40px;
+  margin-bottom:25px;
   z-index:10;
 }
 
 .candles{
   display:flex;
   gap:18px;
-  margin-bottom:-5px;
+  margin-bottom:-18px;
+  z-index:20;
 }
 
 .candle{
@@ -373,7 +417,7 @@ body{
 /* TITLE */
 
 .birthday-title{
-  margin-top:35px;
+  margin-top:10px;
   font-size:60px;
   font-family:'Great Vibes',cursive;
   color:#ffb6d9;
@@ -431,8 +475,6 @@ body{
 
 <body>
 
-<!-- MUSIC -->
-
 <audio id="bgMusic" loop>
   <source src="adrianne lenker - anything.mp3" type="audio/mpeg">
 </audio>
@@ -461,13 +503,38 @@ JuwbelTube
 
 </div>
 
+<div class="nav-right">
+
+<div class="nav-icon">
+<i class="fa-solid fa-video"></i>
+</div>
+
+<div class="nav-icon">
+<i class="fa-regular fa-bell"></i>
+</div>
+
 <div class="profile"></div>
+
+</div>
 
 </nav>
 
 <!-- MAIN -->
 
 <main class="main">
+
+<div class="category">
+
+<button>All</button>
+<button>Music</button>
+<button>Memories</button>
+<button>Gaming</button>
+<button>Live</button>
+<button>Playlist</button>
+<button>Funny</button>
+<button>Special</button>
+
+</div>
 
 <section class="video-grid">
 
@@ -477,7 +544,7 @@ JuwbelTube
 
 <div class="thumbnail">
 
-<img src="foto nela.jpeg">
+<img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?q=80&w=1200&auto=format&fit=crop">
 
 <div class="play-hover">
 <i class="fa-solid fa-circle-play"></i>
