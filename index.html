@@ -3,321 +3,408 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Birthday Surprise</title>
+  <title>JuwbelTube</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
     }
 
-    body {
-      background: #0f0f0f;
-      color: white;
-      overflow-x: hidden;
+    body{
+      background:#0f0f0f;
+      color:white;
+      overflow-x:hidden;
     }
 
-     .navbar {
-      width: 100%;
-      height: 65px;
-      background: #0f0f0f;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 20px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      border-bottom: 1px solid #272727;
+    ::-webkit-scrollbar{
+      width:8px;
     }
 
-     .logo {
-      font-size: 24px;
-      font-weight: 700;
-      color: #ff0033;
+    ::-webkit-scrollbar-thumb{
+      background:#303030;
+      border-radius:20px;
+    }
+
+    .navbar{
+      width:100%;
+      height:65px;
+      background:#0f0f0f;
       display:flex;
       align-items:center;
-      gap:8px;
+      justify-content:space-between;
+      padding:0 20px;
+      position:sticky;
+      top:0;
+      z-index:1000;
+      border-bottom:1px solid #272727;
     }
 
-     .search-box {
-      width: 45%;
-      display: flex;
-      align-items: center;
-      background: #121212;
-      border-radius: 50px;
-      overflow: hidden;
-      border: 1px solid #303030;
+    .nav-left{
+      display:flex;
+      align-items:center;
+      gap:18px;
     }
 
-     .search-box input {
-      width: 100%;
-      padding: 12px 18px;
-      border: none;
-      outline: none;
-      background: transparent;
-      color:white;
-    }
-
-     .search-box button {
-      padding: 12px 20px;
-      border: none;
-      background: #222222;
-      color: white;
-      cursor: pointer;
-      border-left:1px solid #303030;
-    }
-
-     .profile {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      background: #ff4fa3;
-    }
-
-     .hero {
-      text-align: left;
-      padding: 25px 30px;
-    }
-
-     .hero h1 {
-      font-size: 42px;
-      color: white;
-      font-family: 'Poppins', sans-serif;
-      margin-bottom: 8px;
-      font-weight:700;
-    }
-
-     .hero p {
-      color: #aaa;
-      font-size: 15px;
-    }
-
-    .category {
-      display: flex;
-      gap: 12px;
-      padding: 10px 30px 25px;
-      overflow-x: auto;
-    }
-
-     .category button {
-      padding: 10px 18px;
-      border-radius: 10px;
-      border: none;
-      background: #272727;
-      color: white;
-      font-weight: 500;
-      cursor: pointer;
-      transition: 0.3s;
-      white-space: nowrap;
-    }
-
-     .category button:hover {
-      background: white;
-      color: black;
-    }
-
-    .video-grid {
-      width: 95%;
-      max-width: 1400px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
-      gap: 30px;
-      padding-bottom: 60px;
-    }
-
-     .card {
-      background: transparent;
-      border-radius: 16px;
-      overflow: hidden;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-     .card:hover {
-      transform: translateY(-5px);
-    }
-
-    .thumbnail {
-      height: 220px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .thumbnail img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: 0.5s;
-    }
-
-    .card:hover img {
-      transform: scale(1.08);
-    }
-
-    .play-btn {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 75px;
-      height: 75px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.75);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 32px;
-      color: #ff4f95;
-      backdrop-filter: blur(10px);
-    }
-
-    .card-content {
-      padding: 20px;
-    }
-
-     .card-content h3 {
-      color: white;
-      margin-bottom: 8px;
-      font-size: 17px;
-      font-weight:600;
-    }
-
-     .card-content p {
-      color: #aaa;
-      font-size: 13px;
-      line-height: 1.7;
-    }
-
-    .modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.8);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      z-index: 1000;
-    }
-
-     .modal-content {
-      background: #181818;
-      width: 90%;
-      max-width: 900px;
-      border-radius: 20px;
-      overflow: hidden;
-      position: relative;
-      animation: popup 0.5s ease;
-    }
-
-    @keyframes popup {
-      from {
-        transform: scale(0.7);
-        opacity: 0;
-      }
-      to {
-        transform: scale(1);
-        opacity: 1;
-      }
-    }
-
-    .modal video {
-      width: 100%;
-      background: black;
-    }
-
-    .modal-text {
-      padding: 30px;
-      text-align: center;
-    }
-
-     .modal-text h2 {
-      color: white;
-      font-size: 32px;
-      margin-bottom: 15px;
-    }
-
-     .modal-text p {
-      color: #bbb;
-      line-height: 1.9;
-    }
-
-    .close {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      font-size: 35px;
-      color: white;
-      cursor: pointer;
-      z-index: 100;
-    }
-
-    .footer {
-      text-align: center;
-      padding: 50px 20px;
-      color: #999;
-    }
-
-    .floating-heart {
-      position: fixed;
-      pointer-events: none;
-      animation: floatUp 5s linear infinite;
-      opacity: 0.6;
-    }
-
-    @keyframes floatUp {
-      from {
-        transform: translateY(100vh) scale(0.5);
-        opacity: 0;
-      }
-      30% {
-        opacity: 1;
-      }
-      to {
-        transform: translateY(-100px) scale(1.5);
-        opacity: 0;
-      }
-    }
-
-    .cake-animation-wrapper {
-      position: relative;
-      width: 420px;
-      height: 320px;
+    .menu-btn{
+      width:40px;
+      height:40px;
+      border-radius:50%;
       display:flex;
       justify-content:center;
       align-items:center;
-      margin-top:20px;
+      cursor:pointer;
+      transition:0.3s;
     }
 
-    .mix-bowl {
+    .menu-btn:hover{
+      background:#272727;
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-size:24px;
+      font-weight:700;
+    }
+
+    .yt-icon{
+      background:#ff0000;
+      width:36px;
+      height:26px;
+      border-radius:8px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      font-size:15px;
+    }
+
+    .search-box{
+      width:45%;
+      display:flex;
+      align-items:center;
+    }
+
+    .search-input{
+      width:100%;
+      background:#121212;
+      border:1px solid #303030;
+      padding:12px 18px;
+      border-radius:40px 0 0 40px;
+      outline:none;
+      color:white;
+    }
+
+    .search-btn{
+      width:70px;
+      height:45px;
+      border:none;
+      background:#222222;
+      color:white;
+      border-radius:0 40px 40px 0;
+      border:1px solid #303030;
+      cursor:pointer;
+    }
+
+    .nav-right{
+      display:flex;
+      align-items:center;
+      gap:18px;
+    }
+
+    .nav-icon{
+      width:40px;
+      height:40px;
+      border-radius:50%;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .nav-icon:hover{
+      background:#272727;
+    }
+
+    .profile{
+      width:38px;
+      height:38px;
+      border-radius:50%;
+      background:url('https://i.pravatar.cc/300') center/cover;
+    }
+
+    .container{
+      display:flex;
+    }
+
+    .sidebar{
+      width:240px;
+      height:calc(100vh - 65px);
+      position:sticky;
+      top:65px;
+      padding:15px;
+      overflow-y:auto;
+    }
+
+    .sidebar-item{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      padding:14px;
+      border-radius:14px;
+      cursor:pointer;
+      transition:0.3s;
+      margin-bottom:5px;
+      font-size:15px;
+    }
+
+    .sidebar-item:hover{
+      background:#272727;
+    }
+
+    .active{
+      background:#272727;
+    }
+
+    .main{
+      flex:1;
+      padding:20px;
+    }
+
+    .category{
+      display:flex;
+      gap:12px;
+      overflow-x:auto;
+      margin-bottom:25px;
+    }
+
+    .category button{
+      border:none;
+      padding:10px 18px;
+      border-radius:10px;
+      background:#272727;
+      color:white;
+      cursor:pointer;
+      white-space:nowrap;
+      transition:0.3s;
+    }
+
+    .category button:hover{
+      background:white;
+      color:black;
+    }
+
+    .video-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(330px,1fr));
+      gap:25px;
+    }
+
+    .video-card{
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .video-card:hover{
+      transform:translateY(-5px);
+    }
+
+    .thumbnail{
+      width:100%;
+      height:220px;
+      border-radius:18px;
+      overflow:hidden;
+      position:relative;
+      background:#222;
+    }
+
+    .thumbnail img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition:0.5s;
+    }
+
+    .video-card:hover img{
+      transform:scale(1.05);
+    }
+
+    .duration{
+      position:absolute;
+      right:10px;
+      bottom:10px;
+      background:rgba(0,0,0,0.8);
+      padding:4px 8px;
+      border-radius:6px;
+      font-size:12px;
+    }
+
+    .play-hover{
+      position:absolute;
+      inset:0;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      opacity:0;
+      transition:0.4s;
+      background:rgba(0,0,0,0.2);
+    }
+
+    .play-hover i{
+      font-size:55px;
+      color:white;
+    }
+
+    .video-card:hover .play-hover{
+      opacity:1;
+    }
+
+    .video-info{
+      display:flex;
+      gap:12px;
+      margin-top:12px;
+    }
+
+    .channel-pic{
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      object-fit:cover;
+    }
+
+    .video-text h3{
+      font-size:16px;
+      margin-bottom:6px;
+      line-height:1.5;
+    }
+
+    .video-text p{
+      color:#aaa;
+      font-size:13px;
+      line-height:1.7;
+    }
+
+    .verified{
+      color:#aaa;
+      margin-left:4px;
+    }
+
+    .modal{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.92);
+      display:none;
+      justify-content:center;
+      align-items:center;
+      z-index:9999;
+      padding:20px;
+    }
+
+    .modal-content{
+      width:95%;
+      max-width:1100px;
+      background:#181818;
+      border-radius:20px;
+      overflow:hidden;
+      animation:popup 0.5s ease;
+      position:relative;
+    }
+
+    @keyframes popup{
+      from{
+        transform:scale(0.7);
+        opacity:0;
+      }
+      to{
+        transform:scale(1);
+        opacity:1;
+      }
+    }
+
+    .close{
+      position:absolute;
+      top:20px;
+      right:20px;
+      font-size:32px;
+      cursor:pointer;
+      z-index:100;
+    }
+
+    .player video{
+      width:100%;
+      max-height:650px;
+      background:black;
+    }
+
+    .video-detail{
+      padding:25px;
+    }
+
+    .video-detail h2{
+      margin-bottom:10px;
+      font-size:25px;
+    }
+
+    .video-detail p{
+      color:#bbb;
+      line-height:1.9;
+    }
+
+    .cake-scene{
+      width:100%;
+      min-height:600px;
+      background:#111;
+      display:none;
+      justify-content:center;
+      align-items:center;
+      flex-direction:column;
+      overflow:hidden;
+      position:relative;
+    }
+
+    .cake-wrapper{
+      position:relative;
+      width:450px;
+      height:350px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .mix-bowl{
       position:absolute;
       bottom:20px;
-      width:140px;
-      height:70px;
+      width:150px;
+      height:80px;
       background:#444;
-      border-radius:0 0 70px 70px;
-      animation: bowlHide 1s forwards 2s;
+      border-radius:0 0 80px 80px;
+      animation:bowlHide 1s forwards 2s;
     }
 
-    .pour {
+    .pour{
       position:absolute;
       width:18px;
       height:0;
       background:#ffb6d9;
-      top:90px;
-      left:201px;
-      animation: pourCake 1.5s forwards 0.8s;
+      top:70px;
+      left:216px;
       border-radius:20px;
+      animation:pourCake 1.5s forwards 0.8s;
     }
 
-    .cake-build {
+    .cake-build{
       position:absolute;
       bottom:20px;
       display:flex;
@@ -325,372 +412,423 @@
       align-items:center;
     }
 
-    .cake-layer {
+    .cake-layer{
       width:0;
-      border-radius:20px;
-      background:#ff8fc7;
       opacity:0;
+      background:#ff8fc7;
+      border-radius:20px;
       animation-fill-mode:forwards;
-      box-shadow:0 10px 20px rgba(255,105,180,0.3);
+      box-shadow:0 10px 20px rgba(255,105,180,0.4);
     }
 
-    .bottom-layer {
-      height:70px;
-      animation: buildBottom 1s forwards 2s;
+    .bottom-layer{
+      height:80px;
+      animation:buildBottom 1s forwards 2s;
     }
 
-    .middle-layer {
-      height:60px;
-      animation: buildMiddle 1s forwards 3s;
+    .middle-layer{
+      height:65px;
+      animation:buildMiddle 1s forwards 3s;
     }
 
-    .top-layer {
-      height:50px;
-      animation: buildTop 1s forwards 4s;
+    .top-layer{
+      height:55px;
+      animation:buildTop 1s forwards 4s;
     }
 
-    .cream {
+    .cream{
       width:0;
-      height:14px;
+      height:15px;
       background:white;
       border-radius:20px;
       opacity:0;
       animation-fill-mode:forwards;
     }
 
-    .cream1 {
-      animation: creamBuild 0.7s forwards 2.8s;
+    .cream1{
+      animation:creamBuild1 0.7s forwards 2.8s;
     }
 
-    .cream2 {
-      animation: creamBuild2 0.7s forwards 3.8s;
+    .cream2{
+      animation:creamBuild2 0.7s forwards 3.8s;
     }
 
-    .candles {
+    .candles{
       display:flex;
       gap:25px;
       opacity:0;
       margin-bottom:8px;
-      animation: candleShow 1s forwards 5s;
+      animation:candleShow 1s forwards 5s;
     }
 
-    .birthday-title {
-      margin-top:40px;
-      font-size:60px;
+    .candle{
+      width:16px;
+      height:70px;
+      border-radius:10px;
+      background:repeating-linear-gradient(45deg,#fff,#fff 6px,#ff4fa3 6px,#ff4fa3 12px);
+      position:relative;
+    }
+
+    .flame{
+      width:22px;
+      height:35px;
+      background:radial-gradient(circle,#fff6a9,#ff9900);
+      position:absolute;
+      top:-30px;
+      left:50%;
+      transform:translateX(-50%);
+      border-radius:50%;
+      animation:flicker 0.3s infinite alternate;
+      box-shadow:0 0 25px #ffcc33;
+    }
+
+    .birthday-title{
+      margin-top:50px;
+      font-size:70px;
+      font-family:'Great Vibes',cursive;
       color:#ffb6d9;
-      font-family:'Great Vibes', cursive;
       opacity:0;
-      animation: fadeBirthday 1.5s forwards 5.8s;
+      animation:fadeText 1.5s forwards 5.8s;
     }
 
-    .birthday-desc {
+    .birthday-desc{
       color:#ddd;
-      margin-top:10px;
-      font-size:16px;
+      margin-top:12px;
       opacity:0;
-      animation: fadeBirthday 1.5s forwards 6.2s;
+      animation:fadeText 1.5s forwards 6.3s;
     }
 
-    @keyframes pourCake {
-      from {height:0;}
-      to {height:140px;}
+    @keyframes pourCake{
+      from{height:0;}
+      to{height:150px;}
     }
 
-    @keyframes buildBottom {
-      from {width:0; opacity:0;}
-      to {width:260px; opacity:1;}
+    @keyframes buildBottom{
+      from{width:0; opacity:0;}
+      to{width:280px; opacity:1;}
     }
 
-    @keyframes buildMiddle {
-      from {width:0; opacity:0;}
-      to {width:220px; opacity:1;}
+    @keyframes buildMiddle{
+      from{width:0; opacity:0;}
+      to{width:240px; opacity:1;}
     }
 
-    @keyframes buildTop {
-      from {width:0; opacity:0;}
-      to {width:180px; opacity:1;}
+    @keyframes buildTop{
+      from{width:0; opacity:0;}
+      to{width:200px; opacity:1;}
     }
 
-    @keyframes creamBuild {
-      from {width:0; opacity:0;}
-      to {width:240px; opacity:1;}
+    @keyframes creamBuild1{
+      from{width:0; opacity:0;}
+      to{width:260px; opacity:1;}
     }
 
-    @keyframes creamBuild2 {
-      from {width:0; opacity:0;}
-      to {width:200px; opacity:1;}
+    @keyframes creamBuild2{
+      from{width:0; opacity:0;}
+      to{width:220px; opacity:1;}
     }
 
-    @keyframes candleShow {
-      from {opacity:0; transform:translateY(20px);}
-      to {opacity:1; transform:translateY(0);}
+    @keyframes candleShow{
+      from{opacity:0; transform:translateY(20px);}
+      to{opacity:1; transform:translateY(0);}
     }
 
-    @keyframes fadeBirthday {
-      from {opacity:0; transform:translateY(20px);}
-      to {opacity:1; transform:translateY(0);}
+    @keyframes flicker{
+      from{
+        transform:translateX(-50%) scale(1);
+      }
+      to{
+        transform:translateX(-50%) scale(1.1);
+      }
     }
 
-    @keyframes bowlHide {
-      to {
+    @keyframes fadeText{
+      from{
+        opacity:0;
+        transform:translateY(20px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    @keyframes bowlHide{
+      to{
         opacity:0;
       }
     }
 
-    .candle {
-      width: 16px;
-      height: 70px;
-      background: repeating-linear-gradient(
-        45deg,
-        #ffffff,
-        #ffffff 6px,
-        #ff7eb6 6px,
-        #ff7eb6 12px
-      );
-      border-radius: 8px;
-      position: relative;
-    }
+    @media(max-width:900px){
 
-    .flame {
-      width: 22px;
-      height: 35px;
-      background: radial-gradient(circle, #fff6a9, #ff9900);
-      border-radius: 50% 50% 50% 50%;
-      position: absolute;
-      top: -30px;
-      left: 50%;
-      transform: translateX(-50%);
-      animation: flicker 0.3s infinite alternate;
-      box-shadow: 0 0 25px #ffcc33;
-    }
-
-    @keyframes flicker {
-      from {
-        transform: translateX(-50%) scale(1);
-        opacity: 0.9;
-      }
-      to {
-        transform: translateX(-50%) scale(1.1);
-        opacity: 1;
-      }
-    }
-      30% {
-        opacity: 1;
-      }
-      to {
-        transform: translateY(-100px) scale(1.5);
-        opacity: 0;
-      }
-    }
-
-    @media(max-width:768px){
-      .search-box {
-        width: 60%;
+      .sidebar{
+        display:none;
       }
 
-      .hero h1 {
-        font-size: 45px;
+      .search-box{
+        width:60%;
       }
+
+      .video-grid{
+        grid-template-columns:1fr;
+      }
+
+      .cake-wrapper{
+        transform:scale(0.8);
+      }
+
+      .birthday-title{
+        font-size:55px;
+      }
+
     }
+
   </style>
 </head>
 <body>
 
   <nav class="navbar">
-    <div class="logo">▶ BirthdayTube</div>
+
+    <div class="nav-left">
+
+      <div class="menu-btn">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+
+      <div class="logo">
+        <div class="yt-icon">
+          <i class="fa-solid fa-play"></i>
+        </div>
+        JuwbelTube
+      </div>
+
+    </div>
 
     <div class="search-box">
-      <input type="text" placeholder="Cari kenangan spesial...">
-      <button>Search</button>
+      <input class="search-input" type="text" placeholder="Search">
+      <button class="search-btn">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
     </div>
 
-    <div class="profile"></div>
+    <div class="nav-right">
+
+      <div class="nav-icon">
+        <i class="fa-solid fa-video"></i>
+      </div>
+
+      <div class="nav-icon">
+        <i class="fa-regular fa-bell"></i>
+      </div>
+
+      <div class="profile"></div>
+
+    </div>
+
   </nav>
 
-  <section class="hero">
-    <h1>Happy Birthday ✨</h1>
-    <p class="typing">Special videos only for someone precious 💕</p>
-  </section>
+  <div class="container">
 
-  <div class="category">
-    <button>💖 All</button>
-    <button>🎂 Birthday</button>
-    <button>✨ Memories</button>
-    <button>🥺 Emotional</button>
-    <button>😂 Funny</button>
-    <button>🎁 Surprise</button>
+    <aside class="sidebar">
+
+      <div class="sidebar-item active">
+        <i class="fa-solid fa-house"></i>
+        Home
+      </div>
+
+      <div class="sidebar-item">
+        <i class="fa-solid fa-film"></i>
+        Shorts
+      </div>
+
+      <div class="sidebar-item">
+        <i class="fa-solid fa-clock-rotate-left"></i>
+        History
+      </div>
+
+      <div class="sidebar-item">
+        <i class="fa-solid fa-heart"></i>
+        Favorites
+      </div>
+
+      <div class="sidebar-item">
+        <i class="fa-solid fa-play"></i>
+        Playlist
+      </div>
+
+      <div class="sidebar-item">
+        <i class="fa-solid fa-user-group"></i>
+        Friends
+      </div>
+
+    </aside>
+
+    <main class="main">
+
+      <div class="category">
+        <button>All</button>
+        <button>Gaming</button>
+        <button>Music</button>
+        <button>Memories</button>
+        <button>Funny</button>
+        <button>Vlog</button>
+        <button>Special</button>
+        <button>Playlist</button>
+      </div>
+
+      <section class="video-grid">
+
+        <div class="video-card" onclick="openModal(1)">
+
+          <div class="thumbnail">
+            <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?q=80&w=1200&auto=format&fit=crop">
+
+            <div class="play-hover">
+              <i class="fa-solid fa-circle-play"></i>
+            </div>
+
+            <div class="duration">6:27</div>
+          </div>
+
+          <div class="video-info">
+
+            <img class="channel-pic" src="https://i.pravatar.cc/200?img=5">
+
+            <div class="video-text">
+              <h3>Jangan Skip Video Ini 🎂</h3>
+              <p>JuwbelTube <i class="fa-solid fa-circle-check verified"></i></p>
+              <p>2,7 jt x ditonton • 1 hari lalu</p>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="video-card" onclick="openModal(2)">
+
+          <div class="thumbnail">
+            <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1200&auto=format&fit=crop">
+            <div class="play-hover">
+              <i class="fa-solid fa-circle-play"></i>
+            </div>
+            <div class="duration">12:03</div>
+          </div>
+
+          <div class="video-info">
+            <img class="channel-pic" src="https://i.pravatar.cc/200?img=15">
+
+            <div class="video-text">
+              <h3>Moment Paling Chaos Tahun Ini 😭</h3>
+              <p>JuwbelTube <i class="fa-solid fa-circle-check verified"></i></p>
+              <p>987 rb x ditonton • 5 jam lalu</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="video-card" onclick="openModal(3)">
+
+          <div class="thumbnail">
+            <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?q=80&w=1200&auto=format&fit=crop">
+            <div class="play-hover">
+              <i class="fa-solid fa-circle-play"></i>
+            </div>
+            <div class="duration">9:11</div>
+          </div>
+
+          <div class="video-info">
+            <img class="channel-pic" src="https://i.pravatar.cc/200?img=25">
+
+            <div class="video-text">
+              <h3>Masih Ga Nyangka Bisa Seakrab Ini ✨</h3>
+              <p>JuwbelTube <i class="fa-solid fa-circle-check verified"></i></p>
+              <p>3,2 jt x ditonton • 2 hari lalu</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="video-card" onclick="openModal(4)">
+
+          <div class="thumbnail">
+            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1200&auto=format&fit=crop">
+            <div class="play-hover">
+              <i class="fa-solid fa-circle-play"></i>
+            </div>
+            <div class="duration">15:21</div>
+          </div>
+
+          <div class="video-info">
+            <img class="channel-pic" src="https://i.pravatar.cc/200?img=35">
+
+            <div class="video-text">
+              <h3>Dia Ketawa Sampai Nangis 😭</h3>
+              <p>JuwbelTube <i class="fa-solid fa-circle-check verified"></i></p>
+              <p>1,5 jt x ditonton • 6 hari lalu</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="video-card">
+
+          <div class="thumbnail">
+            <img src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?q=80&w=1200&auto=format&fit=crop">
+            <div class="play-hover">
+              <i class="fa-solid fa-circle-play"></i>
+            </div>
+            <div class="duration">4:32</div>
+          </div>
+
+          <div class="video-info">
+            <img class="channel-pic" src="https://i.pravatar.cc/200?img=45">
+
+            <div class="video-text">
+              <h3>Video Random Tapi Berharga 💖</h3>
+              <p>JuwbelTube <i class="fa-solid fa-circle-check verified"></i></p>
+              <p>743 rb x ditonton • 3 hari lalu</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="video-card">
+
+          <div class="thumbnail">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200&auto=format&fit=crop">
+            <div class="play-hover">
+              <i class="fa-solid fa-circle-play"></i>
+            </div>
+            <div class="duration">7:19</div>
+          </div>
+
+          <div class="video-info">
+            <img class="channel-pic" src="https://i.pravatar.cc/200?img=55">
+
+            <div class="video-text">
+              <h3>Hari Yang Ga Mau Diulang Tapi Lucu 😂</h3>
+              <p>JuwbelTube <i class="fa-solid fa-circle-check verified"></i></p>
+              <p>1 jt x ditonton • 4 hari lalu</p>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
+
   </div>
 
-  <section class="hero">
-    <h1>Happy Birthday ✨</h1>
-    <p class="typing">Ada sesuatu spesial buat kamu hari ini...</p>
-  </section>
+  <div class="modal" id="modal">
 
-  <div style="display:flex; width:100%; align-items:flex-start;">
-
-  <aside style="width:240px; min-height:100vh; background:#0f0f0f; padding:20px 15px; position:sticky; top:65px; border-right:1px solid #272727;">
-
-    <div style="display:flex; flex-direction:column; gap:12px;">
-
-      <button style="padding:14px; border:none; border-radius:14px; background:#272727; color:white; font-weight:600; cursor:pointer; text-align:left;">🏠 Home</button>
-
-      <button style="padding:14px; border:none; border-radius:14px; background:#0f0f0f; color:#ddd; cursor:pointer; text-align:left;">🎬 Shorts</button>
-
-      <button style="padding:14px; border:none; border-radius:14px; background:white; color:#555; cursor:pointer; text-align:left;">💖 Favorites</button>
-
-      <button style="padding:14px; border:none; border-radius:14px; background:white; color:#555; cursor:pointer; text-align:left;">🎂 Birthday</button>
-
-      <button style="padding:14px; border:none; border-radius:14px; background:white; color:#555; cursor:pointer; text-align:left;">📸 Memories</button>
-
-      <button style="padding:14px; border:none; border-radius:14px; background:white; color:#555; cursor:pointer; text-align:left;">🎁 Surprise</button>
-
-      <button style="padding:14px; border:none; border-radius:14px; background:white; color:#555; cursor:pointer; text-align:left;">🎵 Playlist</button>
-
-    </div>
-
-  </aside>
-
-  <main style="flex:1; padding:20px;">
-
-  <section class="video-grid">
-
-    <div class="card" onclick="openModal(1)">
-      <div class="thumbnail">
-        <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?q=80&w=1200&auto=format&fit=crop" alt="">
-        <div class="play-btn">▶</div>
-      </div>
-      <div class="card-content">
-        <h3>Birthday Cake Surprise</h3>
-        <p>Klik ini sebelum lilinnya padam 🎂</p>
-      </div>
-    </div>
-
-    <div class="card" onclick="openModal(2)">
-      <div class="thumbnail">
-        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1200&auto=format&fit=crop" alt="">
-        <div class="play-btn">▶</div>
-      </div>
-      <div class="card-content">
-        <h3>A Little Message For You</h3>
-        <p>Mungkin ini cuma kata-kata kecil, tapi tulus.</p>
-      </div>
-    </div>
-
-    <div class="card" onclick="openModal(3)">
-      <div class="thumbnail">
-        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1200&auto=format&fit=crop" alt="">
-        <div class="play-btn">▶</div>
-      </div>
-      <div class="card-content">
-        <h3>Funny Memories 😂</h3>
-        <p>Isi video ini bukti kamu kadang random banget.</p>
-      </div>
-    </div>
-
-    <div class="card" onclick="openModal(4)">
-      <div class="thumbnail">
-        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200&auto=format&fit=crop" alt="">
-        <div class="play-btn">▶</div>
-      </div>
-      <div class="card-content">
-        <h3>One Last Surprise</h3>
-        <p>Bagian ini jangan ditonton sambil sedih 🥺</p>
-      </div>
-    </div>
-
-  </section>
-
-  <section style="width:95%; max-width:1400px; margin:auto; padding-bottom:80px;">
-
-    <h2 style="margin-bottom:25px; color:#ff5fa2; font-size:30px;">More Special Videos 💕</h2>
-
-    <div class="video-grid">
-
-      <div class="card" onclick="openModal(1)">
-        <div class="thumbnail">
-          <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?q=80&w=1200&auto=format&fit=crop">
-          <div class="play-btn">▶</div>
-        </div>
-        <div class="card-content">
-          <h3>Our Best Moments ✨</h3>
-          <p>Kenangan kecil yang ternyata berarti banget.</p>
-        </div>
-      </div>
-
-      <div class="card" onclick="openModal(2)">
-        <div class="thumbnail">
-          <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=1200&auto=format&fit=crop">
-          <div class="play-btn">▶</div>
-        </div>
-        <div class="card-content">
-          <h3>Little Happiness 💖</h3>
-          <p>Karena senyum kamu selalu bikin suasana beda.</p>
-        </div>
-      </div>
-
-      <div class="card" onclick="openModal(3)">
-        <div class="thumbnail">
-          <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1200&auto=format&fit=crop">
-          <div class="play-btn">▶</div>
-        </div>
-        <div class="card-content">
-          <h3>Random Cute Video 🌸</h3>
-          <p>Video random tapi bikin senyum sendiri.</p>
-        </div>
-      </div>
-
-      <div class="card" onclick="openModal(4)">
-        <div class="thumbnail">
-          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200&auto=format&fit=crop">
-          <div class="play-btn">▶</div>
-        </div>
-        <div class="card-content">
-          <h3>One More Surprise 🎁</h3>
-          <p>Masih ada kejutan terakhir buat kamu.</p>
-        </div>
-      </div>
-
-      <div class="card" onclick="openModal(1)">
-        <div class="thumbnail">
-          <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop">
-          <div class="play-btn">▶</div>
-        </div>
-        <div class="card-content">
-          <h3>Happy Moments 🎂</h3>
-          <p>Semua tawa kecil yang pernah terjadi.</p>
-        </div>
-      </div>
-
-      <div class="card" onclick="openModal(2)">
-        <div class="thumbnail">
-          <img src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?q=80&w=1200&auto=format&fit=crop">
-          <div class="play-btn">▶</div>
-        </div>
-        <div class="card-content">
-          <h3>Beautiful Day 🌷</h3>
-          <p>Karena hari ini spesial banget.</p>
-        </div>
-      </div>
-
-    </div>
-
-  </section>
-
-  </main>
-
-</div>
-
-<div class="modal" id="modal">
     <div class="modal-content">
+
       <span class="close" onclick="closeModal()">×</span>
 
-      <video id="video" controls>
-        <source src="" type="video/mp4">
-      </video>
+      <div class="cake-scene" id="cakeScene">
 
-      <div id="cakeScene" style="display:none; justify-content:center; align-items:center; flex-direction:column; padding-top:30px; background:#111; min-height:500px; position:relative; overflow:hidden;">
-
-        <div class="cake-animation-wrapper">
+        <div class="cake-wrapper">
 
           <div class="mix-bowl"></div>
 
@@ -705,9 +843,19 @@
             <div class="cake-layer top-layer"></div>
 
             <div class="candles">
-              <div class="candle"><div class="flame"></div></div>
-              <div class="candle"><div class="flame"></div></div>
-              <div class="candle"><div class="flame"></div></div>
+
+              <div class="candle">
+                <div class="flame"></div>
+              </div>
+
+              <div class="candle">
+                <div class="flame"></div>
+              </div>
+
+              <div class="candle">
+                <div class="flame"></div>
+              </div>
+
             </div>
 
           </div>
@@ -722,89 +870,94 @@
 
       </div>
 
-      <div class="modal-text">
+      <div class="player">
+        <video id="video" controls>
+          <source src="">
+        </video>
+      </div>
+
+      <div class="video-detail">
         <h2 id="title"></h2>
         <p id="desc"></p>
       </div>
-    </div>
-  </div>
 
-  <div class="footer">
-    Made with love for someone special 💖
+    </div>
+
   </div>
 
   <script>
 
     const data = {
-      1: {
-        title: "Happy Birthday 🎂",
-        desc: "Selamat ulang tahun yaa. Semoga semua hal baik datang ke hidup kamu. Semoga semua yang kamu usahakan perlahan jadi kenyataan.",
-        video: "https://www.w3schools.com/html/mov_bbb.mp4"
+
+      1:{
+        title:"Special Birthday Surprise 🎂",
+        desc:"Ini bukan video biasa. Ada sesuatu spesial yang dibuat khusus buat kamu 💖",
+        video:"video1.mp4"
       },
-      2: {
-        title: "A Little Message ✨",
-        desc: "Terima kasih karena udah jadi orang yang kuat sampai hari ini. Kadang mungkin capek, tapi kamu tetap bertahan. Dan itu keren.",
-        video: "https://www.w3schools.com/html/movie.mp4"
+
+      2:{
+        title:"Moment Paling Chaos Tahun Ini 😭",
+        desc:"Kumpulan moment random yang ternyata jadi kenangan paling lucu.",
+        video:"video2.mp4"
       },
-      3: {
-        title: "Funny Memories 😂",
-        desc: "Walaupun kadang nyebelin dan suka random, tapi tetap jadi salah satu orang favorit.",
-        video: "https://www.w3schools.com/html/mov_bbb.mp4"
+
+      3:{
+        title:"Masih Ga Nyangka Bisa Seakrab Ini ✨",
+        desc:"Video kecil tentang perjalanan dan kenangan yang ga bakal dilupain.",
+        video:"video3.mp4"
       },
-      4: {
-        title: "Final Surprise 💖",
-        desc: "Thank you for existing. Dunia mungkin ga selalu mudah, tapi semoga kamu selalu menemukan alasan untuk tersenyum.",
-        video: "https://www.w3schools.com/html/movie.mp4"
+
+      4:{
+        title:"Dia Ketawa Sampai Nangis 😂",
+        desc:"Video yang isinya chaos, random, tapi bikin bahagia sendiri.",
+        video:"video4.mp4"
       }
+
     }
 
     function openModal(id){
-      const cakeScene = document.getElementById('cakeScene');
+
       const modal = document.getElementById('modal');
       const title = document.getElementById('title');
       const desc = document.getElementById('desc');
       const video = document.getElementById('video');
-
-      title.innerText = data[id].title;
-      desc.innerText = data[id].desc;
-      video.src = data[id].video;
+      const cakeScene = document.getElementById('cakeScene');
 
       modal.style.display = 'flex';
 
+      title.innerText = data[id].title;
+      desc.innerText = data[id].desc;
+
       if(id === 1){
+
         cakeScene.style.display = 'flex';
         video.style.display = 'none';
-      } else {
+
+      }else{
+
         cakeScene.style.display = 'none';
         video.style.display = 'block';
+
+        video.src = data[id].video;
         video.play();
+
       }
+
     }
 
     function closeModal(){
+
       const modal = document.getElementById('modal');
       const video = document.getElementById('video');
+      const cakeScene = document.getElementById('cakeScene');
 
       modal.style.display = 'none';
+
       video.pause();
-      document.getElementById('cakeScene').style.display = 'none';
+
+      cakeScene.style.display = 'none';
+
     }
-
-    function createHeart(){
-      const heart = document.createElement('div');
-      heart.classList.add('floating-heart');
-      heart.innerHTML = '💖';
-      heart.style.left = Math.random() * window.innerWidth + 'px';
-      heart.style.fontSize = Math.random() * 20 + 20 + 'px';
-
-      document.body.appendChild(heart);
-
-      setTimeout(() => {
-        heart.remove();
-      }, 5000);
-    }
-
-    setInterval(createHeart, 700);
 
   </script>
 
