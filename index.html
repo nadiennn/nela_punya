@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>JuwbelTube</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,7 +27,14 @@ body{
   overflow-x:hidden;
 }
 
-/* NAVBAR */
+::-webkit-scrollbar{
+  width:7px;
+}
+
+::-webkit-scrollbar-thumb{
+  background:#303030;
+  border-radius:20px;
+}
 
 .navbar{
   width:100%;
@@ -38,33 +44,56 @@ body{
   align-items:center;
   justify-content:space-between;
   padding:0 20px;
-  border-bottom:1px solid #272727;
-  position:sticky;
+  position:fixed;
   top:0;
   z-index:999;
+  border-bottom:1px solid #272727;
+}
+
+.nav-left{
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+
+.menu-btn{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.menu-btn:hover{
+  background:#272727;
 }
 
 .logo{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:8px;
   font-size:24px;
   font-weight:700;
 }
 
 .yt-icon{
-  background:#ff0000;
-  width:36px;
-  height:26px;
+  width:35px;
+  height:25px;
   border-radius:8px;
+  background:#ff0000;
   display:flex;
   justify-content:center;
   align-items:center;
+  font-size:14px;
 }
 
 .search-box{
   width:45%;
   display:flex;
+  align-items:center;
 }
 
 .search-input{
@@ -79,16 +108,19 @@ body{
 
 .search-btn{
   width:70px;
-  background:#222;
+  height:45px;
   border:none;
+  background:#222;
   color:white;
   border-radius:0 40px 40px 0;
+  border:1px solid #303030;
+  cursor:pointer;
 }
 
 .nav-right{
   display:flex;
   align-items:center;
-  gap:18px;
+  gap:15px;
 }
 
 .nav-icon{
@@ -107,15 +139,51 @@ body{
 }
 
 .profile{
-  width:40px;
-  height:40px;
+  width:38px;
+  height:38px;
   border-radius:50%;
   background:url('profil yt.jpeg') center/cover;
 }
 
-/* MAIN */
+.container{
+  display:flex;
+  margin-top:65px;
+}
+
+.sidebar{
+  width:240px;
+  height:calc(100vh - 65px);
+  position:fixed;
+  top:65px;
+  left:0;
+  background:#0f0f0f;
+  padding:15px;
+  overflow-y:auto;
+  border-right:1px solid #202020;
+}
+
+.sidebar-item{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  padding:14px;
+  border-radius:14px;
+  cursor:pointer;
+  transition:0.3s;
+  margin-bottom:5px;
+}
+
+.sidebar-item:hover{
+  background:#272727;
+}
+
+.active{
+  background:#272727;
+}
 
 .main{
+  margin-left:240px;
+  width:100%;
   padding:25px;
 }
 
@@ -144,7 +212,7 @@ body{
 
 .video-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(330px,1fr));
   gap:25px;
 }
 
@@ -154,7 +222,7 @@ body{
 }
 
 .video-card:hover{
-  transform:translateY(-5px);
+  transform:translateY(-6px);
 }
 
 .thumbnail{
@@ -163,6 +231,7 @@ body{
   border-radius:18px;
   overflow:hidden;
   position:relative;
+  background:#222;
 }
 
 .thumbnail img,
@@ -178,13 +247,13 @@ body{
   display:flex;
   justify-content:center;
   align-items:center;
-  background:rgba(0,0,0,0.25);
   opacity:0;
-  transition:0.4s;
+  transition:0.3s;
+  background:rgba(0,0,0,0.3);
 }
 
 .play-hover i{
-  font-size:55px;
+  font-size:60px;
 }
 
 .video-card:hover .play-hover{
@@ -216,7 +285,7 @@ body{
 
 .video-text h3{
   font-size:16px;
-  margin-bottom:5px;
+  margin-bottom:6px;
 }
 
 .video-text p{
@@ -224,16 +293,15 @@ body{
   font-size:13px;
 }
 
-/* MODAL */
-
 .modal{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,0.93);
+  background:rgba(0,0,0,0.92);
   display:none;
   justify-content:center;
   align-items:center;
   z-index:9999;
+  padding:20px;
 }
 
 .modal-content{
@@ -243,264 +311,247 @@ body{
   border-radius:20px;
   overflow:hidden;
   position:relative;
+  animation:popup .4s ease;
+}
+
+@keyframes popup{
+  from{
+    transform:scale(.7);
+    opacity:0;
+  }
+  to{
+    transform:scale(1);
+    opacity:1;
+  }
 }
 
 .close{
   position:absolute;
-  top:15px;
   right:20px;
+  top:15px;
   font-size:35px;
   cursor:pointer;
-  z-index:100;
+  z-index:10;
 }
-
-/* VIDEO */
 
 .player video{
   width:100%;
   max-height:520px;
+  background:black;
 }
 
 .video-detail{
-  padding:25px;
+  padding:22px;
+}
+
+.video-detail h2{
+  margin-bottom:10px;
 }
 
 .video-detail p{
   color:#bbb;
-  margin-top:10px;
   line-height:1.8;
 }
 
-/* CAKE SCENE */
+/* CAKE */
 
 .cake-scene{
   width:100%;
-  min-height:700px;
-  background:linear-gradient(to bottom,#111,#1a1a1a);
+  min-height:620px;
+  background:linear-gradient(to bottom,#111,#1d1d1d);
   display:none;
   justify-content:center;
   align-items:center;
   flex-direction:column;
   position:relative;
   overflow:hidden;
-  padding:40px;
 }
 
-/* FLOATING */
-
-.floating{
+.float{
   position:absolute;
-  font-size:28px;
+  bottom:-50px;
   animation:floatUp linear infinite;
-  opacity:0.8;
+  opacity:.8;
 }
 
-.floating1{
-  left:10%;
-  animation-duration:8s;
-}
-
-.floating2{
-  left:30%;
-  animation-duration:10s;
-}
-
-.floating3{
-  left:50%;
-  animation-duration:9s;
-}
-
-.floating4{
-  left:70%;
-  animation-duration:11s;
-}
-
-.floating5{
-  left:90%;
-  animation-duration:8s;
+.float i{
+  color:#ff7eb6;
+  font-size:20px;
 }
 
 @keyframes floatUp{
-
   from{
-    transform:translateY(700px) rotate(0deg);
+    transform:translateY(0) rotate(0deg);
     opacity:0;
   }
-
   to{
-    transform:translateY(-800px) rotate(360deg);
+    transform:translateY(-900px) rotate(360deg);
     opacity:1;
   }
-
 }
 
-/* CAKE */
-
-.cake-build{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  transform:scale(0.55);
-  margin-top:40px;
-  margin-bottom:25px;
-  z-index:10;
-}
-
-.candles{
-  display:flex;
-  gap:18px;
-  margin-bottom:-18px;
-  z-index:20;
-}
-
-.candle{
-  width:14px;
-  height:65px;
-  border-radius:10px;
+.cake-wrapper{
   position:relative;
-  background:repeating-linear-gradient(
-    45deg,
-    white,
-    white 6px,
-    #ff4fa3 6px,
-    #ff4fa3 12px
-  );
+  width:220px;
+  height:220px;
+  margin-top:80px;
 }
 
-.flame{
-  width:22px;
-  height:30px;
-  background:radial-gradient(circle,#fff3a6,#ff9500);
+.plate{
+  width:220px;
+  height:20px;
+  background:#d9d9d9;
+  border-radius:50px;
   position:absolute;
-  top:-28px;
+  bottom:0;
+}
+
+.layer1,
+.layer2,
+.layer3{
+  position:absolute;
   left:50%;
   transform:translateX(-50%);
-  border-radius:50%;
-  animation:flicker .4s infinite alternate;
-  box-shadow:0 0 25px orange;
-}
-
-@keyframes flicker{
-
-  from{
-    transform:translateX(-50%) scale(1);
-  }
-
-  to{
-    transform:translateX(-50%) scale(1.1);
-  }
-
-}
-
-.layer{
-  border-radius:20px;
-  margin-top:8px;
+  border-radius:18px;
   background:#ff8fc7;
-  box-shadow:0 8px 18px rgba(255,105,180,0.4);
+  box-shadow:0 5px 15px rgba(255,105,180,.4);
 }
 
 .layer1{
-  width:240px;
-  height:60px;
+  width:180px;
+  height:55px;
+  bottom:20px;
 }
 
 .layer2{
-  width:190px;
-  height:50px;
+  width:145px;
+  height:45px;
+  bottom:70px;
 }
 
 .layer3{
-  width:140px;
-  height:40px;
+  width:110px;
+  height:38px;
+  bottom:112px;
 }
 
-/* TITLE */
-
-.birthday-title{
-  margin-top:10px;
-  font-size:60px;
-  font-family:'Great Vibes',cursive;
-  color:#ffb6d9;
-  text-align:center;
-  z-index:10;
+.candles{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:12px;
+  bottom:150px;
 }
 
-/* LIVE TEXT */
-
-.typing-wrapper{
-  width:90%;
-  max-width:850px;
-  margin-top:35px;
-  background:rgba(255,255,255,0.05);
-  padding:25px;
-  border-radius:25px;
-  backdrop-filter:blur(8px);
-  min-height:220px;
-  z-index:20;
+.candle{
+  width:12px;
+  height:42px;
+  background:repeating-linear-gradient(
+    45deg,
+    white,
+    white 5px,
+    hotpink 5px,
+    hotpink 10px
+  );
+  border-radius:10px;
+  position:relative;
 }
 
-#liveText{
-  color:#f5f5f5;
-  font-size:17px;
-  line-height:2.2;
-  text-align:center;
+.flame{
+  width:16px;
+  height:22px;
+  background:radial-gradient(circle,#fff7a8,#ff9100);
+  border-radius:50%;
+  position:absolute;
+  top:-18px;
+  left:50%;
+  transform:translateX(-50%);
+  animation:flicker .4s infinite alternate;
+  box-shadow:0 0 20px orange;
 }
 
-#liveText::after{
-  content:"|";
-  animation:blink .5s infinite;
-  color:#ffb6d9;
-}
-
-@keyframes blink{
-  50%{
-    opacity:0;
+@keyframes flicker{
+  from{
+    transform:translateX(-50%) scale(1);
+  }
+  to{
+    transform:translateX(-50%) scale(1.15);
   }
 }
 
-@media(max-width:800px){
+.birthday-title{
+  margin-top:40px;
+  font-size:55px;
+  color:#ffb6d9;
+  font-family:'Great Vibes',cursive;
+}
+
+.live-text{
+  width:85%;
+  max-width:850px;
+  margin-top:25px;
+  text-align:center;
+  color:#f2f2f2;
+  line-height:2;
+  font-size:17px;
+  min-height:140px;
+}
+
+@media(max-width:900px){
+
+  .sidebar{
+    display:none;
+  }
+
+  .main{
+    margin-left:0;
+  }
+
+  .search-box{
+    width:60%;
+  }
 
   .video-grid{
     grid-template-columns:1fr;
   }
 
   .birthday-title{
-    font-size:42px;
+    font-size:45px;
   }
 
 }
 
 </style>
 </head>
-
 <body>
 
 <audio id="bgMusic" loop>
   <source src="adrianne lenker - anything.mp3" type="audio/mpeg">
 </audio>
 
-<!-- NAVBAR -->
-
 <nav class="navbar">
 
-<div class="logo">
+<div class="nav-left">
 
+<div class="menu-btn">
+<i class="fa-solid fa-bars"></i>
+</div>
+
+<div class="logo">
 <div class="yt-icon">
 <i class="fa-solid fa-play"></i>
 </div>
-
 JuwbelTube
+</div>
 
 </div>
 
 <div class="search-box">
-
 <input class="search-input" type="text" placeholder="Search">
-
 <button class="search-btn">
 <i class="fa-solid fa-magnifying-glass"></i>
 </button>
-
 </div>
 
 <div class="nav-right">
@@ -519,21 +570,52 @@ JuwbelTube
 
 </nav>
 
-<!-- MAIN -->
+<div class="container">
+
+<aside class="sidebar">
+
+<div class="sidebar-item active">
+<i class="fa-solid fa-house"></i>
+Home
+</div>
+
+<div class="sidebar-item">
+<i class="fa-solid fa-film"></i>
+Shorts
+</div>
+
+<div class="sidebar-item">
+<i class="fa-solid fa-clock"></i>
+History
+</div>
+
+<div class="sidebar-item">
+<i class="fa-solid fa-heart"></i>
+Liked
+</div>
+
+<div class="sidebar-item">
+<i class="fa-solid fa-play"></i>
+Playlist
+</div>
+
+<div class="sidebar-item">
+<i class="fa-solid fa-user-group"></i>
+Friends
+</div>
+
+</aside>
 
 <main class="main">
 
 <div class="category">
-
 <button>All</button>
-<button>Music</button>
 <button>Memories</button>
-<button>Gaming</button>
-<button>Live</button>
-<button>Playlist</button>
-<button>Funny</button>
 <button>Special</button>
-
+<button>Music</button>
+<button>Funny</button>
+<button>Vlog</button>
+<button>Moments</button>
 </div>
 
 <section class="video-grid">
@@ -544,13 +626,13 @@ JuwbelTube
 
 <div class="thumbnail">
 
-<img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?q=80&w=1200&auto=format&fit=crop">
+<img src="bg bird.png">
 
 <div class="play-hover">
 <i class="fa-solid fa-circle-play"></i>
 </div>
 
-<div class="duration">5:11</div>
+<div class="duration">6:27</div>
 
 </div>
 
@@ -559,13 +641,9 @@ JuwbelTube
 <img class="channel-pic" src="profil yt.jpeg">
 
 <div class="video-text">
-
 <h3>Ucapan Untuk Nelaaa 💖</h3>
-
 <p>JuwbelTube ✔</p>
-
 <p>2,7 jt x ditonton • 1 hari lalu</p>
-
 </div>
 
 </div>
@@ -586,7 +664,7 @@ JuwbelTube
 <i class="fa-solid fa-circle-play"></i>
 </div>
 
-<div class="duration">3:21</div>
+<div class="duration">12:03</div>
 
 </div>
 
@@ -595,13 +673,9 @@ JuwbelTube
 <img class="channel-pic" src="profil yt.jpeg">
 
 <div class="video-text">
-
-<h3>Last Night Memories 🌙</h3>
-
+<h3>Last Night Moments 🌙</h3>
 <p>JuwbelTube ✔</p>
-
 <p>987 rb x ditonton • 5 jam lalu</p>
-
 </div>
 
 </div>
@@ -622,7 +696,7 @@ JuwbelTube
 <i class="fa-solid fa-circle-play"></i>
 </div>
 
-<div class="duration">4:52</div>
+<div class="duration">9:11</div>
 
 </div>
 
@@ -631,13 +705,9 @@ JuwbelTube
 <img class="channel-pic" src="profil yt.jpeg">
 
 <div class="video-text">
-
 <h3>Momen Pondok ✨</h3>
-
 <p>JuwbelTube ✔</p>
-
-<p>1,4 jt x ditonton • 2 hari lalu</p>
-
+<p>3,2 jt x ditonton • 2 hari lalu</p>
 </div>
 
 </div>
@@ -658,7 +728,7 @@ JuwbelTube
 <i class="fa-solid fa-circle-play"></i>
 </div>
 
-<div class="duration">8:21</div>
+<div class="duration">15:21</div>
 
 </div>
 
@@ -667,13 +737,9 @@ JuwbelTube
 <img class="channel-pic" src="profil yt.jpeg">
 
 <div class="video-text">
-
-<h3>Little Recap About Nelaaa 💖</h3>
-
+<h3>Recap With Nelaaa 🎞️</h3>
 <p>JuwbelTube ✔</p>
-
-<p>1,9 jt x ditonton • baru saja</p>
-
+<p>1,5 jt x ditonton • 6 hari lalu</p>
 </div>
 
 </div>
@@ -683,6 +749,8 @@ JuwbelTube
 </section>
 
 </main>
+
+</div>
 
 <!-- MODAL -->
 
@@ -696,13 +764,29 @@ JuwbelTube
 
 <div class="cake-scene" id="cakeScene">
 
-<div class="floating floating1">💖</div>
-<div class="floating floating2">🌷</div>
-<div class="floating floating3">✨</div>
-<div class="floating floating4">🩷</div>
-<div class="floating floating5">💐</div>
+<div class="float" style="left:10%; animation-duration:8s;">
+<i class="fa-solid fa-heart"></i>
+</div>
 
-<div class="cake-build">
+<div class="float" style="left:30%; animation-duration:10s;">
+<i class="fa-solid fa-heart"></i>
+</div>
+
+<div class="float" style="left:60%; animation-duration:7s;">
+<i class="fa-solid fa-heart"></i>
+</div>
+
+<div class="float" style="left:80%; animation-duration:11s;">
+<i class="fa-solid fa-heart"></i>
+</div>
+
+<div class="cake-wrapper">
+
+<div class="plate"></div>
+
+<div class="layer1"></div>
+<div class="layer2"></div>
+<div class="layer3"></div>
 
 <div class="candles">
 
@@ -720,40 +804,25 @@ JuwbelTube
 
 </div>
 
-<div class="layer layer3"></div>
-<div class="layer layer2"></div>
-<div class="layer layer1"></div>
+</div>
+
+<h1 class="birthday-title">Happy Birthday Nelaaa 💖</h1>
+
+<div class="live-text" id="liveText"></div>
 
 </div>
 
-<h1 class="birthday-title">
-Happy Birthday Nelaaa 💖
-</h1>
-
-<div class="typing-wrapper">
-
-<p id="liveText"></p>
-
-</div>
-
-</div>
-
-<!-- VIDEO -->
+<!-- PLAYER -->
 
 <div class="player">
-
 <video id="video" controls>
 <source src="">
 </video>
-
 </div>
 
 <div class="video-detail">
-
 <h2 id="title"></h2>
-
 <p id="desc"></p>
-
 </div>
 
 </div>
@@ -762,31 +831,70 @@ Happy Birthday Nelaaa 💖
 
 <script>
 
-const music = document.getElementById("bgMusic");
+const bgMusic = document.getElementById('bgMusic');
+
+const liveWords = [
+"thank you for always being here.",
+"thank you for all the laughs.",
+"remember when we stayed together through everything?",
+"those moments honestly made me miss us even more.",
+"you turned random days into beautiful memories.",
+"i'm really lucky to know someone like you.",
+"even small moments with you always felt special.",
+"happy birthday nelaaa 💖",
+"i hope your days ahead are full of happiness.",
+"i hope you always feel loved and appreciated.",
+"may your dreams slowly come true one by one.",
+"please stay kind, soft, and amazing like this.",
+"and thank you for being part of my life ✨"
+];
+
+let wordIndex = 0;
+
+function startTyping(){
+
+const liveText = document.getElementById("liveText");
+
+liveText.innerHTML = "";
+
+let interval = setInterval(()=>{
+
+if(wordIndex < liveWords.length){
+
+liveText.innerHTML += liveWords[wordIndex] + " ";
+wordIndex++;
+
+}else{
+clearInterval(interval);
+}
+
+},1200);
+
+}
 
 const data = {
 
 1:{
 title:"Ucapan Untuk Nelaaa 💖",
-desc:"a little birthday message for someone precious ✨",
+desc:"Special memories and birthday surprise.",
 video:""
 },
 
 2:{
-title:"Last Night Memories 🌙",
-desc:"all the chaos and laughter from that night.",
+title:"Last Night Moments 🌙",
+desc:"Random moments that became unforgettable memories.",
 video:"last nigth.mp4"
 },
 
 3:{
 title:"Momen Pondok ✨",
-desc:"tiny memories that somehow became unforgettable.",
+desc:"Little memories that still feel warm until now.",
 video:"momen pondok.mp4"
 },
 
 4:{
-title:"Little Recap About Nelaaa 💖",
-desc:"all the little moments in one recap video.",
+title:"Recap With Nelaaa 🎞️",
+desc:"A small recap of beautiful moments together.",
 video:"vidio recap nela.mp4"
 }
 
@@ -810,21 +918,20 @@ if(id === 1){
 cakeScene.style.display = 'flex';
 video.style.display = 'none';
 
-music.play();
+bgMusic.play();
 
+wordIndex = 0;
 startTyping();
 
 }else{
 
 cakeScene.style.display = 'none';
-
 video.style.display = 'block';
 
 video.src = data[id].video;
-
 video.play();
 
-music.pause();
+bgMusic.pause();
 
 }
 
@@ -842,74 +949,7 @@ video.pause();
 
 cakeScene.style.display = 'none';
 
-music.pause();
-
-}
-
-/* LIVE TEXT */
-
-const text = `
-
-sometimes i still miss those old days so much...
-
-the days when we were always together,
-laughing at random things
-and acting like time would never change 🌷
-
-every little moment with you
-slowly became one of the best memories
-i’ve ever had in my life ✨
-
-thank you for staying,
-thank you for listening,
-and thank you for being part
-of my story all this time 💖
-
-honestly,
-having you as my best friend
-is one of the luckiest things ever 🩷
-
-happy birthday nelaaa 🌷
-
-i hope your days ahead
-become softer, brighter,
-and filled with love,
-peace,
-and happiness ✨
-
-i hope every dream you carry
-slowly finds its way to you 💐
-
-and no matter where life takes us later,
-i’ll always cherish
-all the memories we made together 💖
-
-`;
-
-let i = 0;
-let typingStarted = false;
-
-function startTyping(){
-
-if(typingStarted) return;
-
-typingStarted = true;
-
-function typeEffect(){
-
-if(i < text.length){
-
-document.getElementById("liveText").innerHTML += text.charAt(i);
-
-i++;
-
-setTimeout(typeEffect,45);
-
-}
-
-}
-
-typeEffect();
+bgMusic.pause();
 
 }
 
