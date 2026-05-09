@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>JuwbelTube</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,8 +43,8 @@
       background:#0f0f0f;
       border-bottom:1px solid #272727;
       display:flex;
-      justify-content:space-between;
       align-items:center;
+      justify-content:space-between;
       padding:0 20px;
       position:sticky;
       top:0;
@@ -56,7 +54,7 @@
     .nav-left{
       display:flex;
       align-items:center;
-      gap:15px;
+      gap:18px;
     }
 
     .menu-btn{
@@ -77,7 +75,7 @@
     .logo{
       display:flex;
       align-items:center;
-      gap:10px;
+      gap:8px;
       font-size:24px;
       font-weight:700;
     }
@@ -99,7 +97,7 @@
       align-items:center;
     }
 
-    .search-box input{
+    .search-input{
       width:100%;
       padding:12px 18px;
       border:none;
@@ -110,7 +108,7 @@
       border-radius:40px 0 0 40px;
     }
 
-    .search-box button{
+    .search-btn{
       width:70px;
       height:45px;
       border:none;
@@ -205,7 +203,6 @@
       background:#272727;
       color:white;
       cursor:pointer;
-      white-space:nowrap;
     }
 
     .video-grid{
@@ -236,12 +233,36 @@
       width:100%;
       height:100%;
       object-fit:cover;
+      transition:0.5s;
+    }
+
+    .video-card:hover img{
+      transform:scale(1.05);
+    }
+
+    .play-hover{
+      position:absolute;
+      inset:0;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      opacity:0;
+      transition:0.4s;
+      background:rgba(0,0,0,0.2);
+    }
+
+    .play-hover i{
+      font-size:55px;
+    }
+
+    .video-card:hover .play-hover{
+      opacity:1;
     }
 
     .duration{
       position:absolute;
-      bottom:10px;
       right:10px;
+      bottom:10px;
       background:rgba(0,0,0,0.8);
       padding:4px 8px;
       border-radius:6px;
@@ -263,7 +284,7 @@
 
     .video-text h3{
       font-size:16px;
-      margin-bottom:5px;
+      margin-bottom:6px;
       line-height:1.5;
     }
 
@@ -271,6 +292,11 @@
       color:#aaa;
       font-size:13px;
       line-height:1.7;
+    }
+
+    .verified{
+      color:#aaa;
+      margin-left:4px;
     }
 
     .modal{
@@ -285,8 +311,8 @@
     }
 
     .modal-content{
-      width:90%;
-      max-width:850px;
+      width:95%;
+      max-width:1000px;
       background:#181818;
       border-radius:20px;
       overflow:hidden;
@@ -297,14 +323,14 @@
       position:absolute;
       top:20px;
       right:20px;
-      font-size:30px;
+      font-size:32px;
       cursor:pointer;
       z-index:100;
     }
 
     .cake-scene{
       width:100%;
-      min-height:500px;
+      min-height:600px;
       background:#111;
       display:none;
       justify-content:center;
@@ -312,31 +338,23 @@
       flex-direction:column;
       overflow:hidden;
       position:relative;
-    }
-
-    .cake-wrapper{
-      position:relative;
-      width:320px;
-      height:250px;
-      display:flex;
-      justify-content:center;
-      align-items:center;
+      padding:40px 20px;
     }
 
     .cake-build{
-      position:absolute;
-      bottom:20px;
       display:flex;
       flex-direction:column;
       align-items:center;
+      margin-top:40px;
     }
 
     .candles{
       display:flex;
       gap:25px;
-      margin-bottom:-5px;
+      margin-bottom:-8px;
       opacity:0;
-      animation:candleShow 1s forwards 5s;
+      animation:candleShow 1s forwards 2.5s;
+      z-index:5;
     }
 
     .candle{
@@ -369,63 +387,64 @@
     .cake-layer{
       border-radius:20px;
       background:#ff8fc7;
-      box-shadow:0 10px 20px rgba(255,105,180,0.3);
+      box-shadow:0 10px 20px rgba(255,105,180,0.4);
       opacity:0;
     }
 
     .top-layer{
       width:140px;
       height:38px;
-      animation:showTop 1s forwards 4s;
+      animation:showTop 0.6s forwards 1.8s;
     }
 
     .middle-layer{
       width:170px;
       height:45px;
-      animation:showMiddle 1s forwards 3s;
+      animation:showMiddle 0.6s forwards 1.2s;
     }
 
     .bottom-layer{
       width:200px;
       height:55px;
-      animation:showBottom 1s forwards 2s;
+      animation:showBottom 0.6s forwards 0.6s;
     }
 
     .cream{
       background:white;
-      height:14px;
+      height:15px;
       border-radius:20px;
       opacity:0;
     }
 
     .cream1{
       width:185px;
-      animation:showCream1 1s forwards 2.5s;
+      animation:showCream1 0.5s forwards 1.5s;
     }
 
     .cream2{
       width:155px;
-      animation:showCream2 1s forwards 3.5s;
+      animation:showCream2 0.5s forwards 2.1s;
     }
 
     .birthday-title{
       margin-top:40px;
-      font-size:48px;
+      font-size:60px;
       color:#ffb6d9;
       font-family:'Great Vibes',cursive;
       opacity:0;
-      animation:fadeText 1.5s forwards 5.8s;
+      text-align:center;
+      animation:fadeText 1.5s forwards 3s;
     }
 
     .birthday-desc{
-      margin-top:10px;
+      margin-top:20px;
       color:#ddd;
       text-align:center;
-      max-width:500px;
-      line-height:1.8;
-      padding:0 20px;
+      max-width:700px;
+      line-height:2;
+      font-size:16px;
       opacity:0;
-      animation:fadeText 1.5s forwards 6.3s;
+      animation:fadeText 1.5s forwards 3.5s;
     }
 
     @keyframes flicker{
@@ -437,13 +456,7 @@
       }
     }
 
-    @keyframes candleShow{
-      to{
-        opacity:1;
-      }
-    }
-
-    @keyframes showTop{
+    @keyframes showBottom{
       to{
         opacity:1;
       }
@@ -455,7 +468,7 @@
       }
     }
 
-    @keyframes showBottom{
+    @keyframes showTop{
       to{
         opacity:1;
       }
@@ -473,7 +486,17 @@
       }
     }
 
+    @keyframes candleShow{
+      to{
+        opacity:1;
+      }
+    }
+
     @keyframes fadeText{
+      from{
+        opacity:0;
+        transform:translateY(20px);
+      }
       to{
         opacity:1;
         transform:translateY(0);
@@ -494,15 +517,18 @@
         grid-template-columns:1fr;
       }
 
+      .birthday-title{
+        font-size:45px;
+      }
+
     }
 
   </style>
-
 </head>
 
 <body>
 
-  <audio id="bgMusic" autoplay loop>
+  <audio id="bgMusic" loop>
     <source src="adrianne lenker - anything.mp3" type="audio/mpeg">
   </audio>
 
@@ -528,9 +554,9 @@
 
     <div class="search-box">
 
-      <input type="text" placeholder="Search">
+      <input class="search-input" type="text" placeholder="Search">
 
-      <button>
+      <button class="search-btn">
         <i class="fa-solid fa-magnifying-glass"></i>
       </button>
 
@@ -569,13 +595,13 @@
       </div>
 
       <div class="sidebar-item">
-        <i class="fa-solid fa-heart"></i>
-        Favorites
+        <i class="fa-solid fa-clock-rotate-left"></i>
+        History
       </div>
 
       <div class="sidebar-item">
-        <i class="fa-solid fa-clock-rotate-left"></i>
-        History
+        <i class="fa-solid fa-heart"></i>
+        Favorites
       </div>
 
     </aside>
@@ -586,7 +612,6 @@
 
         <button>All</button>
         <button>Music</button>
-        <button>Vlog</button>
         <button>Memories</button>
         <button>Special</button>
 
@@ -594,11 +619,15 @@
 
       <section class="video-grid">
 
-        <div class="video-card" onclick="openModal()">
+        <div class="video-card" onclick="openCake()">
 
           <div class="thumbnail">
 
             <img src="bg bird.png">
+
+            <div class="play-hover">
+              <i class="fa-solid fa-circle-play"></i>
+            </div>
 
             <div class="duration">
               6:27
@@ -617,7 +646,8 @@
               </h3>
 
               <p>
-                JuwbelTube ✓
+                JuwbelTube
+                <i class="fa-solid fa-circle-check verified"></i>
               </p>
 
               <p>
@@ -644,35 +674,31 @@
 
       <div class="cake-scene" id="cakeScene">
 
-        <div class="cake-wrapper">
+        <div class="cake-build">
 
-          <div class="cake-build">
+          <div class="candles">
 
-            <div class="candles">
-
-              <div class="candle">
-                <div class="flame"></div>
-              </div>
-
-              <div class="candle">
-                <div class="flame"></div>
-              </div>
-
-              <div class="candle">
-                <div class="flame"></div>
-              </div>
-
+            <div class="candle">
+              <div class="flame"></div>
             </div>
 
-            <div class="cake-layer top-layer"></div>
-            <div class="cream cream2"></div>
+            <div class="candle">
+              <div class="flame"></div>
+            </div>
 
-            <div class="cake-layer middle-layer"></div>
-            <div class="cream cream1"></div>
-
-            <div class="cake-layer bottom-layer"></div>
+            <div class="candle">
+              <div class="flame"></div>
+            </div>
 
           </div>
+
+          <div class="cake-layer top-layer"></div>
+          <div class="cream cream2"></div>
+
+          <div class="cake-layer middle-layer"></div>
+          <div class="cream cream1"></div>
+
+          <div class="cake-layer bottom-layer"></div>
 
         </div>
 
@@ -682,9 +708,30 @@
 
         <p class="birthday-desc">
 
-          Thank you for being part of these beautiful memories.
-          I hope happiness, love, success, and peaceful days
-          always follow you wherever you go ✨
+          Thank you for being one of the best parts of my life 💖
+          Thank you for every laugh, every random moment,
+          every chaos, and every beautiful memory we created together.
+
+          I’m really grateful because you stayed,
+          listened, understood, and became such an important person
+          in my journey ✨
+
+          Happy Birthday Nelaaa 🌷
+
+          I hope this new age brings you more happiness,
+          more peace, more love, and beautiful surprises.
+
+          May all your dreams slowly come true,
+          may your heart always feel safe,
+          and may good people always surround you.
+
+          Please stay healthy,
+          stay kind,
+          stay soft,
+          and stay being the amazing person you are 💖
+
+          Thank you for existing,
+          and thank you for becoming my friend ✨
 
         </p>
 
@@ -696,11 +743,15 @@
 
   <script>
 
-    function openModal(){
+    const music = document.getElementById('bgMusic');
+
+    function openCake(){
 
       document.getElementById('modal').style.display='flex';
 
       document.getElementById('cakeScene').style.display='flex';
+
+      music.play();
 
     }
 
@@ -708,15 +759,11 @@
 
       document.getElementById('modal').style.display='none';
 
+      music.pause();
+
+      music.currentTime = 0;
+
     }
-
-    document.addEventListener('click', () => {
-
-      const music = document.getElementById('bgMusic');
-
-      music.play();
-
-    });
 
   </script>
 
