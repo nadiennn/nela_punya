@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Nelaa 20 🎂 | Special Video</title>
+    <title>Nelaa 20</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&family=Dancing+Script:wght@400;600;700&display=swap');
         
         * {
             margin: 0;
@@ -14,407 +14,326 @@
         }
         
         body {
-            font-family: 'Roboto', sans-serif;
-            background: #0f0f0f;
-            color: white;
-            overflow-x: hidden;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, 
+                #667eea 0%, 
+                #764ba2 30%, 
+                #f093fb 70%, 
+                #f5576c 100%);
             height: 100vh;
-        }
-        
-        /* YouTube-style header */
-        .header {
-            background: linear-gradient(135deg, #ff0000, #cc0000);
-            padding: 15px 30px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            box-shadow: 0 2px 20px rgba(255,0,0,0.3);
-        }
-        
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            background: linear-gradient(45deg, #fff, #ffcc00);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .video-container {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding-top: 80px;
-        }
-        
-        /* Main video player */
-        .video-player {
-            flex: 1;
-            background: #000;
-            position: relative;
-            border-radius: 20px;
-            margin: 20px;
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
-            cursor: pointer;
-            transition: all 0.5s ease;
-        }
-        
-        .video-player:hover {
-            transform: scale(1.02);
-            box-shadow: 0 30px 80px rgba(255,0,0,0.4);
-        }
-        
-        .video-thumbnail {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .play-overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 120px;
-            height: 120px;
-            background: rgba(255,0,0,0.9);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 40px rgba(255,0,0,0.6);
-        }
-        
-        .video-player:hover .play-overlay {
-            background: rgba(255,0,0,1);
-            transform: translate(-50%, -50%) scale(1.1);
-        }
-        
-        /* Video info */
-        .video-info {
-            padding: 0 20px 20px;
-        }
-        
-        .video-title {
-            font-size: 2.2rem;
-            font-weight: 700;
-            line-height: 1.3;
-            margin-bottom: 15px;
-            background: linear-gradient(45deg, #fff, #ffcc00);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .video-stats {
-            display: flex;
-            gap: 20px;
-            font-size: 0.95rem;
-            color: #aaa;
-            margin-bottom: 20px;
-        }
-        
-        .channel-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .channel-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, #ff6b9d, #c44569);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1.1rem;
-        }
-        
-        .channel-name {
-            font-weight: 500;
-            color: #fff;
-        }
-        
-        /* Related videos */
-        .related-section {
-            padding: 40px 20px;
-            background: #181818;
-        }
-        
-        .related-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 25px;
-            color: #fff;
-        }
-        
-        .related-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        
-        .related-video {
-            display: flex;
-            gap: 15px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            padding: 15px;
-            border-radius: 15px;
-            background: #212121;
-        }
-        
-        .related-video:hover {
-            background: #2a2a2a;
-            transform: translateX(10px);
-        }
-        
-        .related-thumb {
-            width: 160px;
-            height: 90px;
-            border-radius: 12px;
-            overflow: hidden;
-            background-size: cover;
-            background-position: center;
             position: relative;
-        }
-        
-        .related-play {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 30px;
-            height: 30px;
-            background: rgba(255,0,0,0.9);
-            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.8rem;
         }
         
-        .related-info h4 {
-            font-size: 1rem;
-            font-weight: 500;
-            margin-bottom: 5px;
-            line-height: 1.3;
-        }
-        
-        .related-info p {
-            font-size: 0.85rem;
-            color: #aaa;
-        }
-        
-        /* Modal video */
-        .video-modal {
+        body::before {
+            content: '';
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.98);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(255,255,255,0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255,182,193,0.4) 0%, transparent 50%);
+            animation: bgFloat 12s ease-in-out infinite;
+            z-index: -1;
+        }
+        
+        @keyframes bgFloat {
+            0%, 100% { transform: scale(1) translateY(0); }
+            50% { transform: scale(1.05) translateY(-15px); }
+        }
+        
+        .landing-container {
+            text-align: center;
+            max-width: 900px;
+            padding: 40px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Hero section - staggered animation */
+        .hero-content {
             opacity: 0;
-            visibility: hidden;
-            transition: all 0.4s ease;
+            transform: translateY(50px);
+            animation: fadeInUp 1.5s ease forwards;
         }
         
-        .video-modal.active {
-            opacity: 1;
-            visibility: visible;
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
-        .modal-video {
-            width: 90%;
-            max-width: 1000px;
-            height: 70%;
-            background: #000;
-            border-radius: 20px;
-            position: relative;
-            box-shadow: 0 30px 100px rgba(255,0,0,0.5);
+        .birthday-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
+            backdrop-filter: blur(20px);
+            padding: 15px 35px;
+            border-radius: 50px;
+            border: 1px solid rgba(255,255,255,0.3);
+            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            animation-delay: 0.3s;
+            animation-fill-mode: both;
         }
         
-        .modal-close {
-            position: absolute;
-            top: -50px;
-            right: 0;
-            width: 50px;
-            height: 50px;
-            background: rgba(255,255,255,0.2);
-            border: none;
-            border-radius: 50%;
+        .birthday-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(2rem, 6vw, 4.5rem);
+            background: linear-gradient(135deg, #fff, #f8f9ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-shadow: 0 5px 20px rgba(255,255,255,0.3);
+        }
+        
+        .birthday-age {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(4rem, 12vw, 8rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #ff6b9d, #ffd93d, #4facfe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            animation: pulseGlow 2s ease-in-out infinite;
+            text-shadow: 0 10px 30px rgba(255,107,157,0.5);
+        }
+        
+        @keyframes pulseGlow {
+            0%, 100% { 
+                filter: drop-shadow(0 0 20px rgba(255,107,157,0.6));
+                transform: scale(1);
+            }
+            50% { 
+                filter: drop-shadow(0 0 40px rgba(255,107,157,0.9));
+                transform: scale(1.03);
+            }
+        }
+        
+        .name-reveal {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(3.5rem, 8vw, 6rem);
+            color: #fff;
+            font-weight: 700;
+            margin: 20px 0;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: nameSlide 1s ease 1.2s forwards;
+            text-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+        
+        @keyframes nameSlide {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* CTA Button */
+        .cta-section {
+            margin-top: 50px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease 1.8s forwards;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff6b9d, #c44569);
             color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            padding: 20px 50px;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 20px 40px rgba(255,107,157,0.4);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
         }
         
-        .modal-close:hover {
-            background: white;
-            color: #ff0000;
+        .cta-button:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 30px 60px rgba(255,107,157,0.6);
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s;
+        }
+        
+        .cta-button:hover::before {
+            left: 100%;
+        }
+        
+        /* Floating elements */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .float-item {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.6;
+            animation: floatUp 8s linear infinite;
+        }
+        
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Subtext */
+        .subtext {
+            margin-top: 25px;
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.9);
+            font-weight: 300;
+            opacity: 0;
+            animation: fadeInUp 1s ease 2.2s forwards;
         }
         
         /* Responsive */
         @media (max-width: 768px) {
-            .header {
-                padding: 12px 20px;
+            .landing-container {
+                padding: 20px;
             }
             
-            .logo {
-                font-size: 1.4rem;
-            }
-            
-            .video-title {
-                font-size: 1.8rem;
-            }
-            
-            .related-grid {
-                grid-template-columns: 1fr;
+            .birthday-badge {
+                padding: 12px 25px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header YouTube-style -->
-    <div class="header">
-        <div class="logo">🎂 Nelaa Birthday</div>
-    </div>
+    <div class="floating-elements" id="floats"></div>
     
-    <div class="video-container">
-        <!-- Main Video -->
-        <div class="video-player" onclick="openModal()">
-            <img class="video-thumbnail" src="https://images.unsplash.com/photo-1519452634766-879ec3b6eefb?w=1400&h=800&fit=crop" alt="Nelaa Birthday">
-            <div class="play-overlay">▶</div>
-        </div>
-        
-        <!-- Video Info -->
-        <div class="video-info">
-            <h1 class="video-title">
-                🎉 Happy Birthday Nelaa! 20 Tahun Penuh Cinta & Keajaiban ✨
-            </h1>
-            <div class="video-stats">
-                <span>🔥 1.2M views</span>
-                <span>💖 89K likes</span>
-                <span>💬 12K comments</span>
-                <span>📅 2 hours ago</span>
+    <div class="landing-container">
+        <div class="hero-content">
+            <div class="birthday-badge">
+                <div class="birthday-text">Happy Birthday</div>
+                <div class="birthday-age">20</div>
             </div>
-            <div class="channel-info">
-                <div class="channel-avatar">N</div>
-                <div class="channel-name">Nelaa Family • 250K subscribers</div>
-            </div>
-        </div>
-        
-        <!-- Related Videos -->
-        <div class="related-section">
-            <h3 class="related-title">Recommended for you</h3>
-            <div class="related-grid">
-                <div class="related-video">
-                    <div class="related-thumb" style="background-image: url('https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=225&fit=crop')">
-                        <div class="related-play">▶</div>
-                    </div>
-                    <div class="related-info">
-                        <h4>Nelaa 20th Birthday Behind The Scenes</h4>
-                        <p>45K views • 1 day ago</p>
-                    </div>
-                </div>
-                
-                <div class="related-video">
-                    <div class="related-thumb" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=225&fit=crop')">
-                        <div class="related-play">▶</div>
-                    </div>
-                    <div class="related-info">
-                        <h4>Best Moments Nelaa 19 Years Old</h4>
-                        <p>120K views • 1 week ago</p>
-                    </div>
-                </div>
-                
-                <div class="related-video">
-                    <div class="related-thumb" style="background-image: url('https://images.unsplash.com/photo-1524504388940-7b8a6c5e8b53?w=400&h=225&fit=crop')">
-                        <div class="related-play">▶</div>
-                    </div>
-                    <div class="related-info">
-                        <h4>Nelaa Birthday Surprise Party!</h4>
-                        <p>89K views • 2 days ago</p>
-                    </div>
-                </div>
-                
-                <div class="related-video">
-                    <div class="related-thumb" style="background-image: url('https://images.unsplash.com/photo-1558618047-3c8c76bbb17e?w=400&h=225&fit=crop')">
-                        <div class="related-play">▶</div>
-                    </div>
-                    <div class="related-info">
-                        <h4>20 Things About Nelaa You Didn't Know</h4>
-                        <p>67K views • 3 days ago</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Video Modal -->
-    <div class="video-modal" id="videoModal">
-        <div class="modal-video">
-            <button class="modal-close" onclick="closeModal()">×</button>
-            <div style="width: 100%; height: 100%; background: linear-gradient(45deg, #ff0000, #cc0000); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px;">
-                <div style="font-size: 4rem; margin-bottom: 30px; animation: bounce 2s infinite;">🎂</div>
-                <h2 style="font-size: 3rem; font-weight: 700; margin-bottom: 20px; background: linear-gradient(45deg, #fff, #ffcc00); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">HAPPY BIRTHDAY</h2>
-                <h1 style="font-size: 5rem; font-weight: 800; color: #fff; margin-bottom: 40px; font-family: 'Poppins', sans-serif;">NELAA!</h1>
-                <div style="font-size: 1.5rem; max-width: 600px; line-height: 1.6; opacity: 0.95;">
-                    20 years of pure magic, laughter, and unforgettable moments. 
-                    You make the world brighter just by being you. 
-                    Here's to many more amazing years ahead! ✨💖
-                </div>
-                <div style="margin-top: 40px; font-size: 1.2rem; opacity: 0.8;">
-                    Click related videos for more surprises! 🎉
+            
+            <div class="name-reveal">Nelaa</div>
+            
+            <div class="cta-section">
+                <a href="#" class="cta-button" onclick="revealSurprise()">
+                    🎉 Open Birthday Gift
+                </a>
+                <div class="subtext">
+                    A special day for the most amazing girl ✨
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        function openModal() {
-            document.getElementById('videoModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
+        // Floating emojis
+        const emojis = ['🎂', '💖', '✨', '🎈', '🌟', '🎁', '💕'];
+        const floatsContainer = document.getElementById('floats');
+        
+        setInterval(() => {
+            const float = document.createElement('div');
+            float.className = 'float-item';
+            float.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+            float.style.left = Math.random() * 100 + 'vw';
+            float.style.animationDuration = (Math.random() * 4 + 6) + 's';
+            floatsContainer.appendChild(float);
+            
+            setTimeout(() => float.remove(), 8000);
+        }, 1000);
+
+        // Reveal surprise (modal or redirect)
+        function revealSurprise() {
+            // Animated explosion
+            document.body.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                document.body.innerHTML = `
+                <div style="
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    text-align: center;
+                    background: rgba(0,0,0,0.9);
+                    padding: 60px;
+                    border-radius: 30px;
+                    max-width: 90%;
+                    box-shadow: 0 50px 100px rgba(0,0,0,0.8);
+                    backdrop-filter: blur(20px);
+                    border: 1px solid rgba(255,255,255,0.2);
+                ">
+                    <div style="font-size: 6rem; margin-bottom: 30px; animation: bounce 1s infinite;">🎉</div>
+                    <h1 style="
+                        font-family: 'Dancing Script', cursive;
+                        font-size: 5rem;
+                        background: linear-gradient(45deg, #ff6b9d, #ffd93d);
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        margin-bottom: 20px;
+                    ">SELAMAT ULANG TAHUN!</h1>
+                    <div style="
+                        font-size: 1.6rem;
+                        line-height: 1.6;
+                        max-width: 600px;
+                        margin: 0 auto 40px;
+                        opacity: 0.95;
+                    ">
+                        Nelaa, 20 tahun penuh keajaiban dan senyuman yang mencerahkan dunia. 
+                        Semoga tahun ini membawa kebahagiaan tak terbatas, cinta yang tulus, 
+                        dan semua mimpi menjadi kenyataan. Kamu luar biasa! 💖✨
+                    </div>
+                    <div style="font-size: 1.1rem; opacity: 0.8;">
+                        Terima kasih sudah jadi Nelaa yang spesial 💕
+                    </div>
+                    <button onclick="location.reload()" style="
+                        background: linear-gradient(135deg, #ff6b9d, #c44569);
+                        color: white;
+                        border: none;
+                        padding: 15px 40px;
+                        border-radius: 30px;
+                        font-size: 1.1rem;
+                        font-weight: 600;
+                        cursor: pointer;
+                        margin-top: 30px;
+                        box-shadow: 0 15px 30px rgba(255,107,157,0.4);
+                        transition: all 0.3s ease;
+                    " onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">
+                        🎁 Lihat Hadiah Lain
+                    </button>
+                </div>
+                `;
+            }, 300);
         }
-        
-        function closeModal() {
-            document.getElementById('videoModal').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-        
-        // Related video hover effects
-        document.querySelectorAll('.related-video').forEach(video => {
-            video.addEventListener('mouseenter', () => {
-                video.style.transform = 'translateX(10px)';
-            });
-            video.addEventListener('mouseleave', () => {
-                video.style.transform = 'translateX(0)';
-            });
-        });
-        
-        // ESC key to close modal
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeModal();
-        });
-        
-        // Click outside to close
-        document.getElementById('videoModal').addEventListener('click', (e) => {
-            if (e.target === e.currentTarget) closeModal();
-        });
     </script>
 </body>
 </html>
