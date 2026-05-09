@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎂</title>
+    <title>🎂 Nelaa</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         
@@ -34,6 +34,7 @@
             z-index: 9999;
             mix-blend-mode: difference;
             transition: transform 0.1s ease;
+            box-shadow: 0 0 20px rgba(255,107,157,0.5);
         }
         
         .lock-screen {
@@ -216,11 +217,15 @@
             transform: translate(-50%, -50%);
             font-size: clamp(2rem, 8vw, 5rem);
             font-weight: 700;
-            color: #ff6b9d;
+            background: linear-gradient(45deg, #ff6b9d, #c44569, #ff9ff3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             text-align: center;
             opacity: 0;
             z-index: 10000;
             pointer-events: none;
+            animation: gradientShift 2s ease infinite;
         }
         
         @media (max-width: 768px) {
@@ -253,50 +258,61 @@
             border-radius: 50%;
             animation: particleFloat 8s linear infinite;
         }
+        
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(1);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="cursor" id="cursor"></div>
     <div class="particles" id="particles"></div>
     
-    <div class="lock-screen" id="lockScreen">
+    <div class="lock-screen active" id="lockScreen">
         <div class="code-input">
-            <div class="code-title glitch" data-text="UNLOCK">UNLOCK</div>
+            <div class="code-title glitch" data-text="UNLOCK NELAA">UNLOCK NELAA</div>
             <input type="text" class="code-field" id="codeInput" maxlength="4" placeholder="____">
         </div>
     </div>
     
     <div class="gallery" id="gallery">
         <div class="photo-frame" data-full="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=1200">
-            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=800&h=600&fit=crop" alt="Moment 1">
-            <div class="photo-label">Kenangan Manis</div>
+            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=800&h=600&fit=crop" alt="Nelaa 20">
+            <div class="photo-label">Nelaa yang Cantik</div>
         </div>
         
         <div class="photo-frame" data-full="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200">
-            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop" alt="Moment 2">
-            <div class="photo-label">Senyummu</div>
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop" alt="Nelaa 20">
+            <div class="photo-label">20 Tahun ✨</div>
         </div>
         
         <div class="photo-frame" data-full="https://images.unsplash.com/photo-1524504388940-7b8a6c5e8b53?w=1200">
-            <img src="https://images.unsplash.com/photo-1524504388940-7b8a6c5e8b53?w=800&h=600&fit=crop" alt="Moment 3">
-            <div class="photo-label">Petualangan</div>
+            <img src="https://images.unsplash.com/photo-1524504388940-7b8a6c5e8b53?w=800&h=600&fit=crop" alt="Nelaa 20">
+            <div class="photo-label">Selamat Ulang Tahun!</div>
         </div>
         
         <div class="photo-frame" data-full="https://images.unsplash.com/photo-1558618047-3c8c76bbb17e?w=1200">
-            <img src="https://images.unsplash.com/photo-1558618047-3c8c76bbb17e?w=800&h=600&fit=crop" alt="Moment 4">
-            <div class="photo-label">Elegan</div>
+            <img src="https://images.unsplash.com/photo-1558618047-3c8c76bbb17e?w=800&h=600&fit=crop" alt="Nelaa 20">
+            <div class="photo-label">Paling Spesial</div>
         </div>
         
         <div class="photo-frame" data-full="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1200">
-            <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&h=600&fit=crop" alt="Moment 5">
-            <div class="photo-label">Bahagia</div>
+            <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&h=600&fit=crop" alt="Nelaa 20">
+            <div class="photo-label">Forever 20 💕</div>
         </div>
     </div>
     
     <div class="surprise-text" id="surpriseText">
         <div style="font-size: 0.4em; opacity: 0.8; margin-bottom: 20px;">HAPPY</div>
-        <div>BIRTHDAY!</div>
-        <div style="font-size: 0.4em; opacity: 0.8; margin-top: 20px;">Kamu Paling Cantik ✨</div>
+        <div>20th</div>
+        <div style="font-size: 0.4em; opacity: 0.8; margin-top: 20px;">NELAA! ✨</div>
     </div>
 
     <script>
@@ -307,7 +323,7 @@
             cursor.style.top = e.clientY - 10 + 'px';
         });
 
-        // Code unlock system
+        // Code unlock system - KODE: NEL4 / 20TH / LOVE
         const codeInput = document.getElementById('codeInput');
         const lockScreen = document.getElementById('lockScreen');
         const gallery = document.getElementById('gallery');
@@ -315,7 +331,7 @@
         
         codeInput.addEventListener('input', (e) => {
             if (e.target.value.length === 4) {
-                if (e.target.value === 'LOVE' || e.target.value === 'BIRTH' || e.target.value === '1999') {
+                if (e.target.value === 'NEL4' || e.target.value === '20TH' || e.target.value === 'LOVE') {
                     unlock();
                 } else {
                     e.target.style.animation = 'shake 0.5s ease-in-out';
@@ -370,7 +386,7 @@
         // Particles explosion
         function createParticles() {
             const particles = document.getElementById('particles');
-            for (let i = 0; i < 100; i++) {
+            for (let i = 0; i < 150; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 particle.style.left = Math.random() * 100 + '%';
@@ -391,7 +407,7 @@
             setTimeout(() => {
                 surpriseText.style.opacity = '0';
                 surpriseText.style.transform = 'translate(-50%, -50%) scale(1.2)';
-            }, 3000);
+            }, 4000);
         }
 
         // Auto focus & keyboard
