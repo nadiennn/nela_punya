@@ -364,7 +364,7 @@
 
     .cake-scene{
       width:100%;
-      min-height:600px;
+      min-height:500px;
       background:#111;
       display:none;
       justify-content:center;
@@ -376,8 +376,8 @@
 
     .cake-wrapper{
       position:relative;
-      width:450px;
-      height:350px;
+      width:320px;
+      height:250px;
       display:flex;
       justify-content:center;
       align-items:center;
@@ -385,8 +385,8 @@
 
     .mix-bowl{
       position:absolute;
-      bottom:20px;
-      width:150px;
+      bottom:15px;
+      width:110px;
       height:80px;
       background:#444;
       border-radius:0 0 80px 80px;
@@ -395,11 +395,11 @@
 
     .pour{
       position:absolute;
-      width:18px;
+      width:14px;
       height:0;
       background:#ffb6d9;
-      top:70px;
-      left:216px;
+      top:60px;
+      left:153px;
       border-radius:20px;
       animation:pourCake 1.5s forwards 0.8s;
     }
@@ -422,17 +422,17 @@
     }
 
     .bottom-layer{
-      height:80px;
+      height:55px;
       animation:buildBottom 1s forwards 2s;
     }
 
     .middle-layer{
-      height:65px;
+      height:45px;
       animation:buildMiddle 1s forwards 3s;
     }
 
     .top-layer{
-      height:55px;
+      height:38px;
       animation:buildTop 1s forwards 4s;
     }
 
@@ -483,8 +483,8 @@
     }
 
     .birthday-title{
-      margin-top:50px;
-      font-size:70px;
+      margin-top:35px;
+      font-size:48px;
       font-family:'Great Vibes',cursive;
       color:#ffb6d9;
       opacity:0;
@@ -505,12 +505,12 @@
 
     @keyframes buildBottom{
       from{width:0; opacity:0;}
-      to{width:280px; opacity:1;}
+      to{width:140px; opacity:1;}
     }
 
     @keyframes buildMiddle{
       from{width:0; opacity:0;}
-      to{width:240px; opacity:1;}
+      to{width:170px; opacity:1;}
     }
 
     @keyframes buildTop{
@@ -520,12 +520,12 @@
 
     @keyframes creamBuild1{
       from{width:0; opacity:0;}
-      to{width:260px; opacity:1;}
+      to{width:185px; opacity:1;}
     }
 
     @keyframes creamBuild2{
       from{width:0; opacity:0;}
-      to{width:220px; opacity:1;}
+      to{width:155px; opacity:1;}
     }
 
     @keyframes candleShow{
@@ -586,6 +586,10 @@
   </style>
 </head>
 <body>
+
+  <audio id="bgMusic" autoplay loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  </audio>
 
   <nav class="navbar">
 
@@ -862,10 +866,10 @@
 
         </div>
 
-        <h1 class="birthday-title">Happy Birthday 💖</h1>
+        <h1 class="birthday-title">Happy Birthday Nelaaa 💖</h1>
 
         <p class="birthday-desc">
-          Semoga semua hal indah datang ke hidup kamu ✨
+          Thank you for being part of these beautiful memories. I hope happiness, love, success, and peaceful days always follow you wherever you go ✨
         </p>
 
       </div>
