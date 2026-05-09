@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nelaa 20 - Pink Diary 💕</title>
+    <title>Nelaa 20 - Magic Box ✨</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@200;300;400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&family=Dancing+Script:wght@700&display=swap');
         
         * {
             margin: 0;
@@ -14,402 +14,488 @@
         }
         
         body {
-            background: linear-gradient(135deg, 
-                #fce4ec 0%, 
-                #f8bbd9 25%, 
-                #f3e5f5 50%, 
-                #e1bee7 75%, 
-                #f8bbd9 100%);
-            font-family: 'Poppins', sans-serif;
             height: 100vh;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             overflow: hidden;
             position: relative;
         }
         
-        body::before {
-            content: '';
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Floating particles */
+        .particles {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
-                radial-gradient(circle at 10% 20%, rgba(255,192,203,0.4) 0%, transparent 50%),
-                radial-gradient(circle at 90% 80%, rgba(255,182,193,0.3) 0%, transparent 50%),
-                radial-gradient(circle at 50% 10%, rgba(255,105,180,0.2) 0%, transparent 50%);
-            animation: softFloat 20s ease-in-out infinite;
-            z-index: -1;
+            pointer-events: none;
+            z-index: 1;
         }
         
-        @keyframes softFloat {
-            0%, 100% { transform: translateY(0px) scale(1); }
-            33% { transform: translateY(-20px) scale(1.02); }
-            66% { transform: translateY(-10px) scale(1.01); }
-        }
-        
-        .album-container {
-            width: 100%;
-            height: 100vh;
-            position: relative;
-            perspective: 2000px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        
-        .album-book {
-            width: 650px;
-            height: 850px;
-            max-width: 90vw;
-            max-height: 90vh;
-            position: relative;
-            transform-style: preserve-3d;
-        }
-        
-        .page {
+        .particle {
             position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255,255,255,0.8);
+            border-radius: 50%;
+            animation: float 6s linear infinite;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% {
+                transform: translateY(-100px) scale(1.5);
+                opacity: 0;
+            }
+        }
+        
+        .magic-container {
+            perspective: 1500px;
+            width: 500px;
+            height: 600px;
+            position: relative;
+        }
+        
+        .magic-box {
+            position: relative;
             width: 100%;
             height: 100%;
-            background: linear-gradient(145deg, 
-                rgba(255,248,243,0.98) 0%, 
-                rgba(255,241,250,0.95) 100%);
-            border-radius: 25px;
-            box-shadow: 
-                0 35px 70px rgba(255,182,193,0.3),
-                0 10px 30px rgba(255,105,180,0.2),
-                inset 0 2px 10px rgba(255,255,255,0.9);
-            padding: 70px 60px;
-            box-sizing: border-box;
-            backface-visibility: hidden;
-            transform-origin: right center;
-            transform: rotateY(180deg);
-            opacity: 0;
-            overflow: hidden;
-            border: 1px solid rgba(255,192,203,0.4);
+            transform-style: preserve-3d;
+            transition: all 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
-        .page.active {
-            transform: rotateY(0deg);
-            opacity: 1;
-        }
-        
-        .page.flipped {
-            transform: rotateY(-180deg);
-        }
-        
-        .page::before {
-            content: '';
+        .box-face {
             position: absolute;
+            transition: all 0.8s ease;
+            cursor: pointer;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+        }
+        
+        .front { 
+            background: linear-gradient(145deg, #ff6b9d, #c44569);
+            transform: translateZ(250px);
+        }
+        
+        .back { 
+            background: linear-gradient(145deg, #a8e6cf, #88d8a3);
+            transform: translateZ(-250px) rotateY(180deg);
+        }
+        
+        .right { 
+            background: linear-gradient(145deg, #ffd93d, #ff8c42);
+            transform: rotateY(90deg) translateZ(250px);
+            width: 500px;
+            left: -250px;
+        }
+        
+        .left { 
+            background: linear-gradient(145deg, #ff9ff3, #f368e0);
+            transform: rotateY(-90deg) translateZ(250px);
+            width: 500px;
+            left: 250px;
+        }
+        
+        .top { 
+            background: linear-gradient(145deg, #a55eea, #4facfe);
+            transform: rotateX(90deg) translateZ(300px);
+            height: 500px;
+            top: -300px;
+        }
+        
+        .bottom { 
+            background: linear-gradient(145deg, #f093fb, #f5576c);
+            transform: rotateX(-90deg) translateZ(300px);
+            height: 500px;
+            top: 300px;
+        }
+        
+        .box-glow {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.8), transparent 70%);
+            border-radius: 45px;
+            z-index: -1;
+            filter: blur(20px);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .box-glow.active {
+            opacity: 1;
+            animation: glowPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes glowPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .box-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .box-label:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+        
+        /* Reveal content */
+        .content-reveal {
+            position: fixed;
             top: 0;
             left: 0;
-            width: 35px;
+            width: 100%;
             height: 100%;
-            background: linear-gradient(-90deg, transparent, rgba(255,192,203,0.2));
-            border-radius: 25px 0 0 25px;
+            background: rgba(0,0,0,0.95);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 1s ease;
+            z-index: 100;
+            padding: 40px;
+            text-align: center;
+            color: white;
         }
         
-        .page-title {
+        .content-reveal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .nelaa-name {
             font-family: 'Dancing Script', cursive;
-            font-size: clamp(3rem, 7vw, 5rem);
-            background: linear-gradient(45deg, #ff69b4, #ff1493, #c71585);
+            font-size: clamp(4rem, 12vw, 8rem);
+            background: linear-gradient(45deg, #ff6b9d, #ffd93d, #4facfe);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-align: center;
+            margin-bottom: 30px;
+            animation: nameGlow 2s ease-in-out infinite alternate;
+            text-shadow: none;
+        }
+        
+        @keyframes nameGlow {
+            from { filter: drop-shadow(0 0 20px #ff6b9d); }
+            to { filter: drop-shadow(0 0 30px #ffd93d); }
+        }
+        
+        .birthday-text {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            font-weight: 600;
             margin-bottom: 40px;
-            text-shadow: 0 2px 10px rgba(255,105,180,0.3);
-            animation: glowText 3s ease-in-out infinite alternate;
-        }
-        
-        @keyframes glowText {
-            from { filter: drop-shadow(0 0 5px #ff69b4); }
-            to { filter: drop-shadow(0 0 20px #ff1493); }
-        }
-        
-        .page-image {
-            width: 100%;
-            height: 380px;
-            object-fit: cover;
-            border-radius: 22px;
-            margin: 0 auto 40px;
-            display: block;
-            box-shadow: 
-                0 25px 50px rgba(255,182,193,0.4),
-                inset 0 1px 0 rgba(255,255,255,1);
-            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        
-        .page-image:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 
-                0 35px 70px rgba(255,105,180,0.5),
-                inset 0 1px 0 rgba(255,255,255,1);
-        }
-        
-        .page-text {
-            font-size: 1.25rem;
-            line-height: 1.8;
-            color: #4a148c;
-            text-align: center;
-            font-weight: 300;
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        .thankyou-text {
-            font-family: 'Dancing Script', cursive;
-            font-size: 1.6rem;
-            color: #c2185b;
-            font-weight: 700;
-            line-height: 1.4;
-            text-align: center;
-            margin-top: 30px;
-            max-width: 90%;
-        }
-        
-        .nav-buttons {
-            position: absolute;
-            bottom: 50px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 25px;
-        }
-        
-        .nav-btn {
-            width: 75px;
-            height: 75px;
-            border-radius: 50%;
-            border: none;
-            font-size: 1.8rem;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            box-shadow: 0 15px 35px rgba(255,105,180,0.4);
-        }
-        
-        .next-btn {
-            background: linear-gradient(45deg, #ff69b4, #ff1493);
-            color: white;
-            animation: pulsePink 2s infinite;
-        }
-        
-        .prev-btn {
-            background: rgba(255,255,255,0.9);
-            color: #ff69b4;
-            border: 3px solid rgba(255,105,180,0.5);
             opacity: 0;
+            animation: fadeInUp 1s ease 0.5s forwards;
         }
         
-        .nav-btn:hover {
-            transform: translateY(-10px) scale(1.1);
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            max-width: 1000px;
+            width: 100%;
+            margin-top: 40px;
+            opacity: 0;
+            animation: fadeInUp 1s ease 1s forwards;
         }
         
-        @keyframes pulsePink {
-            0% { box-shadow: 0 15px 35px rgba(255,105,180,0.4); }
-            50% { box-shadow: 0 15px 35px rgba(255,105,180,0.7); }
-            100% { box-shadow: 0 15px 35px rgba(255,105,180,0.4); }
+        .photo-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.5s ease;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
         }
         
-        .cover {
-            background: linear-gradient(145deg, #ff77a8, #ff4081, #f50057);
+        .photo-item:hover {
+            transform: translateY(-15px) scale(1.05);
+        }
+        
+        .photo-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+        
+        .photo-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .photo-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
             color: white;
-            text-align: center;
+            padding: 25px;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+        
+        .photo-item:hover .photo-overlay {
+            transform: translateY(0);
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            border: 2px solid white;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            justify-content: center;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 0.5s ease 1.5s forwards;
         }
         
-        .cover-title {
-            font-family: 'Dancing Script', cursive;
-            font-size: clamp(4rem, 9vw, 6.5rem);
-            margin-bottom: 25px;
-            line-height: 1;
+        .close-btn:hover {
+            background: white;
+            color: #e73c7e;
+            transform: scale(1.1);
         }
         
-        .cover-subtitle {
-            font-size: 1.6rem;
-            opacity: 0.95;
-            font-weight: 300;
-        }
-        
-        .sparkles {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            font-size: 2rem;
-            animation: sparkle 3s ease-in-out infinite;
-            color: #ff69b4;
-        }
-        
-        @keyframes sparkle {
-            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.5; }
-            50% { transform: scale(1.3) rotate(180deg); opacity: 1; }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         @media (max-width: 768px) {
-            .album-book {
-                width: 95vw;
-                height: 90vh;
+            .magic-container {
+                width: 90vw;
+                height: 70vh;
             }
             
-            .page {
-                padding: 50px 40px;
-            }
-            
-            .nav-buttons {
-                bottom: 30px;
+            .photo-gallery {
+                grid-template-columns: 1fr;
                 gap: 20px;
-            }
-            
-            .nav-btn {
-                width: 65px;
-                height: 65px;
-                font-size: 1.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="sparkles">✨</div>
+    <div class="particles" id="particles"></div>
     
-    <div class="album-container">
-        <div class="album-book" id="albumBook">
-            <!-- Cover -->
-            <div class="page cover active" data-page="0">
-                <div class="cover-title">Nelaa</div>
-                <div class="cover-subtitle">20th Diary</div>
-                <div style="font-family: 'Dancing Script', cursive; font-size: 1.8rem; margin-top: 20px; opacity: 0.9;">
-                    Flip to explore 💕
+    <div class="magic-container">
+        <div class="magic-box" id="magicBox">
+            <div class="box-glow"></div>
+            
+            <div class="box-face front">
+                <div class="box-label" data-face="front">
+                    <div style="font-size: 1.2em; margin-bottom: 10px;">✨</div>
+                    <div>NELAA</div>
+                    <div style="font-size: 1.1em; opacity: 0.9;">20</div>
                 </div>
             </div>
             
-            <!-- Page 1 -->
-            <div class="page" data-page="1">
-                <div class="page-title">Memory 1</div>
-                <img class="page-image" src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=800&h=600&fit=crop" alt="Nelaa">
-                <div class="page-text">
-                    Your smile lights up my world, Nelaa. 
-                    Every moment with you feels like a beautiful dream.
-                </div>
+            <div class="box-face back">
+                <div class="box-label" data-face="back">HAPPY BIRTHDAY</div>
             </div>
             
-            <!-- Page 2 -->
-            <div class="page" data-page="2">
-                <div class="page-title">Memory 2</div>
-                <img class="page-image" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop" alt="Nelaa">
-                <div class="page-text">
-                    20 years of pure magic. You're not just growing older, 
-                    you're becoming more amazing every day.
-                </div>
+            <div class="box-face right">
+                <div class="box-label" data-face="right">MAGIC BOX</div>
             </div>
             
-            <!-- Page 3 -->
-            <div class="page" data-page="3">
-                <div class="page-title">Memory 3</div>
-                <img class="page-image" src="https://images.unsplash.com/photo-1524504388940-7b8a6c5e8b53?w=800&h=600&fit=crop" alt="Nelaa">
-                <div class="page-text">
-                    Thank you for being the sunshine in our lives. 
-                    Your laughter is the best music.
-                </div>
+            <div class="box-face left">
+                <div class="box-label" data-face="left">SURPRISE!</div>
             </div>
             
-            <!-- Page 4 -->
-            <div class="page" data-page="4">
-                <div class="page-title">Memory 4</div>
-                <img class="page-image" src="https://images.unsplash.com/photo-1558618047-3c8c76bbb17e?w=800&h=600&fit=crop" alt="Nelaa">
-                <div class="page-text">
-                    Here's to more adventures, more laughter, 
-                    and more unforgettable moments together.
-                </div>
+            <div class="box-face top">
+                <div class="box-label" data-face="top">🎂</div>
             </div>
             
-            <!-- Page 5 - Thank You -->
-            <div class="page" data-page="5">
-                <div class="page-title">Final Memory</div>
-                <img class="page-image" src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&h=600&fit=crop" alt="Nelaa">
-                <div class="thankyou-text">
-                    <strong>Dear Nelaa,</strong><br><br>
-                    
-                    Thank you for being the most wonderful person we know. 
-                    Thank you for your endless kindness, your infectious laughter, 
-                    and for filling our lives with so much joy. 
-                    
-                    On your 20th birthday, we wish you a lifetime of happiness, 
-                    boundless love, good health, and all your dreams coming true. 
-                    
-                    You deserve the world and more. 
-                    Happy Birthday, beautiful soul! 💕✨
-                    
-                    <div style="font-size: 1.1rem; margin-top: 20px; opacity: 0.8;">
-                        With all our love,
-                    </div>
-                </div>
+            <div class="box-face bottom">
+                <div class="box-label" data-face="bottom">CLICK ME</div>
             </div>
         </div>
+    </div>
+    
+    <div class="content-reveal" id="contentReveal">
+        <button class="close-btn" id="closeBtn">✕</button>
         
-        <div class="nav-buttons">
-            <button class="nav-btn prev-btn" id="prevBtn">←</button>
-            <button class="nav-btn next-btn" id="nextBtn">→</button>
+        <div class="nelaa-name">Nelaa</div>
+        <div class="birthday-text">Happy 20th Birthday! ✨</div>
+        
+        <div class="photo-gallery">
+            <div class="photo-item">
+                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=800&h=600&fit=crop" alt="Nelaa">
+                <div class="photo-overlay">
+                    <div style="font-size: 1.3em; font-weight: 600;">Beautiful Smile</div>
+                    <div style="opacity: 0.9;">Your happiness is contagious 💕</div>
+                </div>
+            </div>
+            
+            <div class="photo-item">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop" alt="Nelaa">
+                <div class="photo-overlay">
+                    <div style="font-size: 1.3em; font-weight: 600;">20 Years Young</div>
+                    <div style="opacity: 0.9;">Forever young at heart ✨</div>
+                </div>
+            </div>
+            
+            <div class="photo-item">
+                <img src="https://images.unsplash.com/photo-1524504388940-7b8a6c5e8b53?w=800&h=600&fit=crop" alt="Nelaa">
+                <div class="photo-overlay">
+                    <div style="font-size: 1.3em; font-weight: 600;">Adventure Time</div>
+                    <div style="opacity: 0.9;">Life is better with you 🌟</div>
+                </div>
+            </div>
+            
+            <div class="photo-item">
+                <img src="https://images.unsplash.com/photo-1558618047-3c8c76bbb17e?w=800&h=600&fit=crop" alt="Nelaa">
+                <div class="photo-overlay">
+                    <div style="font-size: 1.3em; font-weight: 600;">Elegant Queen</div>
+                    <div style="opacity: 0.9;">You shine wherever you go 👑</div>
+                </div>
+            </div>
+            
+            <div class="photo-item">
+                <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&h=600&fit=crop" alt="Nelaa">
+                <div class="photo-overlay">
+                    <div style="font-size: 1.3em; font-weight: 600;">Star of the Day</div>
+                    <div style="opacity: 0.9;">Today's all about you! 🎉</div>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        const pages = document.querySelectorAll('.page');
-        const albumBook = document.getElementById('albumBook');
-        const nextBtn = document.getElementById('nextBtn');
-        const prevBtn = document.getElementById('prevBtn');
-        let currentPage = 0;
-        const totalPages = pages.length;
-
-        // Next page (flip from RIGHT)
-        nextBtn.addEventListener('click', nextPage);
-        function nextPage() {
-            if (currentPage < totalPages - 1) {
-                pages[currentPage].classList.remove('active');
-                pages[currentPage].classList.add('flipped');
-                currentPage++;
-                pages[currentPage].classList.add('active');
-                prevBtn.style.opacity = '1';
+        const magicBox = document.getElementById('magicBox');
+        const contentReveal = document.getElementById('contentReveal');
+        const closeBtn = document.getElementById('closeBtn');
+        const particles = document.getElementById('particles');
+        const boxFaces = document.querySelectorAll('.box-label');
+        
+        // Click any face to open
+        boxFaces.forEach(face => {
+            face.addEventListener('click', openMagicBox);
+        });
+        
+        function openMagicBox() {
+            // Box explosion animation
+            magicBox.style.transform = 'rotateX(360deg) rotateY(360deg) rotateZ(360deg) scale(0.1)';
+            
+            // Glow effect
+            document.querySelector('.box-glow').classList.add('active');
+            
+            // Particles explosion
+            createParticlesExplosion();
+            
+            // Show content
+            setTimeout(() => {
+                contentReveal.classList.add('active');
+            }, 1200);
+        }
+        
+        closeBtn.addEventListener('click', () => {
+            contentReveal.classList.remove('active');
+            setTimeout(() => {
+                location.reload();
+            }, 800);
+        });
+        
+        // Particles explosion
+        function createParticlesExplosion() {
+            for (let i = 0; i < 200; i++) {
+                setTimeout(() => {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.background = `hsl(${Math.random() * 360}, 70%, 60%)`;
+                    particle.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                    particles.appendChild(particle);
+                    
+                    setTimeout(() => particle.remove(), 5000);
+                }, i * 10);
             }
         }
-
-        // Previous page
-        prevBtn.addEventListener('click', prevPage);
-        function prevPage() {
-            if (currentPage > 0) {
-                pages[currentPage].classList.remove('active');
-                currentPage--;
-                pages[currentPage].classList.remove('flipped');
-                pages[currentPage].classList.add('active');
+        
+        // Continuous floating particles
+        setInterval(() => {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.background = `hsl(${Math.random() * 360}, 70%, ${Math.random() * 50 + 50}%)`;
+            particles.appendChild(particle);
+            setTimeout(() => particle.remove(), 6000);
+        }, 300);
+        
+        // Photo zoom effect
+        document.querySelectorAll('.photo-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const img = item.querySelector('img');
+                const fullImg = document.createElement('img');
+                fullImg.src = img.src.replace('800&h=600', '1200');
+                fullImg.style.cssText = `
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%) scale(0.8);
+                    width: 90vw;
+                    max-width: 700px;
+                    height: auto;
+                    border-radius: 20px;
+                    box-shadow: 0 50px 100px rgba(0,0,0,0.8);
+                    z-index: 1000;
+                    cursor: zoom-out;
+                    transition: transform 0.5s ease;
+                `;
+                document.body.appendChild(fullImg);
                 
-                if (currentPage === 0) {
-                    prevBtn.style.opacity = '0';
-                }
-            }
-        }
-
-        // Keyboard & swipe
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight' || e.key === ' ') nextPage();
-            if (e.key === 'ArrowLeft') prevPage();
-        });
-
-        let startX = 0;
-        albumBook.addEventListener('touchstart', (e) => startX = e.touches[0].clientX);
-        albumBook.addEventListener('touchend', (e) => {
-            const endX = e.changedTouches[0].clientX;
-            if (startX - endX > 50) nextPage();
-            if (endX - startX > 50) prevPage();
-        });
-
-        // Page turn sound effect (visual)
-        document.querySelectorAll('.nav-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                albumBook.style.transform = 'rotateY(5deg)';
-                setTimeout(() => albumBook.style.transform = 'rotateY(0deg)', 150);
+                fullImg.onclick = () => {
+                    fullImg.style.transform = 'translate(-50%, -50%) scale(0.8)';
+                    setTimeout(() => fullImg.remove(), 500);
+                };
+                
+                setTimeout(() => fullImg.style.transform = 'translate(-50%, -50%) scale(1)', 10);
             });
         });
     </script>
